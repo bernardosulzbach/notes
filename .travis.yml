@@ -5,6 +5,9 @@ language: r
 
 sudo: required
 
+r_github_packages:
+- hadley/devtools#936 # Temporary fix for Travis CI bug.
+
 script:
 - pdflatex -interaction=nonstopmode book.tex
 
