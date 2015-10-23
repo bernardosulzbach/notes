@@ -1,15 +1,13 @@
-os: linux
+language: ruby
 
-# This VM contains latex.
-language: r
+before_install:
+  - curl -L https://raw.githubusercontent.com/krlmlr/texlive-squashfs/master/out/texlive.tar.xz | tar xJC ~
 
-sudo: required
-
-r_github_packages:
-- hadley/devtools#936 # Temporary fix for Travis CI bug.
+install:
+  - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
 
 script:
-- pdflatex -interaction=nonstopmode book.tex
+  - pdflatex -interaction=nonstopmode book.tex
 
 deploy:
   provider: releases
