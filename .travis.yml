@@ -1,3 +1,5 @@
+os: linux
+
 # This VM contains latex.
 language: r
 
