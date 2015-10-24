@@ -2,7 +2,23 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{parskip} % turns off the indentation and adds a little bit of (stretchable) space in between paragraphs.
+
+\DeclareMathOperator\cis{cis} % used for complex numbers
+ % most of the time, \newcommand* is the best choice as you want the error-checking that it provides.
+\newcommand*\conj[1]{\bar{#1}}
+\newcommand*\argument{\phi}
+
+% number sets
+\newcommand*\primes{\mathbb{P}}
+\newcommand*\naturalnumbers{\mathbb{N}}
+\newcommand*\wholenumbers{\mathbb{W}}
+\newcommand*\integers{\mathbb{Z}}
+\newcommand*\rationalnumbers{\mathbb{Q}}
+\newcommand*\irrationalnumbers{\mathbb{I}}
+\newcommand*\reals{\mathbb{R}}
+\newcommand*\complexnumbers{\mathbb{C}}
 
 \title{Formulas}
 \author{Bernardo Sulzbach}
@@ -149,5 +165,25 @@ change for an object while that object is moving.
 
 \chapter{Mathematics}
 
+\section{Complex numbers}
+
+\subsection{Notation}
+\[\cis \left ( \argument \right ) =  \cos \left ( \argument \right ) + i \sin \left ( \argument \right )\]
+
+\subsection{Formulas}
+\[a + bi = r \left( \cos \left ( \argument \right ) + i \sin \left ( \argument \right ) \right )
+= r \cis \left ( \argument \right )\]
+\[\conj{z} = a - bi = r \cis \left (- \argument \right)\]
+\[r = \sqrt{a^2 + b^2}\]
+\[\phi = \tan^{-1} \left ( \frac{b}{a} \right)\]
+
+\[z_1 z_2 = r_1 r_2 \left ( \cis \left ( \phi_1 + \phi_2 \right ) \right )\]
+\[\frac{z_1}{z_2} = \frac{r_1}{r_2} \left ( \cis \left ( \phi_1 - \phi_2 \right ) \right )\]
+\[z^n = r^n \cis \left ( n \argument \right )\]
+\[z^{\frac{1}{n}} = r^{\frac{1}{n}} \cis \left ( \frac{\argument + 2 \pi k}{n} \right ), \quad
+k : k \in \integers \text{ and } 0 \le k \le n - 1\]
+
+Euler's Formula
+\[e^{ix} = \cis \left ( x \right)\]
 
 \end{document}
