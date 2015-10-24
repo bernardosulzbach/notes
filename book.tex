@@ -8,6 +8,7 @@
 \DeclareMathOperator\cis{cis} % used for complex numbers
  % most of the time, \newcommand* is the best choice as you want the error-checking that it provides.
 \newcommand*\conj[1]{\bar{#1}}
+\newcommand*\reciprocal[1]{\frac{1}{#1}}
 \newcommand*\argument{\phi}
 
 % number sets
@@ -141,7 +142,7 @@ the source.
 \[U = R i\]
 \[P = i U\]
 Resistance of a parallel association of resistors:
-\[\frac{1}{R_{eq}} = \sum{\frac{1}{R_i}}\]
+\[\reciprocal{R_{eq}} = \sum{\reciprocal{R_i}}\]
 
 \subsection{Electric Force}
 \[F_{el} = \frac{k Q q}{r^2}\]
@@ -161,7 +162,7 @@ Resistance of a parallel association of resistors:
 \subsection{Lorentz factor}
 The Lorentz factor is the factor by which time, length, and relativistic mass
 change for an object while that object is moving.
-\[\gamma = \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}}\]
+\[\gamma = \reciprocal{\sqrt{1 - \frac{v^2}{c^2}}}\]
 
 \chapter{Mathematics}
 
@@ -180,10 +181,23 @@ change for an object while that object is moving.
 \[z_1 z_2 = r_1 r_2 \left ( \cis \left ( \phi_1 + \phi_2 \right ) \right )\]
 \[\frac{z_1}{z_2} = \frac{r_1}{r_2} \left ( \cis \left ( \phi_1 - \phi_2 \right ) \right )\]
 \[z^n = r^n \cis \left ( n \argument \right )\]
-\[z^{\frac{1}{n}} = r^{\frac{1}{n}} \cis \left ( \frac{\argument + 2 \pi k}{n} \right ), \quad
+\[z^{\reciprocal{n}} = r^{\reciprocal{n}} \cis \left ( \frac{\argument + 2 \pi k}{n} \right ), \quad
 k : k \in \integers \text{ and } 0 \le k \le n - 1\]
 
 Euler's Formula
 \[e^{ix} = \cis \left ( x \right)\]
+
+\section{Logarithms}
+
+\subsection{Definition}
+
+\[y = \log_a x \iff a^y = x, \quad a > 0, a \ne 0\]
+\[\log_a 0 = \begin{cases} -\infty, \quad a > 1 \\ +\infty, \quad a < 1 \end{cases}\]
+\[\log x y = \log x + \log y\]
+\[\log \frac{x}{y} = \log x - \log y\]
+\[\log x^n = n \log x\]
+\[\log_a b = \frac{\log_c b}{\log_c a} = \left ( \log_a c \right ) \left ( \log_c b \right )\]
+\[\log a_b = \reciprocal{\log_b a}\]
+\[e=\lim_{k\to\infty} \left ( 1 + \reciprocal{k} \right ) ^ k\]
 
 \end{document}
