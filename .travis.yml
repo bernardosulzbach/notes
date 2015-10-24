@@ -16,4 +16,6 @@ deploy:
   file: book.pdf
   skip_cleanup: true
   on:
+    tags: true
+    all_branches: true
     repo: mafagafogigante/formulas
