@@ -2,9 +2,6 @@ if [ $# -ne 2 ]
     then
         echo "Pass two arguments: the new tag and a short release message."
     else
-        old_tag=$(git describe --abbrev=0)
-        sed -i "s/$old_tag/$1/g" pom.xml
-        git commit -a -m "Release $1."
         git tag -a $1 -m "$2"
 	git push origin HEAD --follow-tags
 	# git push origin --set-upstream HEAD
