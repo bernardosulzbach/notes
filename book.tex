@@ -4,10 +4,15 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{parskip} % turns off the indentation and adds a little bit of (stretchable) space in between paragraphs.
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+\graphicspath{ {images/} }
 
 \DeclareMathOperator\cis{cis} % used for complex numbers
  % most of the time, \newcommand* is the best choice as you want the error-checking that it provides.
 \newcommand*\conj[1]{\bar{#1}}
+\newcommand*\mean[1]{\bar{#1}}
 \newcommand*\reciprocal[1]{\frac{1}{#1}}
 \newcommand*\argument{\phi}
 
@@ -146,7 +151,6 @@ Resistance of a parallel association of resistors:
 
 \subsection{Electric Force}
 \[F_{el} = \frac{k Q q}{r^2}\]
-
 \section{Electromagnetism}
 
 \subsection{Magnetic Force}
@@ -199,5 +203,46 @@ Euler's Formula
 \[\log_a b = \frac{\log_c b}{\log_c a} = \left ( \log_a c \right ) \left ( \log_c b \right )\]
 \[\log a_b = \reciprocal{\log_b a}\]
 \[e=\lim_{k\to\infty} \left ( 1 + \reciprocal{k} \right ) ^ k\]
+
+\section{Statistics}
+Variance
+\[\sigma^2 = \sum \frac{\left ( k-\mean{x} \right ) ^ 2}{n}\]
+Standard Deviation
+\[\sigma = \sqrt{\sum \frac{\left ( k-\mean{x} \right ) ^ 2}{n}}\]
+
+\section{Geometry}
+
+\subsection{Right Triangle}
+For a right triangle with sides a and b, hypotenuse c, projections m and n (of a and b, respectively), and height h,
+the following expressions are true
+
+\begin{figure}[!htb]
+  \centering
+  \begin{minipage}{0.5\textwidth}
+    \centering
+    \begin{align*}
+    a^2 = m c \\
+    b^2 = n c \\
+    h^2 = m n \\
+    a b = c h
+    \end{align*}
+  \end{minipage}% this % removes the space after the minipage.
+  \begin{minipage}{0.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{right_triangle}
+  \end{minipage}
+\end{figure}
+
+\subsection{Equilateral Triangle}
+\[h = \frac{a \sqrt{3}}{2}\]
+\[r = \frac{a \sqrt{3}}{6}\]
+\[R = \frac{a \sqrt{3}}{3}\]
+\[A = \frac{a^2 \sqrt{3}}{4}\]
+
+\subsection{All Triangles}
+\[A = a b \sin \gamma \]
+\[A = \sqrt{p \left ( p - a \right ) \left ( p - b \right ) \left ( p - c \right )}\]
+\[a^2 = b^2 + c^2 - 2 b c \cos \alpha\]
+\[\frac{a}{\sin \alpha} = \frac{b}{\sin \beta} = \frac{c}{\sin \gamma} = 2R\]
 
 \end{document}
