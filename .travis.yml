@@ -1,10 +1,11 @@
 language: ruby
 
-before_install:
-  - curl -L https://raw.githubusercontent.com/krlmlr/texlive-squashfs/master/out/texlive.tar.xz | tar xJC ~
-
-install:
-  - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
+addons:
+  apt:
+    packages:
+      - texlive-latex-recommended
+      - texlive-latex-extra
+      - texlive-fonts-recommended
 
 script:
   - pdflatex -interaction=nonstopmode book.tex
