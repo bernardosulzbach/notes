@@ -1,7 +1,7 @@
 \documentclass{book}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
-\usepackage{amsmath}
+\usepackage[fleqn]{mathtools}
 \usepackage{amssymb}
 \usepackage{parskip} % turns off the indentation and adds a little bit of (stretchable) space in between paragraphs.
 \usepackage{graphicx}
@@ -244,5 +244,19 @@ the following expressions are true
 \[A = \sqrt{p \left ( p - a \right ) \left ( p - b \right ) \left ( p - c \right )}\]
 \[a^2 = b^2 + c^2 - 2 b c \cos \alpha\]
 \[\frac{a}{\sin \alpha} = \frac{b}{\sin \beta} = \frac{c}{\sin \gamma} = 2R\]
+
+\section{Equations}
+\subsection{Discriminant}
+\[\Delta = b^2 - 4ac\]
+
+\subsection{Vieta's formulas}
+A polynomial \(P(x) = a_n x^n + a_{n-1} x^{n-1} + ... + a_0\), (with the coefficients being real or complex numbers and \(a_n \neq 0\)) is known by the fundamental theorem of algebra to have \(n\) (not necessarily distinct) complex roots \(x_1, x_2, ..., x_n\).
+
+Vieta's formulas relate the polynomial's coefficients \(a_k\) to signed sums and products of its roots \(x_i\) as follows:
+
+\[\sum_{1 \le i \le n} x_i = - \frac{a_{n-1}}{a_n}\]
+\[\sum_{1 \le i_1 < i_2 \le n} x_{i_1} x_{i_2} = \frac{a_{n-2}}{a_n}\]
+\[\sum_{1 \le i_1 < i_2 < i_3 \le n} x_{i_1} x_{i_2} x_{i_3} = - \frac{a_{n-3}}{a_n}\]
+\[\sum_{1 \le i_1 < i_2 < ... < i_k \le n} x_{i_1} x_{i_2} ... x_{i_k} = (-1)^k \frac{a_{n-k}}{a_n}\]
 
 \end{document}
