@@ -8,7 +8,7 @@ addons:
       - texlive-fonts-recommended
 
 script:
-  - pdflatex -interaction=nonstopmode book.tex
+  - pdflatex -interaction=nonstopmode Formulas.tex
 
 deploy:
   provider: releases
