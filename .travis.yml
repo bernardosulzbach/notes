@@ -6,9 +6,10 @@ addons:
       - texlive-latex-recommended
       - texlive-latex-extra
       - texlive-fonts-recommended
+      - rubber
 
 script:
-  - pdflatex -interaction=nonstopmode Formulas.tex
+  - rubber --pdf Formulas
 
 deploy:
   provider: releases
