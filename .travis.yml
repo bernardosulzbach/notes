@@ -9,7 +9,7 @@ addons:
       - rubber
 
 script:
-  - rubber --pdf Formulas
+  - bash rubber.sh
 
 deploy:
   provider: releases
