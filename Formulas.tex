@@ -501,11 +501,36 @@ Relational databases arose in the 80's. NoSQL databases are much more recent.
 
 Transactions are all about atomic updates that either succeed or fail.
 
+\textbf{The CAP theorem.} If a system has a network partition, it cannot be
+fully \textbf{consistent} and fully \textbf{available}. In real-world scenarios,
+usually the tradeoff is between consistency and response-time.
+
+\subsection{Distributed systems}
+Distributed systems may use sharding, in which only one copy of each aggregate
+exists, or replication, on which multiples copied of the data are distributed.
+\textbf{Replication improves availability and resilience}.
+
+\subsection{Sample problems}
+Two different users, interacting with two different servers that talk to the
+same database retrieve data, edit it, and then write it back. If no precautions
+are taken, this causes a write-write conflict (one update will overwrite the
+other).
+
+Solution A. Hold a transaction open until the update is complete. This makes it
+impossible for two users to view the data at the same time. \textit{This is
+impractical in most systems}.
+
+Solution B. Make the final update a transaction so that the updates don't mix
+together and use an \textbf{offline lock}. This is done by giving each record a
+version stamp, if at the time of the update the version stamp has already been
+updated (due to a database modification), you solve the conflict anyway you
+want.
+
 \subsection{NoSQL}
 The problem with relational databases was that a single logical structure in the
 application ends up being split into several rows and tables. This is known as
-\textbf{impedance mismatch}: the need very different models to represent the
-same thing.
+\textbf{impedance mismatch}: the difficulties encountered when trying to map
+an object into a table.
 
 This led to \textbf{object databases}. They did not become popular because many
 systems used relational databases for integration. This way, relational has
@@ -547,7 +572,7 @@ There is also the \textbf{column family model}, which is slightly more complex.
 In these databases, a row key maps to a set of column families.
 
 These three types of NoSQL databases are also known as \textbf{aggregate
-models}. They are better at clustering because each note gets a set of
+models}. They are better at clustering because each node gets a set of
 aggregates that contain all the data a query needs and thus avoid the need of
 building the result from small pieces obtained from different nodes.
 
@@ -564,6 +589,10 @@ bet. If you need to really break things up and jump around in a complex
 structure, graph databases are the way to go. But in the end what works best for
 you may be the good and old tabular structure provided by relational databases.
 
+NoSQL databases ease development when there are natural aggregates and when
+there is just too much data for a single server.
+Aggregate-oriented databases are ACID within aggregates, concurrency issues show
+up when a single transaction must change multiple documents.
 
 \section{Functional Programming}
 In functional programming, functions are treated as data.
