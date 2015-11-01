@@ -3,7 +3,8 @@
 \usepackage[english]{babel}
 \usepackage[fleqn]{amsmath}
 \usepackage{amssymb}
-\usepackage{parskip} % turns off the indentation and adds a little bit of (stretchable) space in between paragraphs.
+\usepackage{parskip} % turns off the indentation and adds a little bit of
+                     % (stretchable) space in between paragraphs.
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{hyperref}
@@ -11,7 +12,8 @@
 \graphicspath{ {images/} }
 
 \DeclareMathOperator\cis{cis} % used for complex numbers
- % most of the time, \newcommand* is the best choice as you want the error-checking that it provides.
+% most of the time, \newcommand* is the best choice as you want the
+% error-checking that it provides.
 \newcommand*\conj[1]{\bar{#1}}
 \newcommand*\mean[1]{\bar{#1}}
 \newcommand*\reciprocal[1]{\frac{1}{#1}}
@@ -119,38 +121,49 @@ of the acid.
 \section{Kinetics}
 
 One of the most important topics of chemical kinetics is the \textbf{rate law}.
-The rate law is an expression relating the rate of a reaction to the concentrations of the chemical
-species present, which may include reactants, products, and catalysts. Many reactions follow a
-simple rate law, which takes the form
+The rate law is an expression relating the rate of a reaction to the
+concentrations of the chemical species present, which may include reactants,
+products, and catalysts. Many reactions follow a simple rate law, which takes
+the form
 \[v = k [A]^\alpha [B]^\beta \ldots\]
-For reactions with multiple steps, the rate law, rate constant, and order are determined by experiment,
-and the orders are \textbf{not} generally the same as the stoichiometric coefficients in the reaction equation.
-A final important point about rate laws is that overall rate laws for a reaction may contain reactant,
-product and catalyst concentrations, but must not contain concentrations of intermediates.
+For reactions with multiple steps, the rate law, rate constant, and order are
+determined by experiment, and the orders are \textbf{not} generally the same as
+the stoichiometric coefficients in the reaction equation.  A final important
+point about rate laws is that overall rate laws for a reaction may contain
+reactant, product and catalyst concentrations, but must not contain
+concentrations of intermediates.
 
-\paragraph{Law of Mass Action.} The law of mass action is a general description of the equilibrium condition;
-it defines the \textit{equilibrium constant expression}.
+\paragraph{Law of Mass Action.} The law of mass action is a general description
+of the equilibrium condition; it defines the \textit{equilibrium constant
+expression}.
 \[K_C = \frac{[C]^\gamma [D]^\delta}{[A]^\alpha [B]^\beta}\]
 
-\paragraph{Notes on the equilibrium expression.} The equilibrium expression for a reaction is the reciprocal of that
-for the reaction written in reverse. When the equation for a reaction is multiplied by n, \(K\) is raised to n.
-The units for \(K\) depend on the reaction being considered, but it is \textbf{customarily written without units}.
+\paragraph{Notes on the equilibrium expression.} The equilibrium expression for
+a reaction is the reciprocal of that for the reaction written in reverse. When
+the equation for a reaction is multiplied by n, \(K\) is raised to n.  The
+units for \(K\) depend on the reaction being considered, but it is
+\textbf{customarily written without units}.
 
-\paragraph{Equilibrium in terms of pressure.} The equilibrium expression for a reaction can be written in terms of partial pressures.
+\paragraph{Equilibrium in terms of pressure.} The equilibrium expression for a
+reaction can be written in terms of partial pressures.
 \[K_P = \frac{\left(P_C\right)^\gamma \left(P_D\right)^\delta}{\left(P_A\right)^\alpha \left(P_B\right)^\beta}\]
 \[K_P = K_C (RT)^{\Delta n}\]
 where
 
-n is the difference between the number of moles of gases in the products and in the reactants.
+n is the difference between the number of moles of gases in the products and in
+the reactants.
 
-\paragraph{Heterogeneous Equilibrium.} The equilibrium constant does not depend on the amounts of pure solid
+\paragraph{Heterogeneous Equilibrium.} The equilibrium constant does not depend
+on the amounts of pure solid
 or liquids present. Just gases and aqueous solutions are taken into account.
 
-\paragraph{The Reaction Quotient (Q).} In general, all reacting chemical systems are characterized by their
-Reaction Quotient, Q. It has the same formula as K, but can be used even when the system is not at equilibrium.
+\paragraph{The Reaction Quotient (Q).} In general, all reacting chemical
+systems are characterized by their Reaction Quotient, Q. It has the same
+formula as K, but can be used even when the system is not at equilibrium.
 
-\paragraph{Le Chatelier's Principle.} \textit{If a system at equilibrium is disturbed, the system tends to shift its
-equilibrium position to counter the effect of the disturbance.}
+\paragraph{Le Chatelier's Principle.} \textit{If a system at equilibrium is
+disturbed, the system tends to shift its equilibrium position to counter the
+effect of the disturbance.}
 
 
 \chapter{Physics}
@@ -206,6 +219,57 @@ Resistance of a parallel association of resistors:
 The Lorentz factor is the factor by which time, length, and relativistic mass
 change for an object while that object is moving.
 \[\gamma = \reciprocal{\sqrt{1 - \frac{v^2}{c^2}}}\]
+
+\subsection{Superposition}
+Superposition is a principle of quantum theory that describes a challenging
+concept about the nature and behavior of matter and forces at the sub-atomic
+level. The principle of superposition claims that while we do not know what the
+state of any object is, it is actually in all possible states simultaneously,
+as long as we don't look to check. It is the measurement itself that causes the
+object to be limited to a single possibility. It can also be said that there is
+no single outcome unless it is observed.
+
+\paragraph{Young's double-slit experiment.}
+Superposition is well illustrated by Thomas Young's double-slit experiment,
+developed in the early nineteenth century to prove that light consisted of
+waves. Richard Feynman claimed that the essentials of quantum mechanics could
+be grasped by an exploration of the implications of Young's experiment.
+
+In this experiment, a beam of light is aimed at a barrier with two vertical
+slits.  The light passes through the slits and the resulting pattern is
+recorded.  If one slit is covered, the pattern is what would be expected: a
+single line of light, aligned with whichever slit is open. Intuitively, one
+would expect that if both slits are open, the pattern of light will reflect
+that fact: two lines of light, aligned with the slits.  However, what happens
+is that the plate is entirely separated into multiple lines of lightness and
+darkness in varying degrees.  What is being illustrated by this result is that
+interference is taking place between the waves/particles going through the
+slits, in what, seemingly, should be two non-crossing trajectories.
+
+We would expect that if the beam of light particles or photons is slowed enough
+to ensure that individual photons are hitting the plate, there could be no
+interference and the pattern of light would be two lines of light, aligned with
+the slits. In fact, however, the resulting pattern still indicates
+interference, which means that, somehow, the single particles are interfering
+with themselves. This seems impossible: we expect that a single photon will go
+through one slit or the other, and will end up in one of two possible light
+line areas. But that is not what happens. As Feynman concluded, each photon not
+only goes through both slits, but simultaneously takes every possible
+trajectory en route to the target.
+
+In order to see how this might possibly occur, experiments have focused on
+tracking the paths of individual photons. What happens in this case is that the
+measurement in some way disrupts the photons' trajectories (in accordance with
+the uncertainty principle), and somehow, the results of the experiment become
+what would be predicted by classical physics: two bright lines on the
+photographic plate, aligned with the slits in the barrier. Cease the attempt to
+measure, however, and the pattern will again become multiple lines in varying
+degrees of lightness and darkness. Each photon moves simultaneously in a
+superposition of possible trajectories, and, furthermore, measurement of the
+trajectory causes the superposition of states to collapse to a single position.
+
+Text extracted from
+\href{http://whatis.techtarget.com/definition/superposition}{WhatIs}.
 
 \chapter{Mathematics}
 
