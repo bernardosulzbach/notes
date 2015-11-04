@@ -39,13 +39,13 @@
 
 \tableofcontents
 
-\chapter{Introduction}
+\part{Introduction}
 This document is a collection of notes and formulas from various subjects I
 need to remember. It is mainly for reference purposes.
 
-\chapter{Chemistry}
+\part{Chemistry}
 
-\section{Gases}
+\chapter{Gases}
 
 Ideal gas law
 \[PV = nRT\]
@@ -66,7 +66,7 @@ gases is inversely proportional to the square root of their mass densities.
 
 \[\frac{R_1}{R_2} = \sqrt{\frac{M_2}{M_1}}\]
 
-\section{Solutions}
+\chapter{Solutions}
 
 Solution. A solution is a homogeneous mixture of two or more substances.
 
@@ -111,13 +111,13 @@ Pressure.
 Relation between moles and grams.
 One mole of a substance weights the molecular weight of substance in grams.
 
-\section{Atomic Properties}
+\chapter{Atomic Properties}
 
 Ionization energy. Ionization energy is qualitatively defined as the amount of
 energy required to remove the most loosely bound electron of an isolated
 gaseous atom to form a cation. It is always endothermic (positive).
 
-\section{Acids and Bases}
+\chapter{Acids and Bases}
 
 The Henderson-Hasselbalch equation describes the derivation of pH as a
 measure of acidity (using pKa, the negative log of the acid dissociation
@@ -129,7 +129,7 @@ constant).
 where [A-] is the concentration of conjugate base and [HA] is the concentration
 of the acid.
 
-\section{Kinetics}
+\chapter{Kinetics}
 
 One of the most important topics of chemical kinetics is the \textbf{rate law}.
 The rate law is an expression relating the rate of a reaction to the
@@ -178,16 +178,16 @@ disturbed, the system tends to shift its equilibrium position to counter the
 effect of the disturbance.}
 
 
-\chapter{Physics}
+\part{Physics}
 
-\section{Kinetics}
+\chapter{Kinetics}
 \[S = S_0 + V_0 t + \frac{a t^2}{2}\]
 \[V_f^2 = V_i^2 + 2 a \Delta S\]
 
-\section{Waves}
+\chapter{Waves}
 \[v = \lambda f\]
 
-\subsection{Doppler Effect}
+\section{Doppler Effect}
 \[f = f_0 \left ( \frac{v + v_r}{v + v_s} \right )\]
 
 where
@@ -203,36 +203,36 @@ source is moving away from the receiver (and negative in the other direction).
 One can remember that the velocities are positive if the receiver is chasing
 the source.
 
-\section{Gases}
+\chapter{Gases}
 \[P = P_A + \rho g h\]
 \[\tau = P \Delta V\]
 
-\section{Electricity}
+\chapter{Electricity}
 \[U = R i\]
 \[P = i U\]
 Resistance of a parallel association of resistors:
 \[\reciprocal{R_{eq}} = \sum{\reciprocal{R_i}}\]
 
-\subsection{Electric Force}
+\section{Electric Force}
 \[F_{el} = \frac{k Q q}{r^2}\]
-\section{Electromagnetism}
+\chapter{Electromagnetism}
 
-\subsection{Magnetic Force}
+\section{Magnetic Force}
 \[F_{mag} = B q v = B i l\]
 
-\subsection{Magnetic Fields}
+\section{Magnetic Fields}
 \[B_{\text{wire}} = \frac{i \mu_0}{2 \pi r}\]
 \[B_{\text{current loop}} = \frac{i \mu_0}{2 r}\]
 
-\section{Modern Physics}
+\chapter{Modern Physics}
 \[E = hf = h\frac{c}{\lambda}\]
 
-\subsection{Lorentz factor}
+\section{Lorentz factor}
 The Lorentz factor is the factor by which time, length, and relativistic mass
 change for an object while that object is moving.
 \[\gamma = \reciprocal{\sqrt{1 - \frac{v^2}{c^2}}}\]
 
-\subsection{Superposition}
+\section{Superposition}
 Superposition is a principle of quantum theory that describes a challenging
 concept about the nature and behavior of matter and forces at the sub-atomic
 level. The principle of superposition claims that while we do not know what the
@@ -283,11 +283,11 @@ trajectory causes the superposition of states to collapse to a single position.
 Text extracted from
 \href{http://whatis.techtarget.com/definition/superposition}{WhatIs}.
 
-\chapter{Mathematics}
+\part{Mathematics}
 
-\section{Series}
+\chapter{Series}
 
-\subsection{Arithmetic Series}
+\section{Arithmetic Series}
 An arithmetic series is the sum of a sequence in which each term is computed
 from the previous one by adding (or subtracting) a constant.
 \[a_n = a_1 + (n-1)r\]
@@ -295,17 +295,17 @@ from the previous one by adding (or subtracting) a constant.
 Note that this expression is just the product of the number of terms by the
 average value.
 
-\subsection{Geometric Series}
+\section{Geometric Series}
 \[a_n = a_1 q^{(n-1)}\]
 \[S_n = a_1 \frac{q^n - 1}{q-1}\]
 
-\section{Complex numbers}
+\chapter{Complex numbers}
 
-\subsection{Notation}
+\section{Notation}
 \[\cis \left ( \argument \right ) =  \cos \left ( \argument \right ) + i \sin
 \left ( \argument \right )\]
 
-\subsection{Formulas}
+\section{Formulas}
 \[a + bi = r \left( \cos \left ( \argument \right ) + i \sin \left ( \argument
 \right ) \right )
 = r \cis \left ( \argument \right )\]
@@ -324,13 +324,13 @@ k : k \in \integers \text{ and } 0 \le k \le n - 1\]
 Euler's Formula
 \[e^{ix} = \cis \left ( x \right)\]
 
-\section{Logarithms}
+\chapter{Logarithms}
 
 \paragraph{Logarithm.} The logarithm is the inverse operation to exponentiation.
 The natural logarithm of \(t\) equals the integral of \(x^{-1}\) in respect to x
 from \(1\) to \(t\).
 
-\subsection{Definition}
+\section{Definition}
 
 \[y = \log_a x \iff a^y = x, \quad a > 0, a \ne 0\]
 \[\log_a 0 = \begin{cases} -\infty, \quad a > 1 \\ +\infty, \quad a < 1
@@ -343,9 +343,9 @@ from \(1\) to \(t\).
 \[\log a_b = \reciprocal{\log_b a}\]
 \[e=\lim_{k\to\infty} \left ( 1 + \reciprocal{k} \right ) ^ k\]
 
-\section{Statistics}
+\chapter{Statistics}
 
-\subsection{Pythagorean means}
+\section{Pythagorean means}
 The three classical Pythagorean means are the arithmetic mean (A), the
 geometric mean (G), and the harmonic mean (H). They are defined by:
 \[A = \frac{\sum{x}}{n}\]
@@ -355,15 +355,15 @@ geometric mean (G), and the harmonic mean (H). They are defined by:
 If all \(x\) are positive, the following relation holds
 \[min \le H \le G \le A \le max\]
 
-\subsection{Measures of statistical dispersion}
+\section{Measures of statistical dispersion}
 Variance
 \[\sigma^2 = \sum \frac{\left ( k-\mean{x} \right ) ^ 2}{n}\]
 Standard Deviation
 \[\sigma = \sqrt{\sum \frac{\left ( k-\mean{x} \right ) ^ 2}{n}}\]
 
-\section{Geometry}
+\chapter{Geometry}
 
-\subsection{Trigonometry}
+\section{Trigonometry}
 
 For a right triangle with sides a and b, hypotenuse c
 \[\sin{\alpha} = \frac{a}{c}\]
@@ -374,7 +374,7 @@ For a right triangle with sides a and b, hypotenuse c
 \[\cot{\alpha} = \reciprocal{\tan{\alpha}} = \frac{b}{a}\]
 
 
-\subsection{Right Triangle}
+\section{Right Triangle}
 For a right triangle with sides a and b, hypotenuse c, projections m and n (of
 a and b, respectively), and height h,
 the following expressions are true
@@ -384,13 +384,13 @@ the following expressions are true
 \[h^2 = m n\]
 \[a b = c h\]
 
-\subsection{Equilateral Triangle}
+\section{Equilateral Triangle}
 \[h = \frac{a \sqrt{3}}{2}\]
 \[r = \frac{a \sqrt{3}}{6}\]
 \[R = \frac{a \sqrt{3}}{3}\]
 \[A = \frac{a^2 \sqrt{3}}{4}\]
 
-\subsection{All Triangles}
+\section{All Triangles}
 \[A = a b \sin \gamma \]
 \[A = p r\]
 \[A = \sqrt{p \left ( p - a \right ) \left ( p - b \right ) \left ( p - c
@@ -419,7 +419,7 @@ intersection point of the medians.
 
 \paragraph{Each median divides the area of the triangle in half.}
 
-\subsection{Quadrilateral}
+\section{Quadrilateral}
 \[A = \frac{d_1 d_2 \sin{\phi}}{2}\]
 
 where
@@ -429,24 +429,24 @@ where
   \item[\(\phi\)] is the angle between the diagonals.
 \end{itemize}
 
-\subsection{Regular Hexagon}
+\section{Regular Hexagon}
 
 \[r = m = \frac{l \sqrt{3}}{2}\]
 \[A = pr = 3 l r = \frac{3 l^2 \sqrt{3}}{2}\]
 
-\subsection{Circle}
+\section{Circle}
 \paragraph{Intersecting Chord Theorem.} When two chords intersect each
 other inside a circle, the products of their segments are equal.
 \[a_1 a_2 = b_1 b_2\]
 
-\subsection{Pyramids}
+\section{Pyramids}
 \[V = \frac{bh}{3}\]
 
-\section{Equations}
-\subsection{Discriminant}
+\chapter{Equations}
+\section{Discriminant}
 \[\Delta = b^2 - 4ac\]
 
-\subsection{Vieta's formulas}
+\section{Vieta's formulas}
 A polynomial \(P(x) = a_n x^n + a_{n-1} x^{n-1} + ... + a_0\), (with the
 coefficients being real or complex numbers and \(a_n \neq 0\)) is known by the
 fundamental theorem of algebra to have \(n\) (not necessarily distinct) complex
@@ -462,9 +462,9 @@ and products of its roots \(x_i\) as follows:
 \[\sum_{1 \le i_1 < i_2 < ... < i_k \le n} x_{i_1} x_{i_2} ... x_{i_k} = (-1)^k
 \frac{a_{n-k}}{a_n}\]
 
-\chapter{Computer Science}
-\section{Hardware}
-\subsection{Hard Disks}
+\part{Computer Science}
+\chapter{Hardware}
+\section{Hard Disks}
 Any hard disk drive (HDD) can contain only four primary partitions. This
 limitation may be circumvented with an extended partition, a special type of
 primary partition that allows multiple logical partitions to be created within
@@ -504,7 +504,7 @@ For example, PRML would read the magnetic flux density pattern 70, 60, 55, 60,
 above, say, 50 as high, and below 50 as low, so the first pattern would read
 "111" and the second as "000".
 
-\section{Database theory}
+\chapter{Database theory}
 Relational databases arose in the 80's. NoSQL databases are much more recent.
 
 Transactions are all about atomic updates that either succeed or fail.
@@ -513,12 +513,12 @@ Transactions are all about atomic updates that either succeed or fail.
 fully \textbf{consistent} and fully \textbf{available}. In real-world scenarios,
 usually the tradeoff is between consistency and response-time.
 
-\subsection{Distributed systems}
+\section{Distributed systems}
 Distributed systems may use sharding, in which only one copy of each aggregate
 exists, or replication, on which multiples copied of the data are distributed.
 \textbf{Replication improves availability and resilience}.
 
-\subsection{Sample problems}
+\section{Sample problems}
 Two different users, interacting with two different servers that talk to the
 same database retrieve data, edit it, and then write it back. If no precautions
 are taken, this causes a write-write conflict (one update will overwrite the
@@ -534,7 +534,7 @@ version stamp, if at the time of the update the version stamp has already been
 updated (due to a database modification), you solve the conflict anyway you
 want.
 
-\subsection{NoSQL}
+\section{NoSQL}
 The problem with relational databases was that a single logical structure in the
 application ends up being split into several rows and tables. This is known as
 \textbf{impedance mismatch}: the difficulties encountered when trying to map
@@ -602,7 +602,7 @@ there is just too much data for a single server.
 Aggregate-oriented databases are ACID within aggregates, concurrency issues show
 up when a single transaction must change multiple documents.
 
-\section{Functional Programming}
+\chapter{Functional Programming}
 In functional programming, functions are treated as data.
 
 \end{document}
