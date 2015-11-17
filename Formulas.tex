@@ -9,6 +9,7 @@
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{hyperref}
+\usepackage{commath}
 
 \graphicspath{ {images/} }
 
@@ -677,6 +678,37 @@ and products of its roots \(x_i\) as follows:
 \frac{a_{n-3}}{a_n}\]
 \[\sum_{1 \le i_1 < i_2 < ... < i_k \le n} x_{i_1} x_{i_2} ... x_{i_k} = (-1)^k
 \frac{a_{n-k}}{a_n}\]
+
+\chapter{Calculus}
+\section{Derivatives}
+\[\frac{\dif}{\dif x} \sin x = \cos x\]
+\[\frac{\dif}{\dif x} \cos x = -\sin x\]
+
+\subsection{Identities}
+\[\frac{\dif}{\dif x} \ln x = \reciprocal{x}\]
+\textbf{Chain Rule}
+\[\left\{f\left[g\left(x\right)\right]\right\}'
+= f'\left[g\left(x\right)\right] g'\left(x\right)\]
+
+\section{Indefinite Integrals}
+\subsection{Examples}
+\textbf{Reversed Chain Rule}
+\[\int \tan x \dif x = \int \frac{\sin{x}}{\cos{x}} \dif x\]
+Letting \(f(x) = \cos x\),
+\[\int \frac{\sin{x}}{\cos{x}} \dif x = - \int \frac{f'(x)}{f(x)} \dif x
+= - \ln{f(x)} + C = - \ln{\cos x} + C = \]
+Note that, in this case, \(g'(x) = x^{-1}\), and that the integral of the
+reciprocal function is the natural logarithm function.
+
+\textbf{U-Substitution}
+\[\int \cos^3 x \dif x
+= \int \left( 1 - \sin^2 x \right) \cos x \dif x
+= \int \cos x \dif x - \int \sin^2 x \cos x \dif x\]
+\[\int \cos x \dif x = \sin x + C\]
+Let \(u = \sin x\), therefore \(\dif u = \cos x \dif x\).
+\[\int \sin^2 x \cos x \dif x = \int u^2 \dif u = \frac{\sin^3 x}{3} + C\]
+\[\int \cos x \dif x - \int \sin^2 x \cos x \dif x
+= \sin x + \frac{\sin^3 x}{3} + C\]
 
 \part{Computer Science}
 \chapter{Algorithms}
