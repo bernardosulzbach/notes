@@ -9,6 +9,7 @@
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{hyperref}
+\usepackage{commath}
 
 \graphicspath{ {images/} }
 
@@ -29,9 +30,21 @@
 \newcommand*\reals{\mathbb{R}}
 \newcommand*\complexnumbers{\mathbb{C}}
 
+\lstset{frame=tb,
+	language=Java,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=left,
+	breaklines=true,
+	breakatwhitespace=true
+}
+
 \title{Formulas}
 \author{Bernardo Sulzbach}
-\date{October 2015}
+\date{\today}
 
 \begin{document}
 
@@ -678,8 +691,70 @@ and products of its roots \(x_i\) as follows:
 \[\sum_{1 \le i_1 < i_2 < ... < i_k \le n} x_{i_1} x_{i_2} ... x_{i_k} = (-1)^k
 \frac{a_{n-k}}{a_n}\]
 
+\chapter{Calculus}
+\section{Derivatives}
+\[\frac{\dif}{\dif x} \sin x = \cos x\]
+\[\frac{\dif}{\dif x} \cos x = -\sin x\]
+
+\subsection{Identities}
+\[\frac{\dif}{\dif x} \ln x = \reciprocal{x}\]
+\textbf{Chain Rule}
+\[\left\{f\left[g\left(x\right)\right]\right\}'
+= f'\left[g\left(x\right)\right] g'\left(x\right)\]
+
+\section{Indefinite Integrals}
+\subsection{Examples}
+\textbf{Reversed Chain Rule}
+\[\int \tan x \dif x = \int \frac{\sin{x}}{\cos{x}} \dif x\]
+Letting \(f(x) = \cos x\),
+\[\int \frac{\sin{x}}{\cos{x}} \dif x = - \int \frac{f'(x)}{f(x)} \dif x
+= - \ln{f(x)} + C = - \ln{\cos x} + C = \]
+Note that, in this case, \(g'(x) = x^{-1}\), and that the integral of the
+reciprocal function is the natural logarithm function.
+
+\textbf{U-Substitution}
+\[\int \cos^3 x \dif x
+= \int \left( 1 - \sin^2 x \right) \cos x \dif x
+= \int \cos x \dif x - \int \sin^2 x \cos x \dif x\]
+\[\int \cos x \dif x = \sin x + C\]
+Let \(u = \sin x\), therefore \(\dif u = \cos x \dif x\).
+\[\int \sin^2 x \cos x \dif x = \int u^2 \dif u = \frac{\sin^3 x}{3} + C\]
+\[\int \cos x \dif x - \int \sin^2 x \cos x \dif x
+= \sin x + \frac{\sin^3 x}{3} + C\]
+
 \part{Computer Science}
 \chapter{Algorithms}
+
+\section{Sorting}
+\subsection{Selection Sort}
+\paragraph{Algorithm Description.} Sort \(n\) numbers stored in array
+\(\mathbf{A}\) by finding the smallest element of \(\mathbf{A}\) and exchanging
+it with the element in \(\mathbf{A}[1]\). Then find the second smallest element
+of \(\mathbf{A}\), and exchange it with \(\mathbf{A}[2]\). Continue in this
+manner for the first \(n - 1\) elements of \(\mathbf{A}\).
+
+\textbf{Implementation.}
+
+\begin{lstlisting}
+for i = 1 to A.length - 1
+  // sI stands for smallestIndex
+  sI = i
+  for j = i + 1 to A.length
+    if A[j] < A[sI]
+      sI = j
+  // swap (if necessary)
+  if (sI != i)
+    tmp = A[i]
+    A[i] = A[sI]
+    A[sI] = tmp
+\end{lstlisting}
+
+\textbf{Analysis.} The best-case for this algorithm is an already sorted data
+array. The worst-case would be produced by a sorted array with the first element
+moved to the last position and all the other elements moved one place to the
+left. Note that the only thing that varies is the amount of swaps made, the
+algorithm has \(\Theta(n^2)\) time-complexity even for sorted input.
+
 \section{String matching}
 \subsection{Rabin-Karp (1987)}
 This algorithm speeds up equality testing by using a hash function.
