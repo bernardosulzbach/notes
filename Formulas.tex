@@ -640,7 +640,7 @@ $\mathbf{v}$.
 Given vectors $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p$ in
 $\mathbb{R}^n$ and given scalars $c_1, c_2, \ldots, c_p$ in $\mathbb{R}$,
 the vector $\mathbf{y}$ defined by
-$$ \mathbf{y} = c_1 \mathbf{v}_1 + \ldots + c_p \mathbf{v}_p $$
+\[ \mathbf{y} = c_1 \mathbf{v}_1 + \ldots + c_p \mathbf{v}_p \]
 is called a \textbf{linear combination} of
 $\mathbf{v}_1, \ldots, \mathbf{v}_p$ with weights $c_1, \ldots, c_p$.
 
@@ -656,13 +656,13 @@ pivot in every row, then \(\mathrm{Span} \{\mathbf{a}_1, \ldots, \mathbf{a}_n\}
 If $A$ is a $m \times n$ matrix, with columns $\mathbf{a}_1, \ldots,
 \mathbf{a}_n$ and $\mathbf{b}$ is in $\mathbb{R}^m$,
 the matrix equation
-$$ A\mathbf{x} = \mathbf{b} $$
+\[ A\mathbf{x} = \mathbf{b} \]
 has the same solution as the vector equation
-$$ x_1\mathbf{a}_1 + \ldots + x_n\mathbf{a}_n = \mathbf{b} $$
+\[ x_1\mathbf{a}_1 + \ldots + x_n\mathbf{a}_n = \mathbf{b} \]
 which, in turn,
 has the same solution as the system of linear equations whose
 augmented matrix is
-$$ [ \mathbf{a}_1 \ldots \mathbf{a}_n \mathbf{b} ] $$
+\[ [ \mathbf{a}_1 \ldots \mathbf{a}_n \mathbf{b} ] \]
 
 \section{Solution sets of linear systems}
 A system of linear equations is \textbf{homogeneous}
@@ -690,14 +690,14 @@ variables.}
 \subsection*{Solved problem}
 Write the general solution of $ 10 x_1 - 3 x_2 - 2 x_3 = 7 $
 in parametric vector form.
-$$ \left[ \begin{array}{cccc}
+\[ \left[ \begin{array}{cccc}
 10 & -3 & -2 & 7 \end{array} \right] \sim
 \left[ \begin{array}{cccc}
-1 & -.3 & -.2 & .7 \end{array} \right] $$
-$$ x_1 = .7 + .3x_2 + .2x_3 $$
-$$ \mathbf{x} = \left[ \begin{array}{c} .7 \\ 0 \\ 0 \end{array} \right]
+1 & -.3 & -.2 & .7 \end{array} \right] \]
+    \[ x_1 = .7 + .3x_2 + .2x_3 \]
+  \[ \mathbf{x} = \left[ \begin{array}{c} .7 \\ 0 \\ 0 \end{array} \right]
 + x_2 \left[ \begin{array}{c} .3 \\ 1 \\ 0 \end{array} \right]
-+ x_3 \left[ \begin{array}{c} .2 \\ 0 \\ 1 \end{array} \right] $$
++ x_3 \left[ \begin{array}{c} .2 \\ 0 \\ 1 \end{array} \right] \]
 
 
 
@@ -734,20 +734,20 @@ Therefore, $p_C - .4p_E - .6p_S = 0$. Similar equations can be obtained from the
 other two lines.
 At the end of the process, the linear system is
 
-$$
+\[
 \begin{bmatrix}
 1   & -.4 & -.6 & 0 \\
 -.6 &  .9 & -.2 & 0 \\
 -.4 & -.5 &  .8 & 0
 \end{bmatrix}
-$$
+\]
 
 By solving this system, it is known that
 
-$$
+\[
 p = \begin{bmatrix} p_C \\ p_E \\ p_S \end{bmatrix}
 = \begin{bmatrix} .94 p_S \\ .85 p_S \\ p_S \end{bmatrix}
-$$
+\]
 
 Any (nonnegative) choice for $p_S$ results in correct equilibrium prices.
 
@@ -756,36 +756,36 @@ Chemical equations describe the consumption of reactants and the formation
 of products in chemical reactions.
 Simple linear systems may be used to balance chemical reactions.
 The burning of butanol is represented by:
-$$
+\[
 \left( x_1 \right) \text{C}_4\text{H}_{10}\text{O} +
 \left( x_2 \right) \text{O}_2 \rightarrow
 \left( x_3 \right) \text{CO}_2 +
 \left( x_4 \right) \text{H}_2\text{O}
-$$
+\]
 In order to balance this reaction,
 one must find the coefficients that make both sides have the same amount of
 carbon,
 hydrogen and oxygen.
 This problem can be rewritten as:
-$$
+\[
 x_1 \begin{bmatrix} 4 \\ 10 \\  1\end{bmatrix} +
 x_2 \begin{bmatrix} 0 \\  0 \\  2\end{bmatrix} +
 x_3 \begin{bmatrix}-1 \\  0 \\ -2\end{bmatrix} +
 x_4 \begin{bmatrix} 0 \\ -2 \\ -1\end{bmatrix} =
 \begin{bmatrix}0 \\ 0 \\ 0\end{bmatrix}
-$$
+\]
 Row reduction of the corresponding augmented matrix gives us
-$$
+\[
 \textbf{p} = \begin{bmatrix}.2x_4 \\ 1.2x_4 \\ .8x_4 \\ x_4\end{bmatrix}
-$$
+\]
 The smallest selection of $x_4$ that makes all coefficients integers is $5$.
 This makes
-$$
+\[
   \text{C}_4\text{H}_{10}\text{O} +
 6 \text{O}_2 \rightarrow
 4 \text{CO}_2 +
 5 \text{H}_2\text{O}
-$$
+\]
 a balanced chemical reaction.
 
 \subsection{Network flow}
@@ -846,17 +846,17 @@ prices for the sectors in this economy?}
 \subparagraph{Solution}
 
 \begin{enumerate}
-\item {$$ \begin{bmatrix}
+  \item {\[ \begin{bmatrix}
 .2 & .35 & .1 & .2 \\
 .2 &  .1 & .2 & .3 \\
 .3 & .35 & .5 & .2 \\
-.3 &  .2 & .2 & .3 \end{bmatrix} $$}
+    .3 &  .2 & .2 & .3 \end{bmatrix} \]}
 \item{$p_A = 7.99$, $p_M = 8.36$, $p_S = 14.65$, and $p_T = 10.00$.}
-\item {$$ \begin{bmatrix}
+\item {\[ \begin{bmatrix}
 .2 & .35 & .1 & .2 \\
 .1 &  .1 & .2 & .3 \\
 .4 & .35 & .5 & .2 \\
-.3 &  .2 & .2 & .3 \end{bmatrix} $$}
+  .3 &  .2 & .2 & .3 \end{bmatrix} \]}
 \item{$p_A = 7.81$, $p_M = 7.67$, $p_S = 15.62$, and $p_T = 10.00$.
       The campaign has benefited Services.}
 \end{enumerate}
@@ -890,16 +890,16 @@ parallel row, then then $\det(A)=\det(B)$.}
 The inverse matrix is unique.
 
 Let $B$ and $C$ be the inverse matrices of $A$.
-$$B = BI = B(AC) = (BA)C = IC = C$$
+\[B = BI = B(AC) = (BA)C = IC = C\]
 \end{proof}
 
 \subsubsection{Inverse matrix by Gauss-Jordan}
-$$ \left[\mathrm{A} \mid \mathrm{I} \right] \rightarrow
-\left[\mathrm{I} \mid \mathrm{A} ^ {-1} \right] $$
+\[ \left[\mathrm{A} \mid \mathrm{I} \right] \rightarrow
+\left[\mathrm{I} \mid \mathrm{A} ^ {-1} \right] \]
 
 The adjoint matrix is the transposed of the cofactor matrix.
-$$A^{-1} = \frac{\mathrm{adj}(A)}{\mathrm{D}} =
-\frac{(\mathrm{cof}(A))^{T}}{\mathrm{D}}$$
+\[A^{-1} = \frac{\mathrm{adj}(A)}{\mathrm{D}} =
+\frac{(\mathrm{cof}(A))^{T}}{\mathrm{D}}\]
 
 \subsection{Singular matrix}
 A square matrix that does not have a matrix inverse. A matrix is singular if,
