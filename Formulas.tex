@@ -647,21 +647,15 @@ is called a \textbf{linear combination} of
 \section{Span}
 The set of all linear combinations of \(\mathbf{v}_1, \ldots, \mathbf{v}_p\) in
 \(\mathbb{R}^n\) is called the \textbf{subset of}\(\mathbb{R}^n\) spanned (or
-
-
-
-
-
-
-generated) by \(\mathbf{v}_1, \ldots, \mathbf{v}_p}\) and is denoted by
+generated) by \(\mathbf{v}_1, \ldots, \mathbf{v}_p\) and is denoted by
 
 \(\mathrm{Span}\{\mathbf{v}_1, \ldots, \mathbf{v}_p\}\). If a matrix \(A\) has a
 pivot in every row, then \(\mathrm{Span} \{\mathbf{a}_1, \ldots, \mathbf{a}_n\}
 = \mathbb{R}^m\).
 
 \section{Matrix equation solution}
-If 020A010 is a 020m \times n010 matrix, with columns 020\mathbf{a}_1, \ldots,
-\mathbf{a}_n010 and 020\mathbf{b}010 is in 020\mathbb{R}^m010,
+If \(A\) is a \(m \times n\) matrix, with columns \(\mathbf{a}_1, \ldots,
+\mathbf{a}_n\) and \(\mathbf{b}\) is in \(\mathbb{R}^m\),
 the matrix equation
 \[ A\mathbf{x} = \mathbf{b} \]
 has the same solution as the vector equation
@@ -673,29 +667,29 @@ augmented matrix is
 
 \section{Solution sets of linear systems}
 A system of linear equations is \textbf{homogeneous}
-if it can be written in the form 020 \mathbf{A x} = \mathbf{0} 010.
-All homogeneous systems have a \textbf{trivial solution} that is 020 \mathbf{0} 010.
+if it can be written in the form \( \mathbf{A x} = \mathbf{0} \).
+All homogeneous systems have a \textbf{trivial solution} that is \( \mathbf{0} \).
 If the system has at least one free variable, it has a nontrivial solution.
 
 \begin{theorem*}
-  Suppose that 020 \mathbf{Ax} = \mathbf{b} 010 is consistent for some given
-  020 \mathbf{b} 010, let 020 \mathbf {p} 010 be a solution. Then the solution set of
-  020 \mathbf{Ax} = \mathbf{b} 010 is the set of all vectors of the form
-  020 \mathbf{w} = \mathbf{p} + \mathbf{v} 010, where 020 \mathbf{v} 010 is any
-  solution of the homogeneous equation 020 \mathbf{Ax} = \mathbf{0} 010.
+  Suppose that \( \mathbf{Ax} = \mathbf{b} \) is consistent for some given
+  \( \mathbf{b} \), let \( \mathbf {p} \) be a solution. Then the solution set of
+  \( \mathbf{Ax} = \mathbf{b} \) is the set of all vectors of the form
+  \( \mathbf{w} = \mathbf{p} + \mathbf{v} \), where \( \mathbf{v} \) is any
+  solution of the homogeneous equation \( \mathbf{Ax} = \mathbf{0} \).
 \end{theorem*}
 
 \section{Solution of a system in parametric form}
 \begin{enumerate}
 \item{Row reduce the augmented matrix to reduced row echelon form.}
 \item{Express each basic variable in terms of any free variables.}
-\item{Write 020\mathbf{x}010 as a vector whose entries depend on the free
+\item{Write \(\mathbf{x}\) as a vector whose entries depend on the free
 variables.}
-\item{Decompose 020\mathbf{x}010 into a linear combination of vectors.}
+\item{Decompose \(\mathbf{x}\) into a linear combination of vectors.}
 \end{enumerate}
 
 \subsection*{Solved problem}
-Write the general solution of 020 10 x_1 - 3 x_2 - 2 x_3 = 7010 
+Write the general solution of \( 10 x_1 - 3 x_2 - 2 x_3 = 7\) 
 in parametric vector form.
 \[ \left[ \begin{array}{cccc}
 10 & -3 & -2 & 7 \end{array} \right] \sim
@@ -736,8 +730,8 @@ Coal & Electric & Steel & Purchased by \\
 \end{tabular}
 \end{center}
 
-Then it is known that the equilibrium price of coal 020p_C = .4p_E + .6p_S010.
-Therefore, 020p_C - .4p_E - .6p_S = 0010. Similar equations can be obtained from the
+Then it is known that the equilibrium price of coal \(p_C = .4p_E + .6p_S\).
+Therefore, \(p_C - .4p_E - .6p_S = 0\). Similar equations can be obtained from the
 other two lines.
 At the end of the process, the linear system is
 
@@ -756,7 +750,7 @@ p = \begin{bmatrix} p_C \\ p_E \\ p_S \end{bmatrix}
 = \begin{bmatrix} .94 p_S \\ .85 p_S \\ p_S \end{bmatrix}
 \]
 
-Any (nonnegative) choice for 020p_S010 results in correct equilibrium prices.
+Any (nonnegative) choice for \(p_S\) results in correct equilibrium prices.
 
 \subsection{Balancing Chemical Equations}
 Chemical equations describe the consumption of reactants and the formation
@@ -785,7 +779,7 @@ Row reduction of the corresponding augmented matrix gives us
 \[
 \textbf{p} = \begin{bmatrix}.2x_4 \\ 1.2x_4 \\ .8x_4 \\ x_4\end{bmatrix}
 \]
-The smallest selection of 020x_4010 that makes all coefficients integers is 0205010.
+The smallest selection of \(x_4\) that makes all coefficients integers is \(5\).
 This makes
 \[
   \text{C}_4\text{H}_{10}\text{O} +
@@ -837,7 +831,7 @@ Transportation sells 20\% of its output to Agriculture, 30\% to Manufacturing,
 \begin{enumerate}
 \item Construct the exchange table for this economy.
 \item Find a set of equilibrium prices for the economy if the value of
-  Transportation is 020\01010.00020 per unit.
+  Transportation is \(\10.00\) per unit.
 \item {The Services sector launches a successful ``eat farm fresh'' campaign,
        and increases its share of the output from the Agricultural sector to
 40\%,
@@ -845,7 +839,7 @@ Transportation sells 20\% of its output to Agriculture, 30\% to Manufacturing,
 to 10\%.
        Construct the exchange table for this new economy.}
 \item {Find a set of equilibrium prices for this new economy if the value of
-    Transportation is still 010\02010.00010 per unit.
+    Transportation is still \)\\(20.00\) per unit.
        What effect has the ``eat farm fresh'' campaign had on the equilibrium
 prices for the sectors in this economy?}
 \end{enumerate}
@@ -858,13 +852,13 @@ prices for the sectors in this economy?}
 .2 &  .1 & .2 & .3 \\
 .3 & .35 & .5 & .2 \\
     .3 &  .2 & .2 & .3 \end{bmatrix} \]}
-        \item{020p_A = 7.99010, 020p_M = 8.36010, 020p_S = 14.65010, and 020p_T = 10.00010.}
+        \item{\(p_A = 7.99\), \(p_M = 8.36\), \(p_S = 14.65\), and \(p_T = 10.00\).}
 \item {\[ \begin{bmatrix}
 .2 & .35 & .1 & .2 \\
 .1 &  .1 & .2 & .3 \\
 .4 & .35 & .5 & .2 \\
   .3 &  .2 & .2 & .3 \end{bmatrix} \]}
-      \item{020p_A = 7.81010, 020p_M = 7.67010, 020p_S = 15.62010, and 020p_T = 10.00010.
+      \item{\(p_A = 7.81\), \(p_M = 7.67\), \(p_S = 15.62\), and \(p_T = 10.00\).
       The campaign has benefited Services.}
 \end{enumerate}
 
@@ -873,22 +867,22 @@ prices for the sectors in this economy?}
 \section{Matrices}
 \subsection{Properties of the determinant}
 \begin{enumerate}
-  \item{020\det(I)=1010.}
-  \item{020\det(A)=\det(A^{T})010.}
-  \item{If 020B010 is 020A010 with a row multiplied by 020k010, then 020\det(B)=k\det(A)010.}
-  \item{If 020B010 is 020A010 with two rows swapped, then 020\det(B)=-\det(A)010.}
-  \item{If two or more rows of 020A010 are identical, then 020\det(A)=0010.}
-  \item{If the elements above or below the diagonal of 020A010 are 0200010, then
-    020\det(A)=\prod_{i=1}^{m}{A_{i,i}}010.}
-  \item{If the elements of 020A010, 020B010, and 020C010 are equal,
+  \item{\(\det(I)=1\).}
+  \item{\(\det(A)=\det(A^{T})\).}
+  \item{If \(B\) is \(A\) with a row multiplied by \(k\), then \(\det(B)=k\det(A)\).}
+  \item{If \(B\) is \(A\) with two rows swapped, then \(\det(B)=-\det(A)\).}
+  \item{If two or more rows of \(A\) are identical, then \(\det(A)=0\).}
+  \item{If the elements above or below the diagonal of \(A\) are \(0\), then
+    \(\det(A)=\prod_{i=1}^{m}{A_{i,i}}\).}
+  \item{If the elements of \(A\), \(B\), and \(C\) are equal,
       except for one row of C that is equal to the sum of the two corresponding
-      rows of 020A010 e 020B010,
-    then 020\det{\left(C\right)}=\det{\left(A\right)}+\det{\left(B\right)}010.}
-  \item{For square matrices 020A010 and 020B010 of equal size,
-    020\det{\left(AB\right)}=\det{\left(A\right)}\det{\left(B\right)}010.}
-  \item{If 020B010 is 020A010 with one row multiplied by a nonzero constant added to a
-    parallel row, then then 020\det(A)=\det(B)010.}
-  \item{020\det{\left(A^{-1}\right)}=\frac{1}{\det{\left(A\right)}}010.}
+      rows of \(A\) e \(B\),
+    then \(\det{\left(C\right)}=\det{\left(A\right)}+\det{\left(B\right)}\).}
+  \item{For square matrices \(A\) and \(B\) of equal size,
+    \(\det{\left(AB\right)}=\det{\left(A\right)}\det{\left(B\right)}\).}
+  \item{If \(B\) is \(A\) with one row multiplied by a nonzero constant added to a
+    parallel row, then then \(\det(A)=\det(B)\).}
+  \item{\(\det{\left(A^{-1}\right)}=\frac{1}{\det{\left(A\right)}}\).}
 \end{enumerate}
 
 \subsection{Inverse matrix}
@@ -896,7 +890,7 @@ prices for the sectors in this economy?}
 \begin{proof}
 The inverse matrix is unique.
 
-Let 020B010 and 020C010 be the inverse matrices of 020A010.
+Let \(B\) and \(C\) be the inverse matrices of \(A\).
 \[B = BI = B(AC) = (BA)C = IC = C\]
 \end{proof}
 
@@ -955,8 +949,8 @@ Euler's Formula
 \chapter{Logarithms}
 
 \paragraph{Logarithm.} The logarithm is the inverse operation to exponentiation.
-The natural logarithm of 010t020 equals the integral of 010x^{-1}020 in respect to x
-from 0101020 to 010t020.
+The natural logarithm of \)t\( equals the integral of \)x^{-1}\( in respect to x
+from \)1\( to \)t\(.
 
 \section{Definition}
 
@@ -974,13 +968,13 @@ from 0101020 to 010t020.
 \chapter{Statistics}
 
 \section{Linear Relationship}
-A linear relationship between 010y020 and 010x020 is denoted by:
+A linear relationship between \)y\( and \)x\( is denoted by:
 \[\mu_{y | x} = \beta_0 + \beta_1 x + \epsilon\]
 where
 \begin{itemize}
-  \item[010\mu_{y | x}020] is the true mean of y for a given value of x
-  \item[010\beta_0 + \beta_1 x020] is a line
-  \item[010\epsilon020] is a random error
+  \item[\)\mu_{y | x}\(] is the true mean of y for a given value of x
+  \item[\)\beta_0 + \beta_1 x\(] is a line
+  \item[\)\epsilon\(] is a random error
 \end{itemize}
 
 The estimated relation line:
@@ -993,7 +987,7 @@ geometric mean (G), and the harmonic mean (H). They are defined by:
 \[G = \left( \prod{x} \right) ^ \reciprocal{n}\]
 \[H = \frac{n}{\sum{\reciprocal{x}}}\]
 
-If all 010x020 are positive, the following relation holds
+If all \)x\( are positive, the following relation holds
 \[min \le H \le G \le A \le max\]
 
 \section{Measures of statistical dispersion}
@@ -1042,9 +1036,9 @@ the following expressions are true
 where
 
 \begin{itemize}
-  \item[010p020] is the semiperimeter;
-  \item[010r020] is the inradius (the radius of the inscribed circle);
-  \item[010R020] is the circumradius (the radius of the circumscribed circle).
+  \item[\)p\(] is the semiperimeter;
+  \item[\)r\(] is the inradius (the radius of the inscribed circle);
+  \item[\)R\(] is the circumradius (the radius of the circumscribed circle).
 \end{itemize}
 
 \paragraph{Median.} In geometry, a median of a triangle is a line segment
@@ -1066,8 +1060,8 @@ intersection point of the medians.
 where
 
 \begin{itemize}
-  \item[010d020] is a diagonal;
-  \item[010\phi020] is the angle between the diagonals.
+  \item[\)d\(] is a diagonal;
+  \item[\)\phi\(] is the angle between the diagonals.
 \end{itemize}
 
 \section{Regular Hexagon}
@@ -1088,13 +1082,13 @@ other inside a circle, the products of their segments are equal.
 \[\Delta = b^2 - 4ac\]
 
 \section{Vieta's formulas}
-A polynomial 010P(x) = a_n x^n + a_{n-1} x^{n-1} + ... + a_0020, (with the
-coefficients being real or complex numbers and 010a_n \neq 0020) is known by the
-fundamental theorem of algebra to have 010n020 (not necessarily distinct) complex
-roots 010x_1, x_2, ..., x_n020.
+A polynomial \)P(x) = a_n x^n + a_{n-1} x^{n-1} + ... + a_0\(, (with the
+coefficients being real or complex numbers and \)a_n \neq 0\() is known by the
+fundamental theorem of algebra to have \)n\( (not necessarily distinct) complex
+roots \)x_1, x_2, ..., x_n\(.
 
-Vieta's formulas relate the polynomial's coefficients 010a_k020 to signed sums
-and products of its roots 010x_i020 as follows:
+Vieta's formulas relate the polynomial's coefficients \)a_k\( to signed sums
+and products of its roots \)x_i\( as follows:
 
 \[\sum_{1 \le i \le n} x_i = - \frac{a_{n-1}}{a_n}\]
 \[\sum_{1 \le i_1 < i_2 \le n} x_{i_1} x_{i_2} = \frac{a_{n-2}}{a_n}\]
@@ -1118,10 +1112,10 @@ and products of its roots 010x_i020 as follows:
 \subsection{Examples}
 \textbf{Reversed Chain Rule}
 \[\int \tan x \dif x = \int \frac{\sin{x}}{\cos{x}} \dif x\]
-Letting 010f(x) = \cos x020,
+Letting \)f(x) = \cos x\(,
 \[\int \frac{\sin{x}}{\cos{x}} \dif x = - \int \frac{f'(x)}{f(x)} \dif x
 = - \ln{f(x)} + C = - \ln{\cos x} + C = \]
-Note that, in this case, 010g'(x) = x^{-1}020, and that the integral of the
+Note that, in this case, \)g'(x) = x^{-1}\(, and that the integral of the
 reciprocal function is the natural logarithm function.
 
 \textbf{U-Substitution}
@@ -1129,7 +1123,7 @@ reciprocal function is the natural logarithm function.
 = \int \left( 1 - \sin^2 x \right) \cos x \dif x
 = \int \cos x \dif x - \int \sin^2 x \cos x \dif x\]
 \[\int \cos x \dif x = \sin x + C\]
-Let 010u = \sin x020, therefore 010\dif u = \cos x \dif x020.
+Let \)u = \sin x\(, therefore \)\dif u = \cos x \dif x\(.
 \[\int \sin^2 x \cos x \dif x = \int u^2 \dif u = \frac{\sin^3 x}{3} + C\]
 \[\int \cos x \dif x - \int \sin^2 x \cos x \dif x
 = \sin x + \frac{\sin^3 x}{3} + C\]
@@ -1139,11 +1133,11 @@ Let 010u = \sin x020, therefore 010\dif u = \cos x \dif x020.
 
 \section{Sorting}
 \subsection{Selection Sort}
-\paragraph{Algorithm Description.} Sort 010n020 numbers stored in array
-010\mathbf{A}020 by finding the smallest element of 010\mathbf{A}020 and exchanging
-it with the element in 010\mathbf{A}[1]020. Then find the second smallest element
-of 010\mathbf{A}020, and exchange it with 010\mathbf{A}[2]020. Continue in this
-manner for the first 010n - 1020 elements of 010\mathbf{A}020.
+\paragraph{Algorithm Description.} Sort \)n\( numbers stored in array
+\)\mathbf{A}\( by finding the smallest element of \)\mathbf{A}\( and exchanging
+it with the element in \)\mathbf{A}[1]\(. Then find the second smallest element
+of \)\mathbf{A}\(, and exchange it with \)\mathbf{A}[2]\(. Continue in this
+manner for the first \)n - 1\( elements of \)\mathbf{A}\(.
 
 \textbf{Implementation.}
 
@@ -1165,7 +1159,7 @@ for i = 1 to A.length - 1
 array. The worst-case would be produced by a sorted array with the first element
 moved to the last position and all the other elements moved one place to the
 left. Note that the only thing that varies is the amount of swaps made, the
-algorithm has 010\Theta(n^2)020 time-complexity even for sorted input.
+algorithm has \)\Theta(n^2)\( time-complexity even for sorted input.
 
 \section{String matching}
 \subsection{Rabin-Karp (1987)}
@@ -1177,7 +1171,7 @@ the last computed hash in the evaluation of the new hash. Such a hash function
 is called a \textbf{rolling hash}.
 
 \textbf{Rabin Fingerprint}. This hash treats every substring as a number in a
-base 010\alpha020, usually a large prime.
+base \)\alpha\(, usually a large prime.
 
 \begin{lstlisting}
   // A Rabin Fingerprint roll.
