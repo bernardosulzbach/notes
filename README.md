@@ -22,3 +22,6 @@ not the owner of the content.
 
 ## Building
 See the `.travis.yml` file of a snapshot to understand how a given version is built.
+
+Since Release 16 there is a script called install-required-packages.sh that should
+install all needed packages in a Debian-based distribution.
