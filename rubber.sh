@@ -1,1 +1,1 @@
-rubber --pdf Formulas.tex
+rubber --pdf notes.tex
