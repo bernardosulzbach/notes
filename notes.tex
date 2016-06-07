@@ -1286,7 +1286,7 @@ function which defines the substitution is one-to-one. \cite{stewart}
           & \(-\frac{\pi}{2} < \theta < \frac{\pi}{2}\) \\
         \(\sqrt{x^2 - a^2}\)
           & \(x = a\sec\theta\)
-          & \(0 \le \theta < \frac{\pi}{2} \cup \pi \le \theta < \frac{3\pi}{2}\) \\
+          & \(0 \le \theta < \frac{\pi}{2} \lor \pi \le \theta < \frac{3\pi}{2}\) \\
         \hline
     \end{tabular}
 \end{center}
@@ -1299,21 +1299,18 @@ Isolating \(y\) gives
 \[y = \pm \frac{b}{a} \sqrt{a^2 - x^2}\]
 
 The area of the ellipse on the first quadrant is given by
-
 \[\int_{0}^{a} \frac{b}{a} \sqrt{a^2 - x^2} dx\]
 
 This is one fourth of the total area of the ellipse, therefore
-
 \[A = 4 \int_{0}^{a} \frac{b}{a} \sqrt{a^2 - x^2} dx\]
 
 To solve the integral, let \(x = a\sin\theta\) and, consequently, \(\dif x = a
 \cos \theta \dif \theta\). It is made simpler by changing the integration
-limits.  As when \(x = 0\) \(\sin x = 0\), then \(\theta = 0\).  When \(x =
-a\), \(\sin \theta = 1\), then \(theta = \pi / 2\).
+limits. When \(x = 0\), \(\sin x = 0\), thus \(\theta = 0\). When \(x = a\),
+\(\sin \theta = 1\), thus \(\theta = \pi / 2\).
 
 \begin{align*}
     4 \int_{0}^{\frac{\pi}{2}} \frac{b}{a} \sqrt{a^2 - x^2} \dif x
-    &= \frac{4b}{a} \int_{0}^{\frac{\pi}{2}} \sqrt{a^2 - x^2} a \cos \theta \dif \theta \\
     &= \frac{4b}{a} \int_{0}^{\frac{\pi}{2}} \sqrt{a^2 - a^2 \sin^2 \theta} a \cos \theta \dif \theta \\
     &= 4ab \int_{0}^{\frac{\pi}{2}} \sqrt{1 - \sin^2 \theta} \cos \theta \dif \theta \\
     &= 4ab \int_{0}^{\frac{\pi}{2}} \sqrt{\cos^2 \theta} \cos \theta \dif \theta \\
@@ -1321,9 +1318,12 @@ a\), \(\sin \theta = 1\), then \(theta = \pi / 2\).
     &= 4ab \int_{0}^{\frac{\pi}{2}} \cos^2 \theta \dif \theta \\
     &= 2ab \int_{0}^{\frac{\pi}{2}} 1 + \cos {2 \theta} \dif \theta \\
     &= 2ab \left[ \theta + \frac{1}{2} \sin {2 \theta} \right]_{0}^{\frac{\pi}{2}} \\
-    &= 2ab \left(\frac{\pi}{2} + 0 - 0 \right) \\
+    &= 2ab \left(\frac{\pi}{2} + 0 - 0 - 0\right) \\
     &= \pi a b
 \end{align*}
+
+Which is the formula for the area of an ellipse. Furthermore, it is also the
+formula for the area of a circle as a circle is an ellipse with \(a = b\).
 
 \part{Computer Science}
 
