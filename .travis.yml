@@ -9,6 +9,7 @@ addons:
       - texlive-bibtex-extra
       - texlive-math-extra
       - latex-xcolor
+      - biblatex
       - lmodern
       - rubber
 
