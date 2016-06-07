@@ -6,6 +6,7 @@ addons:
       - texlive-latex-recommended
       - texlive-latex-extra
       - texlive-fonts-recommended
+      - texlive-bibtex-extra
       - texlive-math-extra
       - latex-xcolor
       - lmodern
