@@ -24,6 +24,8 @@
 \usepackage{wrapfig}
 \usepackage{hyperref}
 \usepackage{commath}
+% Fixes fragile \( and \).
+\usepackage{fixltx2e}
 
 \theoremstyle{plain}
 \newtheorem*{theorem*}{Theorem}
@@ -1191,6 +1193,20 @@ and products of its roots \(x_i\) as follows:
 \frac{a_{n-k}}{a_n}\]
 
 \chapter{Calculus}
+\section{Series for \(e\)}
+%\[e^x = \frac{x^0}{0!} + \frac{x^1}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} + \ldots\]
+
+\subsection{Intuition behind this series}
+The following demonstration should help one understand why the series converges
+to \(e\).
+
+\begin{align*}
+    \frac{\dif}{\dif x} e^x
+    &= \frac{\dif}{\dif x} \left( \frac{x^0}{0!} + \frac{x^1}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} + \ldots \right) \\
+    &= \frac{0 x^{-1}}{0!} + \frac{1 x^0}{1!} + \frac{2 x^1}{2!} + \frac{3 x^2}{3!} + \ldots \\
+    &= \frac{x^0}{0!} + \frac{x^1}{1!} + \frac{x^2}{2!} + \ldots
+\end{align*}
+
 \section{Derivatives}
 \[\frac{\dif}{\dif x} \sin x = \cos x\]
 \[\frac{\dif}{\dif x} \cos x = -\sin x\]
@@ -1220,6 +1236,12 @@ Let \(u = \sin x\), therefore \(\dif u = \cos x \dif x\).
 \[\int \sin^2 x \cos x \dif x = \int u^2 \dif u = \frac{\sin^3 x}{3} + C\]
 \[\int \cos x \dif x - \int \sin^2 x \cos x \dif x
 = \sin x + \frac{\sin^3 x}{3} + C\]
+
+\section{Series}
+\subsection{Maclaurin series}
+A Maclaurin series is a Taylor series expansion of a function about 0.
+
+\[f\left(x\right) = f\left(0\right) + f'\left(0\right)x + f''\left(0\right)\frac{x^2}{2!} + f^{\left( 3 \right)}\left(0\right)\frac{x^3}{3!} + \ldots\]
 
 \part{Computer Science}
 
