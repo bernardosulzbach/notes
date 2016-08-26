@@ -1,6 +1,5 @@
 # Notes
 ![Travis CI](https://travis-ci.org/mafagafogigante/notes.svg?branch=master)
-![ShareLatex](https://www.sharelatex.com/github/repos/mafagafogigante/notes/builds/latest/badge.svg)
 
 Notes and formulas in various subjects.
 
