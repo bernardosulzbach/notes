@@ -63,7 +63,8 @@
 \newcommand*\FormatAsSignificandBits[1]{\texttt{\textcolor{SignificandBitsColor}{#1}}}
 
 % Formats a string as a 32-bit floating point number.
-\newcommand*\singleprecision[1]{\StrSplit{#1}{1}{\signbit}{\tail}\StrSplit{\tail}{8}{\exponentbits}{\significandbits}\FormatAsSignBit{\signbit}
+\newcommand*\singleprecision[1]{\StrSplit{#1}{1}{\signbit}{\tail}\StrSplit{\tail}{8}{\exponentbits}{\significandbits}
+\FormatAsSignBit{\signbit}
 \FormatAsExponentBits{\exponentbits}
 \FormatAsSignificandBits{\significandbits}}
 
@@ -1328,7 +1329,7 @@ The IEEE 754 is the IEEE standard for floating-point arithmetic. It is a
 technical standard for floating-point computation established in 1985.
 
 The value of a single precision IEEE-754 number is given by
-\[\text{sign} \cdot \text{significant} \cdot 2^\text{exponent}\]
+\[\text{sign} \cdot \text{significand} \cdot 2^\text{exponent}\]
 
 \subsubsection{IEEE 754 Number Formats}
 The standard defines five number formats, two of which are in wide usage:
@@ -1345,14 +1346,15 @@ delegates one bit to the sign, 11 bits to the exponent and the remaining 52 bits
 to the significand.
 
 \subsubsection{IEEE 754 Conversion Algorithm}
-In order to convert the decimal representation of a real number to an IEEE 754 number the following algorithm may be used.
+In order to convert the decimal representation of a real number to an IEEE 754
+number the following algorithm may be used.
 \begin{enumerate}
 \item Set the first bit if the number is negative.
 \item Find the biggest power of two which is less than or equal to the absolute
     value of the number and express it in the exponent bits biased by 127.
 \item Express the fractional part of the quotient between the number whose
     representation is of interest and the abovementioned power of two in the
-        significand bits.
+    significand bits.
 \end{enumerate}
 
 \subsubsection{IEEE 754 Conversion Exercises}
@@ -1362,8 +1364,8 @@ In order to convert the decimal representation of a real number to an IEEE 754 n
 Convert -7 to a single-precision IEEE 754 floating point number.
 \begin{enumerate}
 \item It is negative, therefore the first bit is set.
-\item The biggest power of two less than or equal to the absolute value is 4.
-    Therefore, the exponent is 2.
+\item The biggest power of two less than or equal to the absolute value is
+    \(2^2 = 4\). Therefore, the exponent should be \(127 + 2 = 129\).
 \item Determine the significand: \(7 \div 4 = 1.75\).
 \item This results in \singleprecision{11000001011000000000000000000000}.
 \end{enumerate}
@@ -1371,8 +1373,8 @@ Convert -7 to a single-precision IEEE 754 floating point number.
 Convert 255 to a single-precision IEEE 754 floating point number.
 \begin{enumerate}
 \item It is positive, therefore the first bit is unset.
-\item The biggest power of two less than or equal to the absolute value is 128.
-    Therefore, the exponent is 8.
+\item The biggest power of two less than or equal to the absolute value is
+    \(2^7 = 128\). Therefore, the exponent should be \(127 + 7 = 134\).
 \item Determine the significand: \(255 \div 128 = 1.9921875\).
 \item This results in \singleprecision{01000011011111110000000000000000}.
 \end{enumerate}
@@ -1384,7 +1386,7 @@ than the one required for the conversion from decimals values to this floating
 point format. One should be able to understand it from simply reading some of
 the examples below.
 
-Convert \texttt{0 10001101 10000000000000000000000} from IEEE 754 single
+Convert \singleprecision{01000110110000000000000000000000} from IEEE 754 single
 precision floating point to a decimal number.
 \begin{enumerate}
 \item The first bit is unset, therefore it is positive.
