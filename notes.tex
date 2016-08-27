@@ -1512,27 +1512,27 @@ happening. After doing so, it is found that the subtraction performed was
 \(24576 - 208 = 24368\).
 
 \chapter{Boolean Algebra}
-\section{Boolean expressions}
+\section{Boolean Expressions}
 A way to convert a truth table into a Boolean expression is by writing an
 expression that evaluates to true for each and every row that evaluates to true
 and chain them together with the OR operator. This expression may later be
 simplified through logic identities.
 
 Any Boolean function can be expressed by an expression containing only AND and
-NOT operations. Note that \(A \lor B\) can be expressed as \(\lnot \left( \lnot
-\left( A \right) \land \lnot \left( B \right) \right)\).
+NOT operations. For instance, \(A \lor B\) can be expressed as \(\lnot \left(
+\left( \lnot A \right) \land \left( \lnot B \right) \right)\).
 
-\subsection{De Morgan's laws}
+\subsection{de Morgan's Laws}
 De Morgan's laws are a pair of transformation rules that are both valid rules of
 inference. The rules allow the expression of conjunctions and disjunctions
 purely in terms of each other via negation. In mathematical notation, the rules
 state that
-
 \[\lnot \left( A \land B \right) =
-  \lnot \left( A \right) \lor \lnot \left( B \right)\]
+  \left( \lnot A \right) \lor \left( \lnot B \right)\]
 and
 \[\lnot \left( A \lor B \right) =
-  \lnot \left( A \right) \land \lnot \left( B \right)\]
+  \left( \lnot A \right) \land \left( \lnot B \right)\]
+are valid equalities.
 
 \chapter{Algorithms}
 
