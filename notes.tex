@@ -1037,6 +1037,46 @@ from \(1\) to \(t\).
 
 \chapter{Statistics}
 
+\section{Discrete Distributions}
+\subsection{Geometric Distribution}
+\subsubsection*{Probability mass function}
+\[P(X = k) = (1 - p)^{k - 1}p\]
+\subsubsection*{Tail probabilities function}
+\[P(X \ge k) = (1 - p)^{k - 1}\]
+This probability distribution has mean \(\frac{1}{p}\) and variance \(\frac{1 - p}{p^2}\).
+\begin{ExerciseList}
+\Exercise
+Suppose that the probability of an item on an assembly line being defective is \(p = 0.02\).
+What is the average number of items inspected before finding the first defective item?
+\Answer
+\[\frac{1}{p} = \frac{1}{0.02} = 50\]
+\Exercise What is the probability that none of the first ten sampled items are not defective?
+\Answer
+\[P(X \ge 11) = (1 - p)^{10} = 0.98^{10} \approx 0.817\]
+\end{ExerciseList}
+
+\subsection{Poisson Distribution}
+\subsubsection*{Probability mass function}
+\[P(X = k) = e^{-\lambda}\frac{\lambda^k}{k!}\]
+This probability distribution has mean \(\lambda\) and variance \(\lambda\).
+\begin{ExerciseList}
+\Exercise
+Suppose that the number of creatures of a given species that we expect to find
+in a one square meter follows the Poisson(5) distribution. What is the
+probability of finding exactly 7 creatures of this species?
+\Answer
+\[P(X = 7) = e^{-5}\frac{5^7}{7!} = e^{-5}\frac{78125}{5040} \approx 0.104\]
+\Exercise
+For a Poisson(\(\lambda\)) distribution, suppose that the probability
+attached to 0 is 0.02949. Determine \(\lambda\).
+\Answer
+\begin{align*}
+P(X = 0) = e^{-\lambda}\frac{\lambda^0}{0!} &= e^{-\lambda} = 0.02949 \\
+& \therefore -\lambda = \ln \left(0.02949\right)\\
+& \therefore \lambda \approx 3.524
+\end{align*}
+\end{ExerciseList}
+
 \section{Linear Relationship}
 A linear relationship between \(y\) and \(x\) is denoted by:
 \[\mu_{y | x} = \beta_0 + \beta_1 x + \epsilon\]
