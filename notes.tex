@@ -29,6 +29,7 @@
 \usepackage{fixltx2e}
 % In order to be able to split strings to pretty print binary strings.
 \usepackage{xstring}
+\usepackage{exercise}
 \usepackage[iso,english]{isodate}
 \usepackage[dvipsnames]{xcolor}
 
@@ -1213,6 +1214,65 @@ and products of its roots \(x_i\) as follows:
 \frac{a_{n-k}}{a_n}\]
 
 \chapter{Calculus}
+\section{Limits}
+\subsection{Limits with Multiple Variables}
+If the function is continuous where you are trying to find the limit, simply
+plug in the variables. If this is not possible, the squeeze theorem might be a
+better solution. Lastly, you should try to prove that the limit does not exist.
+
+When proving that the limit of a function of one variable does not exist, you
+would test if the limits from the right and from the left were different.
+When dealing with functions of multiple variables, if the limits along any two
+different smooth curves are different, the limit you are trying to find does
+not exist. Usually, \(x = 0\), \(y = 0\) and \(x = y\) are good choices when
+proving that a limit does not exist.
+
+\subsection{Limits with Multiple Variables Exercises}
+
+\begin{ExerciseList}
+\Exercise
+Show that the following limit does not exist.
+\[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} \frac{x + y}{2x^2 + y^2}\]
+\Answer
+We look at the limit as \(y \rightarrow 0\) by the smooth curve \(x = 0\).
+\[\lim_{y \rightarrow 0} \frac{x + y}{2x^2 + y^2}
+= \lim_{y \rightarrow 0} \frac{y}{y^2}
+= \lim_{y \rightarrow 0} \frac{1}{y} = +\infty\]
+Therefore, the limit does not exist.
+
+\Exercise
+Evaluate the following limit.
+\[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} \frac{\sin \left(x^2 + y^2\right)}{x^2 + y^2}\]
+\Answer
+Let \(z = x^2 + y^2\), then
+\[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} \frac{\sin \left(x^2 + y^2\right)}{x^2 + y^2}
+= \lim_{z \rightarrow 0^+} \frac{\sin \left(z\right)}{z}
+= 1\]
+by the squeeze theorem or by l'Hôpital's rule.
+
+\Exercise
+Evaluate the following limit.
+\[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} e^{-1/\left(x^2 + y^2\right)}\]
+\Answer
+Let \(z = x^2 + y^2\), then
+\[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} e^{-1/\left(x^2 + y^2\right)}
+= \lim_{z \rightarrow 0^+} e^{-z^{-1}}\]
+Because \[\lim_{z \rightarrow 0^+} -z^{-1} = -\infty\]
+we know that \[\lim_{z \rightarrow 0^+} e^{-z^{-1}} = \lim_{x \rightarrow -\infty} e^{x} = 0\]
+
+\Exercise
+Determine if the following limit exists. If so, find its value.
+\[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} \frac{x^4 - y^4}{x^2 + y^2}\]
+\Answer
+First we simplify the expression.
+\[\frac{x^4 - y^4}{x^2 + y^2} = \frac{\left(x^2 - y^2\right) \left(x^2 + y^2\right)}{x^2 + y^2} = x^2 - y^2\]
+Then we find the limit of the simplified expression. Clearly, this limit does
+exist because \(x^2 - y^2\) is continuous everywhere.
+\[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)}{\frac{x^4 - y^4}{x^2 + y^2}}
+= \lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} x^2 - y^2 = 0\]
+
+\end{ExerciseList}
+
 \section{Derivatives}
 \[\frac{\dif}{\dif x} \sin x = \cos x\]
 \[\frac{\dif}{\dif x} \cos x = -\sin x\]
