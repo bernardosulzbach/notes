@@ -1323,6 +1323,26 @@ exist because \(x^2 - y^2\) is continuous everywhere.
 \[\left\{f\left[g\left(x\right)\right]\right\}'
 = f'\left[g\left(x\right)\right] g'\left(x\right)\]
 
+\subsection{Partial Derivatives}
+A partial derivative is a derivative of a function of two or more variables
+with respect to a single variable while the others are treated as constants.
+The partial derivative of a function \(f\) with respect to \(x\) is indicated by
+\(\frac{\partial f}{\partial x}\).
+
+Some authors call \(\frac{\partial f}{\partial x}\left(x_0, y_0\right)\) the
+slope of the surface in the x-direction at \(\left(x_0, y_0\right)\).
+Similarly, \(\frac{\partial f}{\partial y}\left(x_0, y_0\right)\) is the slope
+of the surface in the y-direction at \(\left(x_0, y_0\right)\).
+
+\begin{Exercise}
+\paragraph{Question.} Find the slope of the surface \(f(x, y) = x^{3}y^{2} + 5y\) in the y-direction at the point \((1, -2)\).
+\paragraph{Answer.} First, we differentiate with respect to \(y\) to find an expression for the slope we are interested in.
+\[\frac{\partial f}{\partial y} = 2x^{3} + 5\]
+Then we evaluate the expression at the point of interest.
+\[\frac{\partial f}{\partial y}\left(1, -2\right) = 2 + 5 = 7\]
+Therefore, the slope of the surface \(f(x, y) = x^{3}y^{2} + 5y\) in the y-direction at the point \((1, -2)\) is 7.
+\end{Exercise}
+
 \section{Series}
 \section{Series for \(e\)}
 \[e^x = \frac{x^0}{0!} + \frac{x^1}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} + \ldots\]
