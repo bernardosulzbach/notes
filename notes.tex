@@ -38,6 +38,7 @@
 
 \hypersetup{
     colorlinks=false,
+    hidelinks=true,
     % Link both sections and subsections.
     linktoc=all
 }
@@ -62,15 +63,13 @@
 \newcommand*\reals{\mathbb{R}}
 \newcommand*\complexnumbers{\mathbb{C}}
 
-\newcommand*\FormatAsSignBit[1]{\texttt{\textcolor{SignBitColor}{#1}}}
-\newcommand*\FormatAsExponentBits[1]{\texttt{\textcolor{ExponentBitsColor}{#1}}}
-\newcommand*\FormatAsSignificandBits[1]{\texttt{\textcolor{SignificandBitsColor}{#1}}}
-
-% Formats a string as a 32-bit floating point number.
-\newcommand*\singleprecision[1]{\StrSplit{#1}{1}{\signbit}{\tail}\StrSplit{\tail}{8}{\exponentbits}{\significandbits}
-\FormatAsSignBit{\signbit}
-\FormatAsExponentBits{\exponentbits}
-\FormatAsSignificandBits{\significandbits}}
+% Formats a string as a 32-bit IEEE floating point number.
+\newcommand*\singleprecision[1]
+    {\StrSplit{#1}{1}{\signbit}{\tail}
+     \StrSplit{\tail}{8}{\exponentbits}{\significandbits}
+        \texttt{\signbit}
+        \texttt{\exponentbits}
+        \texttt{\significandbits}}
 
 \lstset{frame=tb,
 	language=Java,
@@ -89,11 +88,6 @@
 \date{Compiled in \today}
 
 \begin{document}
-
-% House colors
-\definecolor{SignBitColor}{HTML}{F07241}
-\definecolor{ExponentBitsColor}{HTML}{C04848}
-\definecolor{SignificandBitsColor}{HTML}{601848}
 
 \hypersetup{pageanchor=false} % This prevents a warning.
 \begin{titlepage}
@@ -1692,26 +1686,25 @@ This also shows that the difference between the smallest possible number and the
 second smallest possible number is approximately \(1.401 \times 10^{-45}\).
 
 \textit{Find the sum of the following floating point numbers.}
-\begin{description}
-    \item \singleprecision{11000011010100000000000000000000}
-    \item \singleprecision{01000110110000000000000000000000}
-\end{description}
+\begin{itemize}
+    % Remove bullets
+    \item[] \singleprecision{11000011010100000000000000000000}
+    \item[] \singleprecision{01000110110000000000000000000000}
+\end{itemize}
 
 As the exponent of the positive number is greater, the result is positive.
 Evaluating the addition is easier if the significands are aligned. In order to
 achieve this, denormalize the negative value so that its exponent is also 14.
 The \textbf{actual} significand then changes in the following way:
 
-\begin{description}
-    \item \FormatAsSignificandBits{1.1010000000}
-    \item \FormatAsSignificandBits{0.0000001101}
-\end{description}
+\begin{itemize}
+    % Remove bullets
+    \item[] \texttt{1.1010000000}
+    \item[] \texttt{0.0000001101}
+\end{itemize}
 
 Therefore, the operation on the significands is a simple binary subtraction.
-Namely,
-
-\[1.1000000000 - 0.0000001101 = 1.0111110011\]
-
+\[\texttt{1.1000000000} - \texttt{0.0000001101} = \texttt{1.0111110011}\]
 This results in a normalized significand. Therefore, straightforwardly enough,
 the complete result is \singleprecision{01000110101111100110000000000000}.
 
