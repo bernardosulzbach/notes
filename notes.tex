@@ -1,4 +1,4 @@
-\documentclass[oneside]{book} % oneside removes blank pages after new parts.
+\documentclass[oneside]{book}
 \usepackage[utf8]{inputenc}
 % Enables proper hyphenation and informs other packages of the language this
 % document uses.
@@ -6,10 +6,9 @@
 \usepackage[backend=bibtex, style=alphabetic]{biblatex}
 % Latin Modern (a font with all the characters).
 \usepackage{lmodern}
-% AMS stuff
-% Proof environment, etc
+% Proof environment, etc.
 \usepackage{amsthm}
-% Vertical matrices, etc
+% Vertical matrices, etc.
 \usepackage[fleqn]{amsmath}
 % Set symbols (N, Z, Q, R, C)
 \usepackage{amssymb}
@@ -29,7 +28,6 @@
 \usepackage{fixltx2e}
 % In order to be able to split strings to pretty print binary strings.
 \usepackage{xstring}
-\usepackage{exercise}
 \usepackage[iso,english]{isodate}
 \usepackage[dvipsnames]{xcolor}
 
@@ -39,20 +37,22 @@
 \newtheorem*{theorem*}{Theorem}
 
 \hypersetup{
-    colorlinks=true,  % Colored links.
-    linktoc=all       % Link both sections and subsections.
+    colorlinks=false,
+    % Link both sections and subsections.
+    linktoc=all
 }
 
 \graphicspath{ {images/} }
 
-\DeclareMathOperator\cis{cis} % used for complex numbers
-% most of the time, \newcommand* is the best choice as you want the
-% error-checking that it provides.
+% Operators
+\DeclareMathOperator\cis{cis}
+
 \newcommand*\conj[1]{\bar{#1}}
 \newcommand*\mean[1]{\bar{#1}}
 \newcommand*\reciprocal[1]{\frac{1}{#1}}
 \newcommand*\argument{\phi}
-% number sets
+
+% Number sets
 \newcommand*\primes{\mathbb{P}}
 \newcommand*\naturalnumbers{\mathbb{N}}
 \newcommand*\wholenumbers{\mathbb{W}}
@@ -124,17 +124,6 @@ conjunctions, and prepositions of three letters or less.
 
 When writing a genus and species, do not capitalize the species. Leave
 lowercase the parts of an individual's name that are traditionally lowercase.
-
-\section{Exercises}
-Exercises should be presented in the \texttt{Exercise} environment with two
-paragraphs, which should be started by \textbf{Problem.} and
-\textbf{Solution.}, respectively. An example of such configuration is presented
-here.
-
-\begin{Exercise*}
-    \paragraph{Problem.} The problem.
-    \paragraph{Solution.} The solution.
-\end{Exercise*}
 
 \part{Chemistry}
 
@@ -1073,38 +1062,41 @@ from \(1\) to \(t\).
 \subsubsection*{Tail probabilities function}
 \[P(X \ge k) = (1 - p)^{k - 1}\]
 This probability distribution has mean \(\frac{1}{p}\) and variance \(\frac{1 - p}{p^2}\).
-\begin{ExerciseList}
-\Exercise
-Suppose that the probability of an item on an assembly line being defective is \(p = 0.02\).
-What is the average number of items inspected before finding the first defective item?
-\Answer
+
+\paragraph{Problem.}
+Suppose that the probability of an item on an assembly
+line being defective is \(p = 0.02\). What is the average number of items
+inspected before finding the first defective item?
+\paragraph{Solution.}
 \[\frac{1}{p} = \frac{1}{0.02} = 50\]
-\Exercise What is the probability that none of the first ten sampled items are not defective?
-\Answer
+
+\paragraph{Problem.}
+What is the probability that none of the first ten sampled
+items are not defective?
+\paragraph{Solution.}
 \[P(X \ge 11) = (1 - p)^{10} = 0.98^{10} \approx 0.817\]
-\end{ExerciseList}
 
 \subsection{Poisson Distribution}
 \subsubsection*{Probability mass function}
 \[P(X = k) = e^{-\lambda}\frac{\lambda^k}{k!}\]
+
+\paragraph{Problem.}
 This probability distribution has mean \(\lambda\) and variance \(\lambda\).
-\begin{ExerciseList}
-\Exercise
 Suppose that the number of creatures of a given species that we expect to find
 in a one square meter follows the Poisson(5) distribution. What is the
 probability of finding exactly 7 creatures of this species?
-\Answer
+\paragraph{Solution.}
 \[P(X = 7) = e^{-5}\frac{5^7}{7!} = e^{-5}\frac{78125}{5040} \approx 0.104\]
-\Exercise
+
+\paragraph{Problem.}
 For a Poisson(\(\lambda\)) distribution, suppose that the probability
 attached to 0 is 0.02949. Determine \(\lambda\).
-\Answer
+\paragraph{Solution.}
 \begin{align*}
 P(X = 0) = e^{-\lambda}\frac{\lambda^0}{0!} &= e^{-\lambda} = 0.02949 \\
 & \therefore -\lambda = \ln \left(0.02949\right)\\
 & \therefore \lambda \approx 3.524
 \end{align*}
-\end{ExerciseList}
 
 \section{Linear Relationship}
 A linear relationship between \(y\) and \(x\) is denoted by:
@@ -1298,49 +1290,46 @@ proving that a limit does not exist.
 
 \subsection{Limits with Multiple Variables Exercises}
 
-\begin{ExerciseList}
-\Exercise
+\paragraph{Problem.}
 Show that the following limit does not exist.
 \[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} \frac{x + y}{2x^2 + y^2}\]
-\Answer
+\paragraph{Solution.}
 We look at the limit as \(y \rightarrow 0\) by the smooth curve \(x = 0\).
 \[\lim_{y \rightarrow 0} \frac{x + y}{2x^2 + y^2}
 = \lim_{y \rightarrow 0} \frac{y}{y^2}
 = \lim_{y \rightarrow 0} \frac{1}{y} = +\infty\]
 Therefore, the limit does not exist.
 
-\Exercise
+\paragraph{Problem.}
 Evaluate the following limit.
 \[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} \frac{\sin \left(x^2 + y^2\right)}{x^2 + y^2}\]
-\Answer
+\paragraph{Solution.}
 Let \(z = x^2 + y^2\), then
 \[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} \frac{\sin \left(x^2 + y^2\right)}{x^2 + y^2}
 = \lim_{z \rightarrow 0^+} \frac{\sin \left(z\right)}{z}
 = 1\]
 by the squeeze theorem or by l'Hôpital's rule.
 
-\Exercise
+\paragraph{Problem.}
 Evaluate the following limit.
 \[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} e^{-1/\left(x^2 + y^2\right)}\]
-\Answer
+\paragraph{Solution.}
 Let \(z = x^2 + y^2\), then
 \[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} e^{-1/\left(x^2 + y^2\right)}
 = \lim_{z \rightarrow 0^+} e^{-z^{-1}}\]
 Because \[\lim_{z \rightarrow 0^+} -z^{-1} = -\infty\]
 we know that \[\lim_{z \rightarrow 0^+} e^{-z^{-1}} = \lim_{x \rightarrow -\infty} e^{x} = 0\]
 
-\Exercise
+\paragraph{Problem.}
 Determine if the following limit exists. If so, find its value.
 \[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} \frac{x^4 - y^4}{x^2 + y^2}\]
-\Answer
+\paragraph{Solution.}
 First we simplify the expression.
 \[\frac{x^4 - y^4}{x^2 + y^2} = \frac{\left(x^2 - y^2\right) \left(x^2 + y^2\right)}{x^2 + y^2} = x^2 - y^2\]
 Then we find the limit of the simplified expression. Clearly, this limit does
 exist because \(x^2 - y^2\) is continuous everywhere.
 \[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)}{\frac{x^4 - y^4}{x^2 + y^2}}
 = \lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} x^2 - y^2 = 0\]
-
-\end{ExerciseList}
 
 \section{Derivatives}
 \[\frac{\dif}{\dif x} \sin x = \cos x\]
@@ -1363,14 +1352,14 @@ slope of the surface in the x-direction at \(\left(x_0, y_0\right)\).
 Similarly, \(\frac{\partial f}{\partial y}\left(x_0, y_0\right)\) is the slope
 of the surface in the y-direction at \(\left(x_0, y_0\right)\).
 
-\begin{Exercise}
-\paragraph{Question.} Find the slope of the surface \(f(x, y) = x^{3}y^{2} + 5y\) in the y-direction at the point \((1, -2)\).
-\paragraph{Answer.} First, we differentiate with respect to \(y\) to find an expression for the slope we are interested in.
+\paragraph{Problem.}
+Find the slope of the surface \(f(x, y) = x^{3}y^{2} + 5y\) in the y-direction at the point \((1, -2)\).
+\paragraph{Solution.}
+First, we differentiate with respect to \(y\) to find an expression for the slope we are interested in.
 \[\frac{\partial f}{\partial y} = 2x^{3} + 5\]
 Then we evaluate the expression at the point of interest.
 \[\frac{\partial f}{\partial y}\left(1, -2\right) = 2 + 5 = 7\]
 Therefore, the slope of the surface \(f(x, y) = x^{3}y^{2} + 5y\) in the y-direction at the point \((1, -2)\) is 7.
-\end{Exercise}
 
 \section{Series}
 \section{Series for \(e\)}
@@ -1483,12 +1472,13 @@ Fixed point is a form of representing real numbers with a fixed number of digits
 after the radix point.
 
 \subsection{Fixed Point Conversion Exercises}
-\paragraph{Exercise} Convert \texttt{01101011} and \texttt{11001100} from fixed
+\paragraph{Problem.}
+Convert \texttt{01101011} and \texttt{11001100} from fixed
 point notation with four bits for the integral part and four bits for the
 fractional part to decimal first using unsigned arithmetic and then using two's
 complement.
-
-\paragraph{Solution} Using unsigned arithmetic,
+\paragraph{Solution.}
+Using unsigned arithmetic,
 \[0110.1011_{2} = 4_{10} + 2_{10} + 0.5_{10} + 0.125_{10} + 0.0625_{10}
   = 6.6875_{10}\]
 \[1100.1100_{2} = 8_{10} + 4_{10} + 0.5_{10} + 0.25_{10} = 12.75_{10}\]
@@ -1499,7 +1489,8 @@ Using two's complement,
 \[1100.1100_{2} = \left( 8_{10} + 4_{10} \right) - 16_{10} + 0.5_{10}
  + 0.25_{10} = -3.25_{10}\]
 
-\paragraph{Exercise} Evaluate the following expressions using 8-bit unsigned
+\paragraph{Problem.}
+Evaluate the following expressions using 8-bit unsigned
 fixed point arithmetic. The results should have 4 bits for the integral part and
 4 bits for the fractional part. The results must be rounded if necessary.
 Overflow and rounding must be indicated.
@@ -1510,8 +1501,7 @@ Overflow and rounding must be indicated.
     \item \(11.101011_{2} + 001100.00_{2}\)
 \end{enumerate}
 
-\paragraph{Solution}
-
+\paragraph{Solution.}
 \begin{enumerate}
     \item \(0111.0110_{2} + 0010.0010_{2} = 1001.1000_{2}\)
     \item \(1000.1001_{2} - 1001.1000_{2} = 0010.0001_{2}\) \textbf{(overflow)}
@@ -1571,11 +1561,14 @@ number the following algorithm may be used.
     significand bits.
 \end{enumerate}
 
+An algorithm for the conversion from the IEEE 754 format to decimal is not
+described as it is much more obvious than the one required for the conversion
+from decimal values to this floating point format.
+
 \subsubsection{IEEE 754 Conversion Exercises}
-
-\textbf{From Decimal to IEEE 754}
-
+\paragraph{Problem.}
 Convert -7 to a single-precision IEEE 754 floating point number.
+\paragraph{Solution.}
 \begin{enumerate}
 \item It is negative, therefore the first bit is set.
 \item The biggest power of two less than or equal to the absolute value is
@@ -1584,7 +1577,9 @@ Convert -7 to a single-precision IEEE 754 floating point number.
 \item This results in \singleprecision{11000001011000000000000000000000}.
 \end{enumerate}
 
+\paragraph{Problem.}
 Convert 255 to a single-precision IEEE 754 floating point number.
+\paragraph{Solution.}
 \begin{enumerate}
 \item It is positive, therefore the first bit is unset.
 \item The biggest power of two less than or equal to the absolute value is
@@ -1593,15 +1588,10 @@ Convert 255 to a single-precision IEEE 754 floating point number.
 \item This results in \singleprecision{01000011011111110000000000000000}.
 \end{enumerate}
 
-\textbf{From IEEE 754 to Decimal}
-
-An algorithm for these conversions is not described as it is much more obvious
-than the one required for the conversion from decimals values to this floating
-point format. One should be able to understand it from simply reading some of
-the examples below.
-
+\paragraph{Problem.}
 Convert \singleprecision{01000110110000000000000000000000} from IEEE 754 single
 precision floating point to a decimal number.
+\paragraph{Solution.}
 \begin{enumerate}
 \item The first bit is unset, therefore it is positive.
 \item The exponent is \(141 - 127 = 14\).
@@ -1609,8 +1599,10 @@ precision floating point to a decimal number.
 \item This results in \(1.5 \times 2^{14} = 1.5 \times 16384 = 24576\).
 \end{enumerate}
 
+\paragraph{Problem.}
 Convert \singleprecision{11001011010100000000000011000000} from IEEE 754 single
 precision floating point to a decimal number.
+\paragraph{Solution.}
 \begin{enumerate}
 \item The first bit is set, therefore it is negative.
 \item The exponent is \(150 - 127 = 23\).
