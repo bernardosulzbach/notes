@@ -1400,6 +1400,47 @@ For a function \(f\left(x, y\right)\) We call
 \[L\left(x, y\right) = f\left(x_0, y_0\right) + f_x\left(x_0, y_0\right)\left(x - x_0\right) + f_y\left(x_0, y_0\right)\left(y - y_0\right)\]
 the local linear approximation of \(f\) at \(\left(x_0, y_0\right)\).
 
+\subsubsection{Chain Rule for Partial Derivatives}
+For a function \(z\left(x, y\right)\), where \(x = x\left(u, v\right)\) and \(y = y\left(u, v\right)\).
+\[\frac{\partial z}{\partial u} = \frac{\partial z}{\partial x}\frac{\partial x}{\partial u} + \frac{\partial z}{\partial y}\frac{\partial y}{\partial u}\]
+
+Similar formulas may be derived for functions of three or more variables.
+
+\paragraph{Problem.} Let
+\[w = e^{xyz}, \quad x = 3u + v, \quad y = 3u - v, \quad z = u^2v.\]
+Use the chain rule to find \(\frac{\partial w}{\partial u}\). \cite{anton-bivens-davis}
+\paragraph{Solution.}
+\begin{align*}
+    \frac{\partial w}{\partial u}
+    &= \frac{\partial w}{\partial x}\frac{\partial x}{\partial u}
+    + \frac{\partial w}{\partial y}\frac{\partial y}{\partial u}
+    + \frac{\partial w}{\partial z}\frac{\partial z}{\partial u} \\
+    &= 3 yz e^{xyz} + 3 xz e^{xyz} + 2 xyuv e^{xyz} \\
+    &= e^{xyz} \left(3 yz + 3 xz + 2 xyuv\right)
+\end{align*}
+
+\paragraph{Problem.} Let
+\[w = x^2 + y^2 - z^2, \quad x = \rho \sin \phi \cos \theta, \quad y = \rho \sin \phi \sin \theta, \quad z = \rho \cos \phi.\]
+Use the chain rule to find \(\frac{\partial w}{\partial \rho}\). \cite{anton-bivens-davis}
+\paragraph{Solution.}
+\begin{align*}
+    \frac{\partial w}{\partial \rho}
+    &= \frac{\partial w}{\partial x}\frac{\partial x}{\partial \rho}
+    + \frac{\partial w}{\partial y}\frac{\partial y}{\partial \rho}
+    + \frac{\partial w}{\partial z}\frac{\partial z}{\partial \rho} \\
+    &= 2 x \sin \phi \cos \theta
+    + 2 y \sin \phi \sin \theta
+    - 2 z \cos \phi \\
+    &= 2 \rho \sin ^2 \phi \cos ^2 \theta
+    + 2 \rho \sin ^2 \phi \sin ^2 \theta
+    - 2 \rho \cos ^2 \phi \\
+    &= 2 \left( \rho \sin ^2 \phi \cos ^2 \theta + \rho \sin ^2 \phi \sin ^2 \theta - \rho \cos ^2 \phi \right) \\
+    &= 2 \left( \left( \rho \sin ^2 \phi \right) \left( \cos^2 \theta + \sin ^2 \theta \right) - \rho \cos ^2 \phi \right) \\
+    &= 2 \left( \rho \sin ^2 \phi - \rho \cos ^2 \phi \right) \\
+    &= 2 \rho \left( \sin ^2 \phi - \cos ^2 \phi \right) \\
+    &= - 2 \rho \cos 2 \phi
+\end{align*}
+
 \section{Series}
 \section{Series for \(e\)}
 \[e^x = \frac{x^0}{0!} + \frac{x^1}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} + \ldots\]
