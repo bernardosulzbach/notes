@@ -24,11 +24,7 @@
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{hyperref}
-% Should be above gitinfo2 to prevent an option clash.
 \usepackage[dvipsnames]{xcolor}
-% Get Git information.
-% Grumpy makes warnings into errors.
-\usepackage[grumpy]{gitinfo2}
 \usepackage{commath}
 % Fixes fragile \( and \).
 \usepackage{fixltx2e}
@@ -97,7 +93,7 @@
 
 \title{\Huge Notes}
 \author{Bernardo Sulzbach}
-\date{Release \texttt{\gitFirstTagDescribe} from \gitAuthorDate}
+\date{\texttt{Release \input{.release.txt}}}
 
 \begin{document}
 

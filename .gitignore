@@ -126,3 +126,6 @@ sympy-plots-for-*.tex/
 
 # Kile
 *.backup
+
+# Helper files
+.release.txt
