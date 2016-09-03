@@ -12,6 +12,7 @@
 \usepackage[fleqn]{amsmath}
 % Set symbols (N, Z, Q, R, C)
 \usepackage{amssymb}
+\usepackage{amsthm}
 % The \midrule glyph
 \usepackage{booktabs}
 % To get "not equivalent to"
@@ -31,10 +32,14 @@
 \usepackage[iso,english]{isodate}
 \usepackage[dvipsnames]{xcolor}
 
+% Fix spacing before Theorems, which is a problem introduced by parskip.
+\begingroup
+    \makeatletter \@for\theoremstyle:=definition,remark,plain\do{\expandafter\g@addto@macro\csname th@\theoremstyle\endcsname{\addtolength\thm@preskip\parskip}}
+\endgroup
+
 \addbibresource{biblio.bib}
 
-\theoremstyle{plain}
-\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}
 
 \hypersetup{
     colorlinks=false,
@@ -754,13 +759,13 @@ if it can be written in the form \( \mathbf{A x} = \mathbf{0} \).
 All homogeneous systems have a \textbf{trivial solution} that is \(\mathbf{0}\).
 If the system has at least one free variable, it has a nontrivial solution.
 
-\begin{theorem*}
+\begin{theorem}
   Suppose that \( \mathbf{Ax} = \mathbf{b} \) is consistent for some given
   \(\mathbf{b}\), let \(\mathbf {p}\) be a solution. Then the solution set of
   \( \mathbf{Ax} = \mathbf{b} \) is the set of all vectors of the form
   \( \mathbf{w} = \mathbf{p} + \mathbf{v} \), where \( \mathbf{v} \) is any
   solution of the homogeneous equation \( \mathbf{Ax} = \mathbf{0} \).
-\end{theorem*}
+\end{theorem}
 
 \section{Solution of a system in parametric form}
 \begin{enumerate}
@@ -1354,6 +1359,38 @@ First, we differentiate with respect to \(y\) to find an expression for the slop
 Then we evaluate the expression at the point of interest.
 \[\frac{\partial f}{\partial y}\left(1, -2\right) = 2 + 5 = 7\]
 Therefore, the slope of the surface \(f(x, y) = x^{3}y^{2} + 5y\) in the y-direction at the point \((1, -2)\) is 7.
+
+\subsubsection{Higher-Order Partial Derivatives}
+The partial derivatives of partial derivatives are called second-order partial
+derivatives. The second-order derivatives for a function \(f\left(x, y\right)\)
+are
+\[\frac{\partial^2 f}{\partial x \partial x} = f_{xx},
+\quad \frac{\partial^2 f}{\partial x \partial y} = f_{yx},
+\quad \frac{\partial^2 f}{\partial y \partial x} = f_{xy},
+\quad \frac{\partial^2 f}{\partial y \partial y} = f_{yy}\]
+Notice how these notations have different conventions for the order of
+differentiation. The \(\partial\) notation being evaluated from right to left
+and the subscript notation being evaluated from left to right.
+
+The second-order partials \(f_{xy}\) and \(f_{yx}\) are called mixed partials.
+
+\begin{theorem}
+    Let \(f\) be a function of two variables. If \(f_{xy}\) and \(f_{yx}\) are
+    continuous on some open disk, then \(f_{xy} = f_{yx}\) on that disk.
+\end{theorem}
+
+\paragraph{Problem.} Let \(f\left(x, y\right) = x^2 e^x e^y + xy\). Find \(f_{xxy}\).
+\paragraph{Solution.}
+\begin{align*}
+    &\frac{\partial^3}{\partial y \partial x \partial x} \left(x^2 e^x e^y + xy\right) \\
+    &=\frac{\partial^2}{\partial y \partial x} \left(\frac{\partial}{\partial x} \left(x^2 e^x e^y + xy\right)\right) \\
+    &=\frac{\partial^2}{\partial y \partial x} \left(2x e^x e^y + x^2 e^x e^y + y\right) \\
+    &=\frac{\partial}{\partial y} \left(\frac{\partial}{\partial x} \left(2x e^x e^y + x^2 e^x e^y + y\right)\right) \\
+    &=\frac{\partial}{\partial y} \left(\frac{\partial}{\partial x} \left(\left(2x + x^2\right) e^x e^y\right)\right) \\
+    &=\frac{\partial}{\partial y} \left(\left(2x + x^2\right) e^x e^y + \left(2 + 2x\right) e^x e^y\right) \\
+    &=\frac{\partial}{\partial y} \left(\left(x^2 + 4x + 2\right) e^x e^y\right) \\
+    &= \left(x^2 + 4x + 2\right) e^x e^y
+\end{align*}
 
 \section{Series}
 \section{Series for \(e\)}
