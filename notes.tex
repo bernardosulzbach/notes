@@ -24,13 +24,17 @@
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{hyperref}
+% Should be above gitinfo2 to prevent an option clash.
+\usepackage[dvipsnames]{xcolor}
+% Get Git information.
+% Grumpy makes warnings into errors.
+\usepackage[grumpy]{gitinfo2}
 \usepackage{commath}
 % Fixes fragile \( and \).
 \usepackage{fixltx2e}
 % In order to be able to split strings to pretty print binary strings.
 \usepackage{xstring}
 \usepackage[iso,english]{isodate}
-\usepackage[dvipsnames]{xcolor}
 
 % Fix spacing before Theorems, which is a problem introduced by parskip.
 \begingroup
@@ -93,7 +97,7 @@
 
 \title{\Huge Notes}
 \author{Bernardo Sulzbach}
-\date{Compiled in \today}
+\date{Release \texttt{\gitFirstTagDescribe} from \gitAuthorDate}
 
 \begin{document}
 
