@@ -1492,6 +1492,8 @@ and their intervals. The interval restrictions are important to ensure that the
 function which defines the substitution is one-to-one. \cite{stewart}
 
 \begin{center}
+    % 2 is the default, but here we want more spacing.
+    \renewcommand{\arraystretch}{2}
     \begin{tabular}{ |c|c|c| }
         \hline
         Expression & Substitution & Interval \\
@@ -1499,9 +1501,11 @@ function which defines the substitution is one-to-one. \cite{stewart}
         \(\sqrt{a^2 - x^2}\)
           & \(x = a\sin\theta\)
           & \(-\frac{\pi}{2} \le \theta \le \frac{\pi}{2}\) \\
+        \hline
         \(\sqrt{a^2 + x^2}\)
           & \(x = a\tan\theta\)
           & \(-\frac{\pi}{2} < \theta < \frac{\pi}{2}\) \\
+        \hline
         \(\sqrt{x^2 - a^2}\)
           & \(x = a\sec\theta\)
           & \(0 \le \theta < \frac{\pi}{2} \lor \pi \le \theta < \frac{3\pi}{2}\) \\
