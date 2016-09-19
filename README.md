@@ -4,6 +4,12 @@
 This document is a collection of notes, formulas, and solved problems about
 various subjects. It exists mainly for reference purposes.
 
+## Obtaining a release
+As modifications are made and reviewed, new releases are made. [Here you can get the
+latest release](https://github.com/mafagafogigante/notes/releases/latest). There
+are two files: `notes.pdf` and `notes-compressed.pdf`. Both have exactly the
+same content, but the latter is a compressed version of the former.
+
 ## Building
 Issuing the following command should build the PDF.
 ```bash
