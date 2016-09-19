@@ -1547,6 +1547,31 @@ limits. When \(x = 0\), \(\sin x = 0\), thus \(\theta = 0\). When \(x = a\),
 Which is the formula for the area of an ellipse. Furthermore, it is also the
 formula for the area of a circle as a circle is an ellipse with \(a = b\).
 
+\section{Definite Integrals}
+\subsection{Multiple Integrals}
+\paragraph{Problem.} Simplify
+\[\iint_D {\left(2x - y\right) \dif A}\]
+where D is bounded by the circle with center at the origin and radius 2.
+\paragraph{Solution.} We rewrite the double integral as an iterated integral.
+If \(x\) ranges from \(-2\) to \(2\), and \(y\), as a function of \(x\), is
+bounded by \(-\sqrt{4 - x^2}\) and \(\sqrt{4 - x^2}\).
+\begin{align*}
+    &\int_{-2}^{2} \int_{-\sqrt{4 - x^2}}^{\sqrt{4 - x^2}} {\left(2x - y\right) \dif y} \dif x \\
+    &= \int_{-2}^{2} \left[ 2xy - \frac{y^2}{2} \right]_{y = -\sqrt{4 - x^2}}^{y = \sqrt{4 - x^2}} \dif x \\
+    &= \int_{-2}^{2} \left( 2x\sqrt{4 - x^2} - \frac{4 - x^2}{2} + 2x\sqrt{4 - x^2} + \frac{4 - x^2}{2} \right) \dif x \\
+    &= \int_{-2}^{2} \left( 4x\sqrt{4 - x^2} \right) \dif x
+\end{align*}
+At this point the \(x = a\sin{t}\) trigonometric substitution is used.
+\begin{align*}
+    &\int_{-2}^{2} 4x\sqrt{4 - x^2} \dif x \\
+    &=\int_{-\pi/2}^{\pi/2} 4 \left(a \sin{t}\right) \sqrt{a^2 - \left(a \sin{t}\right)^2} \dif t \\
+    &=\int_{-\pi/2}^{\pi/2} 4 a \sin{t} \sqrt{a^2 - a^2\sin^2{t}} \dif t \\
+    &=\int_{-\pi/2}^{\pi/2} 4 a^2 \sin{t} \sqrt{1 - \sin^2{t}} \dif t \\
+    &=\int_{-\pi/2}^{\pi/2} 16 \sin{t} \cos{t} \dif t \\
+    &=16 \left[ - \frac{\cos^2{t}}{2} \right]_{-\pi/2}^{\pi/2} \\
+    &=16 \left( - \frac{\cos^2{\left(\frac{\pi}{2}\right)}}{2} + \frac{\cos^2{\left(-\frac{\pi}{2}\right)}}{2} \right) = 0
+\end{align*}
+
 \part{Computer Science}
 
 \chapter{Number Representation}
