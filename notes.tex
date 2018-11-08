@@ -1,9 +1,9 @@
 \documentclass[oneside]{book}
 \usepackage[utf8]{inputenc}
-% Enables proper hyphenation and informs other packages of the language this
-% document uses.
+\usepackage{csquotes}
+% Enables proper hyphenation and informs other packages of the language this document uses.
 \usepackage[english]{babel}
-\usepackage[backend=bibtex, style=alphabetic]{biblatex}
+\usepackage[backend=biber]{biblatex}
 % Latin Modern (a font with all the characters).
 \usepackage{lmodern}
 % Proof environment, etc.
@@ -12,14 +12,12 @@
 \usepackage[fleqn]{amsmath}
 % Set symbols (N, Z, Q, R, C)
 \usepackage{amssymb}
-\usepackage{amsthm}
 % The \midrule glyph
 \usepackage{booktabs}
 % To get "not equivalent to"
 \usepackage{centernot}
 \usepackage{listings}
-% Turns off the indentation and adds a little bit of (stretchable) space in
-% between paragraphs.
+% Turns off the indentation and adds a little bit of (stretchable) space in between paragraphs.
 \usepackage{parskip}
 \usepackage{graphicx}
 \usepackage{wrapfig}
@@ -31,13 +29,14 @@
 % In order to be able to split strings to pretty print binary strings.
 \usepackage{xstring}
 \usepackage[iso,english]{isodate}
+\usepackage[lastexercise]{exercise}
 
 % Fix spacing before Theorems, which is a problem introduced by parskip.
 \begingroup
     \makeatletter \@for\theoremstyle:=definition,remark,plain\do{\expandafter\g@addto@macro\csname th@\theoremstyle\endcsname{\addtolength\thm@preskip\parskip}}
 \endgroup
 
-\addbibresource{biblio.bib}
+\addbibresource{bibliography.bib}
 
 \newtheorem{theorem}{Theorem}
 
