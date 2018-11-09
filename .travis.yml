@@ -5,11 +5,11 @@ addons:
       - texlive-latex-extra
       - texlive-fonts-recommended
       - texlive-bibtex-extra
+      - texlive-extra-utils
       - texlive-math-extra
       - latex-xcolor
       - biber
       - lmodern
-      - arara
 
 script:
   - bash build.sh
