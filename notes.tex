@@ -2071,16 +2071,37 @@ Communication in the Internet happens through the transport layer, which takes d
 IP routers forward packages until the destination is reached. At the destination, the network layer reassembles the packets into the original datagram, which is then handled to the transport layer.
 It is the job of the \textbf{IP routing protocols} to decide which of the usually many possible paths to the destination to take.
 
-\subsection{Routing Algorithms}
+\subsection{Routing algorithms}
 
 The main function of the network layer is routing packets.
 The routing algorithm is the part of the network layer software responsible for deicing which output an incoming packet should take when leaving the router.
 In a datagram network, routing decisions are must be made for every data packet since the best route may have changed since last time.
 However, if the network uses virtual circuits, routing decisions are made only when a new virtual circuit is set up and packets will only follow the established route \cite[p.~362]{computer-networks-tanenbaum-2012}.
 
+One can think that a router has two processes inside it.
 
+\begin{enumerate}
+    \item \textbf{Forwarding}.
+    It handles each packet as it arrives, looking up the outgoing line to use for it in the routing tables.
+    \item \textbf{Routing}.
+    It is responsible for filling in and updating the routing tables.
+\end{enumerate}
 
-\subsection{IP Addresses}
+The desired properties of a routing algorithm are: correctness, simplicity, robustness, stability, fairness, and efficiency.
+Correctness and simplicity are self-explanatory, but the need for robustness may be less obvious.
+The routing algorithm should be able to cope with changes in the topology and traffic without requiring all jobs in all hosts to be aborted \cite[p.~363]{computer-networks-tanenbaum-2012}.
+
+Stability is also important. There exist routing algorithms that \textit{never} converge to a fixed set of paths.
+A stable algorithm reaches equilibrium and stays in equilibrium.
+The convergence should be quick, since communication may be disrupted while the algorithm is reaching equilibrium \cite[p.~363]{computer-networks-tanenbaum-2012}.
+
+\textbf{Fairness and efficiency are often contradictory goals}.
+Minimizing the mean packet delay and maximizing total network throughput are both valid options.
+These two goals are also in conflict, since operating queuing systems near capacity implies a long queuing delay.
+Many networks try to minimize the distance a packet must travel, or reduce the number of hops a packet must make.
+Either choice tends to improve the delay and also reduce the amount of bandwidth consumed per packet, which tends to improve the overall network throughput as well \cite[p.~363]{computer-networks-tanenbaum-2012}.
+
+\subsection{IP addresses}
 
 IP addresses are hierarchical, unlike Ethernet addresses. Each 32-bit address is comprised of a variable-length network portion in the top bits and a host portion in the bottom bits.
 The network portion is \emph{common across shared by all the same value for all hosts on a single network}.
@@ -2148,6 +2169,7 @@ In addition to the unicast and multicast addresses, IPv6 has a new type of addre
 
 The header now has a fixed 40-byte size.
 The IPv6 datagram is also limited to 65,535 bytes, but the new payload length field does not take the fixed-length 40-byte header into account.
+The \href{https://tools.ietf.org/html/rfc2675}{RFC 2675} allows for much larger payloads by using a 32-bit length field.
 
 IPv6 also has a definition of \textbf{flow}. This allows packets to be labelled for special handling if they belong to certain flows, such as the packets of real-time video transmissions.
 The designers of IPv6 foresee the eventual need to be able to differentiate among the data flows \cite{computer-networking-kurose-2012}.
