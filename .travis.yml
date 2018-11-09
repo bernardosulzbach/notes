@@ -1,15 +1,16 @@
 addons:
   apt:
     packages:
-      - texlive-latex-recommended
-      - texlive-latex-extra
-      - texlive-fonts-recommended
+      - biber
+      - ghostscript
+      - latex-xcolor
+      - lmodern
       - texlive-bibtex-extra
       - texlive-extra-utils
+      - texlive-fonts-recommended
+      - texlive-latex-extra
+      - texlive-latex-recommended
       - texlive-math-extra
-      - latex-xcolor
-      - biber
-      - lmodern
 
 script:
   - bash build.sh
