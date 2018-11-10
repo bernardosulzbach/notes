@@ -4,7 +4,7 @@
 % arara: pdflatex
 
 \documentclass[12pt, oneside]{book}
-\usepackage[margin = 3.0cm]{geometry}
+\usepackage[a4paper, total={16cm, 20cm}]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{csquotes}
 % Enables proper hyphenation and informs other packages of the language this document uses.
@@ -2075,7 +2075,7 @@ It is the job of the \textbf{IP routing protocols} to decide which of the usuall
 
 The main function of the network layer is routing packets.
 The routing algorithm is the part of the network layer software responsible for deicing which output an incoming packet should take when leaving the router.
-In a datagram network, routing decisions are must be made for every data packet since the best route may have changed since last time.
+In a datagram network, routing decisions must be made for every data packet since the best route may have changed.
 However, if the network uses virtual circuits, routing decisions are made only when a new virtual circuit is set up and packets will only follow the established route \cite[p.~362]{computer-networks-tanenbaum-2012}.
 
 One can think that a router has two processes inside it.
@@ -2099,7 +2099,66 @@ The convergence should be quick, since communication may be disrupted while the 
 Minimizing the mean packet delay and maximizing total network throughput are both valid options.
 These two goals are also in conflict, since operating queuing systems near capacity implies a long queuing delay.
 Many networks try to minimize the distance a packet must travel, or reduce the number of hops a packet must make.
-Either choice tends to improve the delay and also reduce the amount of bandwidth consumed per packet, which tends to improve the overall network throughput as well \cite[p.~363]{computer-networks-tanenbaum-2012}.
+Either choice tends to improve the delay and also reduce the amount of bandwidth consumed per packet, which tends to improve the overall network throughput \cite[p.~363]{computer-networks-tanenbaum-2012}.
+
+\textbf{Nonadaptive routing algorithms} do not use measurements or estimates to make decisions of the current topology and traffic.
+Instead, the choice of the route to use to get from point A to point B is computed in advance and downloaded to the routers when the network is booted.
+This procedure is sometimes called \textbf{static routing}.
+Because it does not respond to failures, static routing is mostly useful for situations in which the routing choice is clear.
+
+\textbf{Adaptive routing algorithms} change their routing decisions to reflect changes in the topology.
+Sometimes, changes in traffic are also taken into account.
+These dynamic routing algorithms differ in where they get their information, when they change the routes, and what metrics they use for optimization \cite[p.~364]{computer-networks-tanenbaum-2012}.
+
+\textbf{The optimality principle} states that if a router J is on the optimal path between I and K, then the optimal path from J to K also falls along the same route. As a consequence of this, the optimal routes from all sources to a given destination form a \textbf{sink tree} \cite{dynamic-programming-bellman-2003}. Note that multiple sink trees may exist. Routing algorithms have to discover and use the sink trees for all routers.
+
+\subsubsection{Shortest path algorithm}
+
+The routing algorithm may be a shortest path algorithm, which tries to find shortest paths in a weighted graph on which the edge weights are functions which evaluate how expensive it is to take a given route.
+This might be done with Dijkstra's algorithm and is a static routing algorithm.
+
+\subsubsection{Flooding}
+
+Another possibility is called flooding, in which every incoming packet is sent out on every outgoing line except the one it arrived on \cite[p.~368]{computer-networks-tanenbaum-2012}.
+
+Flooding, as one might expect, generates a huge (possibly infinite) number of duplicates. In order to counter this issue, a hop counter is required. The initial value of this counter might be the diameter of the network. A better technique for damming the flood is to keep track of which packets have been flooded in each router, to avoid sending them out a second time \cite[p.~368]{computer-networks-tanenbaum-2012}.
+
+This algorithm ensures that a packet is delivered to every node in the network, which is wasteful if there is a single destination that needs the packet, but effective for broadcasting information. Flooding is tremendously robust, because even if a large number of routers are destroyed, flooding will find a path (if one still exists) to get a packet to its destination. It also requires very little setup \cite[p.~370]{computer-networks-tanenbaum-2012}.
+
+\subsubsection{Distance vector routing}
+
+A distance vector routing algorithm operates by having a table in each router giving the best known distance to each destination and which link to use to get there.
+These tables are updated by communicating with neighbor routers.
+Eventually, every router should know the best link to reach each destination.
+It is sometimes called the \textbf{distributed Bellman-Ford algorithm}.
+
+Distance vector routing is useful as a simple technique by which routers can collectively compute shortest paths, but its convergence (the settling of routes to best paths across the network) may be too slow \cite[p.~372]{computer-networks-tanenbaum-2012}.
+
+Assuming synchronized routing table exchanges, if a network's longest path has N hops, within N exchanges all routers will know about an improvement \cite[p.~372]{computer-networks-tanenbaum-2012}. However, propagating to the network that a route is now slower is much less efficient. Due to a problem known as the \textbf{count-to-infinity problem} \cite[p.~373]{computer-networks-tanenbaum-2012}, if there are no more routes to a given router, the distance to it in the routing tables will approach the value defined to represent infinite distance linearly, which may take a very long time. Therefore, one could say that \textit{this algorithm reacts rapidly to good news, but slowly to bad news}.
+
+\subsubsection{Link state routing}
+
+Link state routing is the historical successor of distance vector routing algorithm and it does not have the count-to-infinity problem \cite[p.~373]{computer-networks-tanenbaum-2012}.
+
+The algorithm can be described in the five following parts.
+
+\begin{enumerate}
+    \item Discover the neighbors and learn their addresses.
+    \item Set the distance to each neighbor.
+    \item Construct a packet with all this information.
+    \item Send this packet to and receive similar packets from all other routers.
+    \item Compute the shortest path to every other router.
+\end{enumerate}
+
+This process distributes the complete topology to every router, thus allowing Dijkstra's algorithm to be used at each router to find the shortest path to every other router \cite[p.~374]{computer-networks-tanenbaum-2012}.
+
+Link state routing requires more memory and computation than distance vector.
+For a network with \(n\) routers, each with up to \(k\) neighbors, the memory required to store the input data is proportional to \(kn\). Also, the computation time grows faster than \(kn\), an issue in large networks.
+However, link state routing works well because it doesn't have slow convergence problems.
+Many ISPs use the \textbf{IS-IS} (Intermediate System-Intermediate System) link state protocol.
+\textbf{OSPF} (Open Shortest Path First) is the other main link state protocol \cite[p.~378]{computer-networks-tanenbaum-2012}.
+
+It is important to understand that link state routing, distance vector routing, and some other algorithms rely on processing at all the routers to compute routes. Problems at even a small number of routers can disrupt the whole network. As the network grows, the probability of at least one router failing gets bigger, so it is important to think about this when designing large networks \cite[p.~378]{computer-networks-tanenbaum-2012}.
 
 \subsection{IP addresses}
 
