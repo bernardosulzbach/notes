@@ -2061,6 +2061,66 @@ The \href{https://en.wikipedia.org/wiki/OSI_model}{OSI model} has seven layers. 
 \item \textbf{Application}. High-level APIs, including resource sharing, remote file access.
 \end{enumerate}
 
+\section{Medium access control}
+
+\subsection{IEEE 802.11}
+
+In the 802.11 LAN, stations use CSMA/CA to mitigate the difficulty to sense colliding transmissions by leaving small gaps between frames. The stations can also use the RTS/CTS protocol to combat hidden terminals that arise because of the fact that the coverage regions of stations may differ  \cite[p.~349]{computer-networks-tanenbaum-2012}.
+
+\subsection{Devices}
+
+In order to be able to better differentiate the following devices it is important to note that they operate in \textbf{different layers}.
+
+\subsubsection{Repeaters and hubs}
+
+\textbf{Repeaters} do not understand frames, packets, or headers.
+They just clean up, amplify, and repeat their input as their output.
+
+\textbf{Hubs} just join their input lines electrically.
+Therefore, frame collisions can happen through a hub.
+All the lines coming into a hub must operate at the same speed.
+Hubs, just like repeaters, only care about electric signals.
+
+\subsubsection{Switches}
+
+Switches can be used to join LANs into larger LANs.
+They operate in the data link layer, examining the data link layer address to forward frames.
+Because they are not supposed to examine the payloads of the frames, they can handle any network layer protocol.
+Unlike a hub, \textbf{each port has its own collision domain}.
+
+If the port has a full-duplex point-to-point line, the CSMA/CD algorithm is not needed.
+When a frame arrives, the switch extracts the destination address from the frame header and looks it up in a table to see where to send the frame.
+For Ethernet, this address is the 48-bit Ethernet destination address.
+The bridge only outputs the frame on the port where it is needed and can forward multiple frames to different ports at the same time.
+
+There are two algorithms used to create transparent bridges (that is, bridges which do not require any additional configuration): a \textit{backward learning algorithm} to stop traffic being sent where it is not needed, and a \textit{spanning tree algorithm} to break loops that may be formed by connecting switches without much thought \cite[p.~333]{computer-networks-tanenbaum-2012}.
+
+Switches have much better performance than hubs, and can also allow for the connection lines of different speeds. Internal buffers allow a switch to accept a frame on a port of a given speed and transmit it to another port at a different speed. Buffers are needed even if all the ports have the same speed as the switch may have to temporarily store frames if multiple ports are sending to the same destination port \cite[p.~341]{computer-networks-tanenbaum-2012}.
+
+The term \textbf{bridge} was used to denote switches but is not a popular term anymore. The terms ``bridge'' and ``switch'' can nowadays be used interchangeably \cite[p.~350]{computer-networks-tanenbaum-2012}.
+
+\subsubsection{Routers}
+
+Routers completely discard the data link layer header as they route packages instead of frames and for routing packages the physical source address does not matter.
+The routing software only cares about the IPv4 or IPv6 address to make its routing decisions.
+
+\subsection{Virtual LANs}
+
+It is a good practice to group users on LANs to reflect the organizational structure rather than the physical layout of the buildings. Three major reasons for the proper grouping of LANs are \textbf{security}, \textbf{load balance} and \textbf{broadcast traffic}.
+
+Security, for instance, might be related to the fact that one LAN might host computers which are publicly exposed for external use, while another LAN might contain confidential information which should never be publicly exposed  \cite[p.~343]{computer-networks-tanenbaum-2012}.
+
+Load might be an issue if a given department is using all their network bandwidth. This congestion should ideally be isolated from all other departments \cite[p.~344]{computer-networks-tanenbaum-2012}.
+
+Broadcast messages consume substantial LAN capacity on large LANs, so keeping the number of devices in a LAN low is a good idea to reduce the impact of broadcast traffic \cite[p.~344]{computer-networks-tanenbaum-2012}.
+
+Given these reasons, it is important to be able to separate the logical topology from the physical topology.
+Another reason for this decoupling is that the number of ports in a switch might be too low or too high for the number of users in a single LAN.
+
+This gave rise to standards for virtual LANs (VLANs). They are based on VLAN-aware switches, because for VLANs to work correctly it is important that the switches know which VLANs are accessible through which ports.
+
+VLANs have been implemented according to the 802.1Q standard, issued in 1998. They caused a change in the Ethernet header, which could be gradually adopted because these new headers were only needed on the switches. 802.1Q raised the maximum frame size from 1518 bytes to 1522 bytes. VLAN-aware switches can configure themselves based on traffic observations \cite[p.~348]{computer-networks-tanenbaum-2012}.
+
 \section{The network layer in the Internet}
 
 In the network layer, the Internet can be viewed as a collection of networks or \textbf{autonomous systems} that are interconnected. Despite there not being any real structure, several major backbones exist. These are constructed from high-bandwidth lines and fast routers.
