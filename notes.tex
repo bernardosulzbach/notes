@@ -2335,6 +2335,7 @@ Conceptually, there are no changes.
 Technically, the IP addresses requested are now bigger, so bigger fields are needed.
 It is worth noting that even though IPv6 does not support broadcast the same way as IPv4 did, you could use multicast to make a protocol very similar to ARP.
 \end{Answer}
+
 \begin{Exercise}
 If one could use IP, ICMP, and ARP:
 \begin{enumerate}
@@ -2354,6 +2355,7 @@ If one could use IP, ICMP, and ARP:
     See \href{https://en.wikipedia.org/wiki/Path_MTU_Discovery}{Path MTU Discovery (PMTUD)}.
 \end{enumerate}
 \end{Answer}
+
 \begin{Exercise}
 What is Proxy ARP? How does it work?
 \end{Exercise}
@@ -2364,6 +2366,7 @@ It works with the help from routers as Ethernet-level broadcasts are not forward
 The router has to reply to the ARP request with \textbf{its own Ethernet address}.
 Then the sender host can send frames which are meant to the receiver host \textbf{to the router}, which will then forward these frames to the correct device.
 \end{Answer}
+
 \begin{Exercise}
 Can an ARP table contain multiple entries for the same MAC associated with different IP addresses?
 \end{Exercise}
@@ -2371,6 +2374,7 @@ Can an ARP table contain multiple entries for the same MAC associated with diffe
 Yes, this can be a consequence of proxy ARP.
 Multiple IP addresses may have been resolved to the MAC of the router.
 \end{Answer}
+
 \begin{Exercise}
 A TCP/IP device in a network has the IP address 128.138.243.100 and the mask 255.255.255.192.
 Find out the network number, the network broadcast address, the first and last valid IP addresses.
@@ -2402,10 +2406,21 @@ Broadcast: 128.138.243.127      10000000.10001010.11110011.01 111111
 Hosts/Net: 62                   Class B
 \end{verbatim}
 \end{Answer}
+
 \begin{Exercise}
 Write down all you know about hubs, switches, and routers.
 Mention technology, operation principle, bandwidth usage, broadcast domains, collision domains, and spanning trees.
 \end{Exercise}
+\begin{Answer}
+Hubs operate on the physical layer, they just connect multiple lines as if they were the same single line. This is why they only define a single common collision domain.
+
+Switches, on the other hand, define a single collision domain for each port as long as they have a full-duplex point-to-point connection. Switches, however, still define a single broadcast domain.
+Switches operate on the second layer of the OSI stack, forwarding frames.
+Switches are auto-configurable, in the sense that one could just plug one in and wander away, leaving it to configure itself. This works because algorithms such as the spanning three algorithm allow for switch to detect cycles and not propagate the same frames around forever.
+
+Routers define a single broadcast domain per router interface. Routers operate on the third layer of the OSI stack, forwarding packets.
+\end{Answer}
+
 \begin{Exercise}
 Determine the ARP sequence in the sending of a datagram, for the first time, from A (192.31.65.7) to B (192.31.62.8).
 Specify for each message what are the source hardware address, the destination hardware address, the source IP address, and the destination IP address.
@@ -2443,6 +2458,142 @@ Explain the following routing algorithms and compare them with each other. Which
 \end{enumerate}
 \end{Exercise}
 
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+Assuming a network uses the distance vector routing algorithm, compute the new distance vector for router J.
+
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c}
+      & A & B & C & D & E & F & G & H & I & J & K & L \\ \hline
+    A & 0 & 12 & 25 & 40 & 14 & 23 & 18 & 17 & 21 & 9 & 24 & 29 \\
+    I & 24 & 36 & 18 & 27 & 7 & 20 & 31 & 20 & 0 & 11 & 22 & 33 \\
+    H & 20 & 31 & 19 & 8 & 30 & 19 & 6 & 0 & 14 & 7 & 22 & 9 \\
+    K & 21 & 28 & 36 & 24 & 22 & 40 & 31 & 19 & 22 & 10 & 0 & 9
+\end{tabular}
+\end{center}
+
+Assume the following delays.
+
+\begin{center}
+\begin{tabular}{c|c|c}
+    J & A &  8 ms \\
+    J & I & 10 ms \\
+    J & H & 12 ms \\
+    J & K &  6 ms
+\end{tabular}
+\end{center}
+\end{Exercise}
+\begin{Answer}
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c}
+      & A & B & C & D & E & F & G & H & I & J & K & L \\ \hline
+    J & 8 & 20 & 28 & 20 & 17 & 30 & 18 & 12 & 10 & 16 & 6 & 15
+\end{tabular}
+\end{center}
+\end{Answer}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+A router has the following entries on its routing table:
+
+\begin{center}
+\begin{tabular}{c|c|c}
+    Destination network & Mask          & Next hop    \\ \hline
+            135.46.56.0 & 255.255.252.0 & Interface 0 \\ \hline
+            135.46.60.0 & 255.255.252.0 & Interface 1 \\ \hline
+            192.53.40.0 & 255.255.254.0 & Interface 2 \\ \hline
+            Default     &       0.0.0.0 & Interface 3
+\end{tabular}
+\end{center}
+
+Determine the next hop for datagrams addressed to the following addresses.
+
+\begin{enumerate}
+    \item 135.46.63.10
+    \item 135.46.57.14
+    \item 135.46.52.2
+    \item 192.53.40.7
+    \item 192.53.56.7
+\end{enumerate}
+\end{Exercise}
+\begin{Answer}
+\begin{enumerate}
+    \item 135.46.63.10 \& 255.255.254.0 = 135.46.62.0. No match for this prefix size.
+
+    135.46.63.10 \& 255.255.252.0 = 135.46.60.0. \textbf{Matches interface 1}.
+
+    \item 135.46.57.14 \& 255.255.254.0 = 135.46.56.0. No match for this prefix size.
+
+    135.46.57.14 \& 255.255.252.0 = 135.46.56.0. \textbf{Matches interface 0}.
+
+    \item 135.46.52.2 \& 255.255.254.0 = 135.46.52.0. No match for this prefix size.
+
+    135.46.52.2 \& 255.255.252.0 = 135.46.52.0. No match for this prefix size.
+
+    135.46.52.2 \& 0.0.0.0 = 0.0.0.0. \textbf{Matches interface 3}.
+
+    \item 192.53.40.7 \& 255.255.254.0 = 192.53.40.0. \textbf{Matches interface 2}.
+
+    \item 192.53.56.7 \& 255.255.254.0 = 192.53.56.0. No match for this prefix size.
+
+    192.53.56.7 \& 255.255.252.0 = 192.53.56.0. No match for this prefix size.
+
+    192.53.56.7 \& 0.0.0.0 = 0.0.0.0. \textbf{Matches interface 3}.
+\end{enumerate}
+\end{Answer}
+
 
 
 \subsubsection{Solved textbook exercises}
@@ -2457,6 +2608,7 @@ From \cite{computer-networks-tanenbaum-2012}.
 File transfer, remote login, and video on demand need connection-oriented service.
 On the other hand, credit card verification and other point-of-sale terminals, electronic funds transfer, and many forms of remote database access are inherently connectionless, with a query going one way and the reply coming back the other way.
 \end{Answer}
+
 \begin{Exercise}
 Give three examples of protocol parameters that might be negotiated when a connection is set up.
 From \cite{computer-networks-tanenbaum-2012}.
@@ -2468,6 +2620,7 @@ From \cite{computer-networks-tanenbaum-2012}.
     \item Data rate.
 \end{enumerate}
 \end{Answer}
+
 \begin{Exercise}
 Assuming that all routers and hosts are working properly and that all software in both is free of all errors, is there any chance, however small, that a packet will be delivered to the wrong destination?
 From \cite{computer-networks-tanenbaum-2012}.
