@@ -2361,7 +2361,17 @@ Internet, but most of these protocols have had limited penetration to date.
 These protocols include IPv6, multicast protocols, and resource reservation protocols.
 On the other hand, at the application layer the Internet has witnessed rapid deployment of new protocols: the Web, instant messaging, P2P file sharing, multimedia streaming, and distributed games \cite[p.~362]{computer-networking-kurose-2012}.
 
-\subsubsection{Solved course exercises}
+\section{Application layer}
+
+\subsection{File transfer protocol (FTP)}
+
+FTP is used to allow a local host to transfer files to or from a remote host. The protocol uses password authentication but uses no encryption whatsoever \cite[p.~116]{computer-networking-kurose-2012}.
+
+FTP uses TCP on the ports 20 and 21 for data and control, respectively \cite[p.~117]{computer-networking-kurose-2012}. Because of this separation, one can say that FTP sends its control information \textbf{out-of-band}. HTTP, however, sends its control information \textbf{in-band}.
+
+In FTP, a single control connection is used throughout the user session. However, a new data connection is created for each file transferred. The server also has to keep \textbf{state} for each open session.
+
+\section{Solved course exercises}
 \setcounter{Exercise}{0}
 
 \begin{Exercise}
@@ -2647,6 +2657,40 @@ The count-to-infinity problem, which is why the distance vector may take a very 
 % TODO: finish.
 \end{Answer}
 
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+What is the reason for the active FTP protocol? Which problem does it solve?
+\end{Exercise}
+\begin{Answer}
+The biggest issue of FTP passive mode is the need to allow any remote connection to high numbered ports on the server. Active FTP allows the server to only use the port 20 as the data port.
+\end{Answer}
+
+\begin{Exercise}
+What are the two most important features of the network layer in a datagram network such as IP?
+\end{Exercise}
+\begin{Answer}
+The two most important features are packet forwarding (the transfer of a packet from an incoming link to an outgoing link at a single router) and packet routing (finding a path from the source to the destination) \cite[p.~305]{computer-networking-kurose-2012}.
+\end{Answer}
 
 \subsubsection{Solved textbook exercises}
 \setcounter{Exercise}{0}
