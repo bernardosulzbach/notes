@@ -2710,7 +2710,7 @@ The count-to-infinity problem, which is why the distance vector may take a very 
 What is the reason for the active FTP protocol? Which problem does it solve?
 \end{Exercise}
 \begin{Answer}
-The biggest issue of FTP passive mode is the need to allow any remote connection to high numbered ports on the server. Active FTP allows the server to only use the port 20 as the data port.
+The biggest issue of FTP passive mode is the need to allow any remote connection to high numbered ports on the server. Active FTP allows the server to only use the port 20 as the data port, which may simplify firewall rules on the server side.
 \end{Answer}
 
 \begin{Exercise}
@@ -2718,6 +2718,40 @@ What are the two most important features of the network layer in a datagram netw
 \end{Exercise}
 \begin{Answer}
 The two most important features are packet forwarding (the transfer of a packet from an incoming link to an outgoing link at a single router) and packet routing (finding a path from the source to the destination) \cite[p.~305]{computer-networking-kurose-2012}.
+\end{Answer}
+
+\begin{Exercise}
+In link state routing, how the routers determine whether a link state packet has already been seen?
+\end{Exercise}
+\begin{Answer}
+The packets include a sequence number. If the sequence number of a new packet coming from another router is lower than the highest already seen from that router it is discarded because that router already sent newer data. If it is a duplicate, it is also discarded. If it is the new highest sequence number for that router, it is forwarded on all lines except the one it arrived on \cite[p.~376]{computer-networks-tanenbaum-2012}.
+\end{Answer}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+What is the difference between message confidentiality and message integrity? Can you have one without the other?
+\end{Exercise}
+\begin{Answer}
+\textbf{Message confidentiality} is the property that the original message can not be obtained by an attacker who intercepts the ciphertext of the original message.
+\textbf{Message integrity} is the property that the receiver can detect whether the message sent was altered in transit.
+
+The two are different concepts and it is possible to have one without the other.
+
+An encrypted message that is mangled in a way that the receiver cannot detect will still have \textbf{message confidentiality}.
+Similarly, a message that is sent in plaintext could have \textbf{message integrity} despite it not being confidential.
+\end{Answer}
+
+\begin{Exercise}
+Consider the Internet and its different protocols. A MUA sends a message to an e-mail server within its own domain. The client and the server are in the same subnet and both are with all network parameters properly configured. List, in order, which (network, transport, and application) protocols will be captured by a sniffer and what they do when used. Ignore caching.
+\end{Exercise}
+\begin{Answer}
+DNS resolution will require DNS, which uses UDP over IP.
+SMTP will require SMTP, which uses TCP over IP.
 \end{Answer}
 
 \subsection{Solved textbook exercises}
