@@ -2040,9 +2040,20 @@ An \textbf{entity} is any device capable of sending and receiving data.
 
 The \textbf{protocol stack} is the set of protocols used by a system.
 
+\subsection{Types of standard}
+
+\href{https://en.wikipedia.org/wiki/De_facto_standard}{\emph{De facto}
+standards} are standards which are actually in use. \emph{De jure}
+standards are recognized by a committee.
+
 \section{OSI model}
 
 The \href{https://en.wikipedia.org/wiki/OSI_model}{OSI model} has seven layers. It doesn't specify anything about their implementation.
+
+\section{Transmission medium}
+
+The \textbf{bandwidth of a channel} is the range of frequencies that is passed by it.
+One can show that that the rate at which pulses can be transmitted over a channel is proportional to the bandwidth according to \cite{communication-networks-leon-garcia-2000}.
 
 \subsection{Media layers}
 
@@ -2361,6 +2372,12 @@ Internet, but most of these protocols have had limited penetration to date.
 These protocols include IPv6, multicast protocols, and resource reservation protocols.
 On the other hand, at the application layer the Internet has witnessed rapid deployment of new protocols: the Web, instant messaging, P2P file sharing, multimedia streaming, and distributed games \cite[p.~362]{computer-networking-kurose-2012}.
 
+\section{Transport layer}
+
+\subsection{TCP/IP}
+
+TCP/IP groups OSI layers 1 and 2 under Network Interface and 5, 6, and 7 under Application.
+
 \section{Application layer}
 
 \subsection{File transfer protocol (FTP)}
@@ -2371,22 +2388,9 @@ FTP uses TCP on the ports 20 and 21 for data and control, respectively \cite[p.~
 
 In FTP, a single control connection is used throughout the user session. However, a new data connection is created for each file transferred. The server also has to keep \textbf{state} for each open session.
 
-\subsection{TCP/IP}
+\subsection{HTTP}
 
-TCP/IP groups OSI layers 1 and 2 under Network Interface and 5, 6, and 7 under Application.
-
-\section{Transmission medium}
-
-The \textbf{bandwidth of a channel} is the range of frequencies that is passed by it.
-One can show that that the rate at which pulses can be transmitted over a channel is proportional to the bandwidth according to \cite{communication-networks-leon-garcia-2000}.
-
-\subsection{Types of standard}
-
-\href{https://en.wikipedia.org/wiki/De_facto_standard}{\emph{De facto}
-standards} are standards which are actually in use. \emph{De jure}
-standards are recognized by a committee.
-
-\subsection{HTTP status codes}
+\subsubsection{HTTP status codes}
 HTTP status codes convey the result of the attempts of the server to satisfy the request.
 
 \begin{itemize}
@@ -2396,6 +2400,49 @@ HTTP status codes convey the result of the attempts of the server to satisfy the
  \item 4xx : client error
  \item 5xx : server error
 \end{itemize}
+
+\section{Network security}
+
+In the first decades of computer networks, they were used for university researches sharing emails and corporate employees sharing printers. Because of this, security was not a core concern. However, people started using it for all sorts of financial transactions and private information, which made security a main concern.
+
+Security can be divided roughly into security, authentication, nonrepudiation, and integrity control. \textbf{Secrecy} deals with keeping information out of the hands of unauthorized users. \textbf{Authentication} deals with determining who you are talking with before revealing sensitive information. \textbf{Nonrepudiation} deals with signatures and proving that someone did something. \textbf{Integrity control} has to do with ensuring that the received message is really the one sent and not something that a malicious adversary modified in transit \cite[p.~764]{computer-networks-tanenbaum-2012}.
+
+All of the protocol stack layers can contribute to security. One might use sealed tubes with an inert gas to protect cables and monitor for pressure variations in order to detect tampering \cite[p.~765]{computer-networks-tanenbaum-2012}. In the data link layer, \textbf{link encryption} can be used. It involves encrypted packets ad they leave one link and decrypting them when they reach another \cite[p.~765]{computer-networks-tanenbaum-2012}.
+In the network layer, \textbf{firewalls} can be installed to keep some packets out. IP security also works on the network layer \cite[p.~765]{computer-networks-tanenbaum-2012}.
+In the transport layer, connections can be encrypted end-to-end, that is, process-to-process \cite[p.~765]{computer-networks-tanenbaum-2012}.
+User authentication and nonrepudiation can only be properly handled in the application layer \cite[p.~765]{computer-networks-tanenbaum-2012}.
+
+It is well-documented that most security failures at banks, for example, are due to engineering incompetence and lax security procedures in the name of good customer relations \cite[p.~765]{computer-networks-tanenbaum-2012}.
+
+\subsection{Cryptography}
+
+\textbf{Cryptography} is the foundation of most of network security.
+A \textbf{cipher} is a character-for-character transformation, with no regard to the linguistic structure of the message \cite[p.~766]{computer-networks-tanenbaum-2012}.
+
+A \textbf{passive intruder} just listen to the messages being transmitted, while an \textbf{active intruder} can manipulate messages \cite[p.~767]{computer-networks-tanenbaum-2012}.
+
+The messages to be encrypted are known as the \textbf{plaintext}. They are transformed by a function parameterized by a \textbf{key}.
+The output of this function is the \textbf{ciphertext}, which might be intercepted by an \textbf{intruder}, which we should assume can copy the complete ciphertext.
+However, only the intended recipients have the \textbf{decryption key}, and therefore only they can decode the ciphertext.
+\textbf{Cryptanalysis} is the art of breaking ciphers.
+
+The effort of invent, test, and install a new cryptographic algorithm has always made it impractical to keep the encryption algorithm secret.
+Thinking it is secret when it isn't does more harm than good \cite[p.~768]{computer-networks-tanenbaum-2012}.
+
+\textbf{Kerckhoff's principle} states that the algorithms should be public, and only the keys secret \cite[p.~768]{computer-networks-tanenbaum-2012}.
+
+\textbf{Security by obscurity} is the name given to the practice of trying to keep the algorithm itself secret.
+This is generally regarded as a bad idea. The longer the key used, the higher the \textbf{work factor} for the cryptanalyst.
+From the cryptanalyst point of view, there are three principal variations of the cryptanalysis problem.
+
+\begin{enumerate}
+    \item \textbf{Ciphertext-only}. The cryptanalyst only has ciphertext.
+    \item \textbf{Known plaintext}. The cryptanalyst has some ciphertext and matching plaintext.
+    \item \textbf{Chosen plaintext}. The cryptanalyst has the ability to encrypt pieces of plaintext.
+\end{enumerate}
+
+\subsubsection{Substitution ciphers}
+\subsubsection{Transposition ciphers}
 
 \section{Solved exercises}
 
