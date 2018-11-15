@@ -2442,7 +2442,67 @@ From the cryptanalyst point of view, there are three principal variations of the
 \end{enumerate}
 
 \subsubsection{Substitution ciphers}
+
+Substitution ciphers work by mapping each character into another character.
+Even though ciphers are statistically secure, they may easily be broken if the frequency distribution of the values of the original message is known.
+
 \subsubsection{Transposition ciphers}
+
+While substitution ciphers preserve the plaintext order but disguise the symbols, transposition ciphers reorder the symbols without disguising them \cite[p.~771]{computer-networks-tanenbaum-2012}.
+
+\subsubsection{One-time pads}
+
+One-time pads are a way to construct an unbreakable cipher.
+It uses a random bit string of the same length as the plaintext as the key and calculates the exclusive or between the key and the original message.
+There is simply no information in the message because all possible plaintexts of the given length are equally likely.
+It is important to point out that for any plaintext, there will be a key which converts any ciphertext of same length into this plaintext \cite[p.~772]{computer-networks-tanenbaum-2012}.
+
+\subsubsection{Fundamental cryptographic principles}
+
+\textbf{All encrypted messages must contain some redundancy}.
+One can state this redundancy as the property that the recipient must be able to tell whether a decrypted message is valid by a simple examination of the message.
+If the messages have no redundancy, almost any message will be a valid message, which is not a good thing as attackers may easily create fake messages.
+Therefore, redundancy is needed to prevent active intruders from sending garbage and tricking the receiver into acting over the decrypted garbage.
+However, this same redundancy makes it much easier for passive1 intruders to break the system \cite[p.~778]{computer-networks-tanenbaum-2012}.
+
+
+\textbf{Each encrypted messages can be verified as being fresh}. This is needed to help prevent active intruders from just resending old messages.
+
+\subsection{Symmetric-key algorithms}
+
+Nowadays, due to the advent of computers, cryptographic algorithms have to be so complex so that even if the cryptanalyst can acquire a vast amount of enciphered text, he will not be able to decrypt it without the key.
+
+Symmetric-key algorithms use the same key for encryption and decryption. Block ciphers transform a block of plaintext into a block of ciphertext \cite[p.~779]{computer-networks-tanenbaum-2012}.
+
+In the literature, an iteration of a cryptographic algorithm over the data is called a \textbf{round} \cite[p.~780]{computer-networks-tanenbaum-2012}.
+
+\subsubsection{Symmetric-key algorithms}
+
+The \textbf{Data Encryption Standard (DES)} algorithm was originally developed by IBM.
+Some controversy arose from the fact that the NSA reduced its key size from 128 bits to 56 bits.
+People suspected that the key length was reduced to make sure that NSA could just break DES, but not organization with a smaller budget could.
+Today, for less than US\$ 10,000 one can buy a machine that breaks DES in under 1 day given plaintext and matching ciphertext \cite[p.~782]{computer-networks-tanenbaum-2012}.
+
+Triple DES was proposed some time after DES. It used two 56-bit keys instead of one and worked by encrypting with \(K_1\), decrypting with \(K_2\), and then encrypting with \(K_1\).
+This was done for backwards compatibility.
+Because of the way DES was designed, a decryption step should be just as good as an encryption step, but use EDE instead of EEE allowed for legacy systems to set \(K_1 = K_2\) and be able to communicate with newer systems \cite[p.~783]{computer-networks-tanenbaum-2012}.
+
+In 1997, the NIST sponsored a public contest for a new cryptographic algorithm to determine the algorithm for the \textbf{Advanced Encryption Standard (AES)}.
+The contest rules were the following.
+
+\begin{enumerate}
+\item The algorithm must be a symmetric block cipher.
+\item The full design must be public.
+\item Key lengths of 128, 192, and 256 bits must be supported.
+\item Both software and hardware implementations must be possible.
+\item The algorithm must be public or licensed on nondiscriminatory terms.
+\end{enumerate}
+
+In 2000, NIST announced that it had selected Rijndael (pronounced rhine-doll) for AES.
+Due to the openness of the competition and the fact that the winning team consisted of two young Belgian cryptographers who were unlikely to have any ties to the NSA, Rijndael has become the world's main cryptographic cipher.
+AES encryption and decryption is today part of some instruction sets, such as Intel's \cite[p.~784]{computer-networks-tanenbaum-2012}.
+
+AES has two variants: 128-bit block with 128-bit key and 128-bit block with 256-bit key.
 
 \section{Solved exercises}
 
