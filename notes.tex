@@ -2527,13 +2527,32 @@ When done repeatedly, half the bits should be zeros, and half the bits should be
 However, most ciphers introduce a bias in one direction or the other, and this bias, however small, can be exploited to reduce the work factor \cite[p.~793]{computer-networks-tanenbaum-2012}.
 
 Yet another development is the \textbf{power consumption analysis} to find secret keys.
-If the CPU is processing the private key bit by bit, it is possible to monitor its power usage to find out what the private key is.
+If the CPU is processing the secret key bit by bit, it is possible to monitor its power usage to find out what the secret key is.
 Therefore, the power consumption should be made independent of the keys used to prevent these types of attacks \cite[p.~793]{computer-networks-tanenbaum-2012}.
 
 Lastly, it is also worth mentioning \textbf{timing analysis}. The time certain parts of the algorithm take usually depends on the keys used.
-Therefore, by monitoring how much time each step of the computation takes, it is sometimes possible to calculate what the private key was.
+Therefore, by monitoring how much time each step of the computation takes, it is sometimes possible to calculate what the secret key was.
 
 Even though power consumption analysis and timing analysis may seem nearly impossible to do right, they are powerful techniques which can break ciphers which were not designed to resist them \cite[p.~793]{computer-networks-tanenbaum-2012}.
+
+\subsection{Public-key algorithms}
+
+Distributing the secret keys was always a challenge in cryptographic systems. It had to be distributed, otherwise cryptography could not be used, but it could only be distributed to some hosts.
+In 1976, Diffie and Hellman proposed a new kind of system. In it, there were two keys, one for encryption and one for decryption, which could not easily be derived from one another \cite[p.~794]{computer-networks-tanenbaum-2012}.
+
+This allows for a party interested in a safe communication channel to publish the public key, which will then be used by the senders to encrypt the message, and keep the private key, which will be used by the recipient to decrypt the message.
+
+As a note on terminology, I will try to use \textit{public} and \textit{private} when referring to public-key algorithms and \textit{secret} when writing about symmetric-key cryptography.
+
+\subsubsection{RSA}
+
+One algorithm which implements public-key cryptography is the RSA.
+Its security is based on the difficulty of factoring large numbers \cite[p.~795]{computer-networks-tanenbaum-2012}.
+
+It is important to note that RSA is too slow for encrypting large volumes of data, so it is widely used just for key distribution.
+After keys have been safely exchanged, a symmetric-key algorithm such as AES is used for data encryption \cite[p.~796]{computer-networks-tanenbaum-2012}.
+
+There are other public-key schemes which are based on \textbf{computing discrete logarithms} and on \textbf{elliptic curves} \cite[p.~797]{computer-networks-tanenbaum-2012}.
 
 \section{Solved exercises}
 
