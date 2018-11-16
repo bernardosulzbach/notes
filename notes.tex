@@ -2504,6 +2504,19 @@ AES encryption and decryption is today part of some instruction sets, such as In
 
 AES has two variants: 128-bit block with 128-bit key and 128-bit block with 256-bit key.
 
+\subsubsection{Cipher modes}
+
+Despite their complexity, AES and all other block ciphers are just a monoalphabetic substitution cipher using big characters (128-bit characters for AES and 64-bit characters for DES) \cite[p.~787]{computer-networks-tanenbaum-2012}.
+Therefore, the way one uses the cipher matters greatly.
+
+For instance, the \textbf{electronic code book} mode simply replaces each plaintext block with a ciphertext block.
+It is unsafe, as intruders may just swap blocks around and get a valid message as a result.
+
+One alternative possibility is the \textbf{cipher block chaining} mode, in which each plaintext block is XORed with the previous ciphertext block before encryption.
+The main reason for using cipher block chaining is that it makes cryptanalysis more difficult because the same plaintext block may result in different ciphertext blocks depending on the message \cite[p.~789]{computer-networks-tanenbaum-2012}.
+
+Other possibilities include the \textbf{cipher feedback} mode, the \textbf{stream cipher} mode, and the \textbf{counter} mode.
+
 \section{Solved exercises}
 
 \subsection{Solved course exercises}
