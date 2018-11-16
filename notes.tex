@@ -2485,7 +2485,7 @@ Today, for less than US\$ 10,000 one can buy a machine that breaks DES in under 
 
 Triple DES was proposed some time after DES. It used two 56-bit keys instead of one and worked by encrypting with \(K_1\), decrypting with \(K_2\), and then encrypting with \(K_1\).
 This was done for backwards compatibility.
-Because of the way DES was designed, a decryption step should be just as good as an encryption step, but use EDE instead of EEE allowed for legacy systems to set \(K_1 = K_2\) and be able to communicate with newer systems \cite[p.~783]{computer-networks-tanenbaum-2012}.
+Because of the way DES was designed, a decryption step should be just as good as an encryption step, but using encrypt-decrypt-encrypt instead of encrypt-encrypt-encrypt allowed for legacy systems to set \(K_1 = K_2\) and be able to communicate with newer systems \cite[p.~783]{computer-networks-tanenbaum-2012}.
 
 In 1997, the NIST sponsored a public contest for a new cryptographic algorithm to determine the algorithm for the \textbf{Advanced Encryption Standard (AES)}.
 The contest rules were the following.
