@@ -1,5 +1,5 @@
 # Notes
-![Travis CI](https://travis-ci.org/mafagafogigante/notes.svg?branch=master)
+[![Build Status](https://travis-ci.org/bernardosulzbach/notes.svg?branch=master)](https://travis-ci.org/bernardosulzbach/notes)
 
 This document is a collection of notes, formulas, and solved problems about
 various subjects. It exists mainly for reference purposes.
