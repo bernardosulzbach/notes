@@ -3,5 +3,3 @@
 git describe --tags --always --dirty='-*' > release.txt
 # Use arara to make a PDF
 arara notes.tex
-# Also make a compressed PDF
-gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -sOutputFile=notes-compressed.pdf notes.pdf

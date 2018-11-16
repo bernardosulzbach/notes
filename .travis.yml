@@ -21,7 +21,6 @@ deploy:
     secure: RlGJYejEufHrrRJ44e4m5NwHkqLA02USpc07o29VHnrd3pcxYIlW0I+MIWSgeOwAp16HehD5w9gRIfPc9WYrKXhgy+1mYDnezGY4g/G6UuetaM5aV0IfPcdu8Zu/2a5UVO8p0QGK2uVuYtPWWmHvzXqrdFnZmIs/MDc8sPIar1pSS6DDtvXGhYH4Y4jVjZv2dYPmTPsVnBUgqd0SsBJipMI/zDMVnnDoEAlXw+u+NI7vFfJBYH09NyzO0ZkmSAx5gBm+z9jHnPlydaSCccwSvnAs0fNlyAHfRsjbo/dgm1NjyZZ/xvjgBnktL/QkATXh6IUOCtRzQ2pg3pmvEyOdkgCsCFfTbky/0XcrFi3QQ750lr3L8w7w4BVfpU87jlicXVR58bWwDRC79cFR8OtbiO5orR7cO+0CcPFdlbHUJS1r/mbUfOlQpH7X0IBxUdoLxUf2gJL09g0aK6bApeKziCJW611HNvZi0BfMLOQ4Xkuw7tiWeGtQWS+NhIGnc1QzFTJZowKsfcfNQbDkTGK8+QQWM+JJStyflNatb3fX0kG3HYLXHdhdRwLgpEO+MCgeQDK2mPynmGdqWLnkf5AIFfhsu3WWvgL2xyoxKzd05s4ITNkiiQv6wyABV2at2gUghZIcbg7ymSJPDAQ/8B3ip9QHMKrdZKOtoz2P2lD8/AU=
   file:
   - "notes.pdf"
-  - "notes-compressed.pdf"
   skip_cleanup: true
   on:
     tags: true
