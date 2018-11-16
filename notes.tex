@@ -2516,6 +2516,25 @@ The main reason for using cipher block chaining is that it makes cryptanalysis m
 
 Other possibilities include the \textbf{cipher feedback} mode, the \textbf{stream cipher} mode, and the \textbf{counter} mode.
 
+\subsubsection{Cryptanalysis}
+
+A relevant development in cryptanalysis is \textbf{differential cryptanalysis}, which can be used to attack any block cipher.
+It consists of observing what the algorithm does to very similar plaintext blocks, which can show that some patterns are more common than others, which then lead to probabilistic attacks. 
+
+Another notable development is \textbf{linear cryptanalysis}.
+It works by XORing certain bits in the plaintext and ciphertext together and examining the result.
+When done repeatedly, half the bits should be zeros, and half the bits should be ones.
+However, most ciphers introduce a bias in one direction or the other, and this bias, however small, can be exploited to reduce the work factor \cite[p.~793]{computer-networks-tanenbaum-2012}.
+
+Yet another development is the \textbf{power consumption analysis} to find secret keys.
+If the CPU is processing the private key bit by bit, it is possible to monitor its power usage to find out what the private key is.
+Therefore, the power consumption should be made independent of the keys used to prevent these types of attacks \cite[p.~793]{computer-networks-tanenbaum-2012}.
+
+Lastly, it is also worth mentioning \textbf{timing analysis}. The time certain parts of the algorithm take usually depends on the keys used.
+Therefore, by monitoring how much time each step of the computation takes, it is sometimes possible to calculate what the private key was.
+
+Even though power consumption analysis and timing analysis may seem nearly impossible to do right, they are powerful techniques which can break ciphers which were not designed to resist them \cite[p.~793]{computer-networks-tanenbaum-2012}.
+
 \section{Solved exercises}
 
 \subsection{Solved course exercises}
