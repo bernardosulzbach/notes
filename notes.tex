@@ -2554,6 +2554,55 @@ After keys have been safely exchanged, a symmetric-key algorithm such as AES is 
 
 There are other public-key schemes which are based on \textbf{computing discrete logarithms} and on \textbf{elliptic curves} \cite[p.~797]{computer-networks-tanenbaum-2012}.
 
+\subsection{Digital signatures}
+
+Three conditions are important for digital signatures.
+
+\begin{itemize}
+\item The receiver can verify the identity of the sender.
+\item The sender cannot later repudiate the contents of the message.
+\item The receiver cannot possibly have concocted the message himself.
+\end{itemize}
+
+\subsubsection{Symmetric-key signatures}
+
+One approach to digital signatures is having an authority that knows everything and which is trusted by everyone.
+This entity then can also know the secret key of each agent, therefore allowing it to confirm that an encrypted message actually belongs to a specific agent \cite[p.~798]{computer-networks-tanenbaum-2012}.
+
+\subsubsection{Public-key signatures}
+
+Public-key cryptography can make an important contribution to digital signatures. A possibility is to have Alice encrypt a message using her private key and then encrypt this message with Bob's public key.
+\(E_B(D_A(P))\) can be decrypted by Bob and not anybody else \cite[p.~799]{computer-networks-tanenbaum-2012}.
+
+There are problems related to the environment in which public-key cryptography is used.
+For instance, Bob can present \(D_A(P)\) to show that he got a message encrypted with Alice's private key.
+However, if Alice discloses her private key, then anybody could have send the message and there is no way for Bob to held Alice accountable \cite[p.~800]{computer-networks-tanenbaum-2012}.
+
+Also, the keys cannot be changed periodically, otherwise it would be impossible to validate old messages.
+
+The industry \textit{de facto} standard for public-key signatures is the RSA algorithm.
+However, there is also the DSS algorithm, which was proposed by NIST in 1991.
+It was heavily criticized for being developed behind closed doors \cite[p.~800]{computer-networks-tanenbaum-2012}.
+
+\subsubsection{Message digests}
+
+Signature methods often couple integrity and confidentiality. However, confidentiality isn't always required.
+In these cases, encrypting only a message digest of the plaintext is enough.
+
+MD5 was a popular message digest. Collisions have been found since 2008 \cite[p.~804]{computer-networks-tanenbaum-2012}.
+
+SHA-1 is a hash function which takes an input and produces a 160-bit output.
+In 2017, CWI Amsterdam and Google demonstrated a collision attack against SHA-1, publishing two dissimilar PDF files which produced the same hash.
+
+SHA-2 includes significant changes from its predecessor. The SHA-2 family consists of six similar hash functions: SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256.
+SHA-2 is prone to length extension attacks, rendering it insecure for some applications.
+It is recommended to switch to SHA-3 for 512-bit hashes.
+Using SHA-512/224 and SHA-512/256 instead of SHA-224 and SHA-256 is faster on x86-64 processor architecture, mainly because SHA-512 works on 64-bit instead of 32-bit words.
+
+\subsubsection{The birthday attack}
+
+To subvert a \(m\)-bit message digest, around \(2^{m/2}\) operations are needed \cite[p.~804]{computer-networks-tanenbaum-2012}.
+
 \section{Solved exercises}
 
 \subsection{Solved course exercises}
