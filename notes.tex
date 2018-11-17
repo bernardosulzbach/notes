@@ -2635,6 +2635,64 @@ This prevents all issues which would come with having a single worldwide authori
 The issue of certificate revocation complicates matters.
 This is implemented through certification revocation lists (CRLs) for certificates which have not yet expired \cite[p.~813]{computer-networks-tanenbaum-2012}.
 
+\subsection{Communication security}
+
+Communication security deals with how to get the bits secretly and without modification from source to destination and how to keep unwanted bits out \cite[p.~813]{computer-networks-tanenbaum-2012}.
+
+\subsubsection{IPsec}
+
+One possibility for secure connections is to handle encryption at the application layer.
+However, this would requires changing all existing applications, so an alternative to end-to-end encryption is to perform encryption in a layer below the application layer, such as the transport layer.
+
+After some discussion, the view that the encryption and decryption should happen in the network layer was mostly accepted and it got a standard.
+The argument was that having network layer encryption does not prevent security-aware users from doing it right and it also helps security-unaware users \cite[p.~814]{computer-networks-tanenbaum-2012}.
+
+The result of this was IPsec. However, not all users wanted encryption because it was computationally expensive.
+Rather than making it optional, a \textbf{null algorithm} was allowed to be used.
+Another reason for supporting multiple algorithms in IPsec is that if an algorithm is broken, IPsec does not become entirely useless.
+
+The major services provided by IPsec are \textbf{secrecy}, \textbf{data integrity}, and \textbf{protection from replay attacks}.
+All of these IPsec services are based on symmetric-key cryptography because it has better performance than public-key cryptography \cite[p.~814]{computer-networks-tanenbaum-2012}.
+
+IPsec also offers multiple granularities, so it is possible to protect a single TCP connection, all traffic between a pair of hosts, or all traffic between a pair of routers.
+Even though IPsec is in the IP layer, it is connection-oriented \cite[p.~814]{computer-networks-tanenbaum-2012}.
+This is because in order to have security, a key must be established and used for some period of time.
+One IPsec connection is called a \textbf{security association (SA)} \cite[p.~815]{computer-networks-tanenbaum-2012}.
+
+IPsec can be used in either \textbf{transport mode}, in which the IPsec header is inserted after the IP header, and in \textbf{tunnel mode} in which the entire IP packet is encapsulated in the body of a new IP packet.
+Tunnel mode can help foil \textbf{traffic analysis} to some extent because it can aggregate a bundle of TCP connections as a single encrypted stream, but it increases packet size more than transport mode does.
+
+\textbf{Hashed message authentication code (HMAC)} is a scheme which computes the hash over the concatenation of the payload and the secret key.
+The main advantage of HMAC over public-key cryptography is its performance. As one might expect, this provides integrity but no confidentiality.
+
+IPsec can use \textbf{authentication header (AH)} and \textbf{encapsulated security payload (ESP)} as headers.
+ESP is generally better because it also provides encryption, even though it does not check part of the IP header like AH does \cite[p.~818]{computer-networks-tanenbaum-2012}.
+
+\subsubsection{Firewalls}
+
+Even though being able to communicate with any computer in the Internet is useful, it might be unnecessary exposure from a corporate point-of-view.
+There is both the risk of information leaking out and the risk of information leaking in \cite[p.~818]{computer-networks-tanenbaum-2012}.
+Firewalls are a way to filter incoming and outgoing traffic. In many companies, they are the only gateway to get to the Internet, so all traffic might be inspected.
+
+The firewall acts as a \textbf{packet filter}. It can either forward or drop packets, depending on its configuration.
+Because many processes use a specific set of ports, many unused ports can be blocked as they are only potential attack vectors.
+For instance, port 80 could be blocked so that no HTTP traffic was allowed, while 443 could remain open so that HTTPS traffic was allowed.
+
+Firewalls have become much more sophisticated over time. This is because it proved difficult to write useful rules which could be applied to every single packet.
+\textbf{Stateful firewalls} map packets to connections and thus allow for more complex settings, such as allowing an external server to send packets to an internal host only if the internal host first establishes a connection with the external server.
+
+Lastly, firewalls can also implement \textbf{application-level} gateways
+This process involves the firewall inspecting the packet contents to understand what the application is doing.
+This allows the firewall to distinguish between HTTP traffic used for browsing Wikipedia and HTTP traffic used for peer-to-peer file sharing.
+It is important to note that outgoing traffic can also be inspected, so that raw sensitive data never leaves the company office \cite[p.~819]{computer-networks-tanenbaum-2012}.
+However, cryptography can be used to mask the outgoing traffic.
+
+Firewalls are network layer devices which peek at the transport and application layers to work, this violates the standard layering of protocols \cite[p.~820]{computer-networks-tanenbaum-2012}.
+This is a reason for why some network purists consider firewalls a blemish on the architecture of the Internet.
+
+In order to prevent a firewall breach from allowing complete access to the internal network, multiple firewall layers might be used.
+Firewalls offer no protection against \textbf{DoS} and \textbf{DDoS} attacks \cite[p.~820]{computer-networks-tanenbaum-2012}.
+
 \section{Solved exercises}
 
 \subsection{Solved course exercises}
