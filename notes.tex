@@ -2112,7 +2112,7 @@ The term \textbf{bridge} was used to denote switches but is not a popular term a
 
 \subsubsection{Routers}
 
-Routers completely discard the data link layer header as they route packages instead of frames and for routing packages the physical source address does not matter.
+Routers completely discard the data link layer header as they route packets instead of frames and for routing packets the physical source address does not matter.
 The routing software only cares about the IPv4 or IPv6 address to make its routing decisions.
 
 \subsection{Virtual LANs}
@@ -2141,7 +2141,7 @@ What holds the whole Internet together is the network layer protocol, IP (Intern
 A good way to think of the network layer is this: its job is to provide a way to transport packets from source to destination, with no regard to whether these machines are on the same network or whether there are other networks in between them and without delivery guarantees. \cite{computer-networks-tanenbaum-2012}
 
 Communication in the Internet happens through the transport layer, which takes data streams and breaks them up so that they are viable IP packets. Even though IP packets can be up to 64 KiB, in practice they are not more than 1500 bytes (to make sure they fit in a single Ethernet frame) according to \cite{computer-networks-tanenbaum-2012}.
-IP routers forward packages until the destination is reached. At the destination, the network layer reassembles the packets into the original datagram, which is then handled to the transport layer.
+IP routers forward packets until the destination is reached. At the destination, the network layer reassembles the packets into the original datagram, which is then handled to the transport layer.
 It is the job of the \textbf{IP routing protocols} to decide which of the usually many possible paths to the destination to take.
 
 \subsection{Virtual circuit and datagram networks}
