@@ -58,6 +58,12 @@
     linktoc=all
 }
 
+% Improve exercise and answer headers.
+% See http://linorg.usp.br/CTAN/macros/latex/contrib/exercise/exercise.pdf for more.
+\renewcommand{\ExerciseHeader}{\textbf{\large{Exercise \ExerciseHeaderNB}}\par}
+\renewcommand{\AnswerHeader}{\textbf{\large{Answer of exercise \ExerciseHeaderNB}}\par}
+\renewcommand{\AnswerSkipBefore}{\ExerciseSkipBefore}
+
 % Operators
 \DeclareMathOperator\cis{cis}
 
