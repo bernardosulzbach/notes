@@ -2603,6 +2603,36 @@ Using SHA-512/224 and SHA-512/256 instead of SHA-224 and SHA-256 is faster on x8
 
 To subvert a \(m\)-bit message digest, around \(2^{m/2}\) operations are needed \cite[p.~804]{computer-networks-tanenbaum-2012}.
 
+\subsection{Management of public keys}
+
+A problem with the solution of just publishing your public key on your own website is that the DNS resolution might be a vulnerability.
+
+\subsubsection{Certificates}
+
+The solution for this problem is the use of a \textbf{certificate authority (CA)} \cite[p.~807]{computer-networks-tanenbaum-2012}.
+CAs issue public certificates that a given public key belongs to principal.
+These certificates include an encrypted message digest, which can be validated offline.
+Because of this, the CAs do not become a bottleneck for certificate validation.
+
+\subsubsection{X.509}
+
+X.509 is the standard for certificates, which ensures that each CA uses the same format.
+
+\subsubsection{Public key infrastructure}
+
+Public key infrastructure (PKI) is a way for certifying public keys without centralized CAs.
+This is important so that if a given CA has its private key compromised, not all certificates in the world are invalidated.
+
+The PKI is a hierarchical authority.
+For validating a single certificate it is usually necessary a series of certificates which go back to a root of the PKI tree.
+This is called a \textbf{chain of trust} or a \textbf{certification path} \cite[p.~812]{computer-networks-tanenbaum-2012}.
+
+The roots of the PKI are sometimes referred to as \textbf{trust anchors}.
+This prevents all issues which would come with having a single worldwide authority.
+
+The issue of certificate revocation complicates matters.
+This is implemented through certification revocation lists (CRLs) for certificates which have not yet expired \cite[p.~813]{computer-networks-tanenbaum-2012}.
+
 \section{Solved exercises}
 
 \subsection{Solved course exercises}
