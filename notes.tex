@@ -2699,6 +2699,27 @@ This is a reason for why some network purists consider firewalls a blemish on th
 In order to prevent a firewall breach from allowing complete access to the internal network, multiple firewall layers might be used.
 Firewalls offer no protection against \textbf{DoS} and \textbf{DDoS} attacks \cite[p.~820]{computer-networks-tanenbaum-2012}.
 
+\subsection{Virtual private network (VPN)}
+
+Some large companies used to have physical network lines between its multiple facilities.
+These lines defined a \textbf{private network}.
+However, leasing private lines is very expensive, so many companies have financial interest in migrating their networks to the public network, but without giving up the security and privacy of a private network \cite[p.~821]{computer-networks-tanenbaum-2012}.
+This led to the invention of VPNs, which are overlay networks on top of public networks with most of the properties of private networks.
+They are called virtual because very much like virtual circuits are not real circuits and virtual memory is not real memory virtual networks are not real networks \cite[p.~821]{computer-networks-tanenbaum-2012}.
+
+One popular approach is to build VPNs over the Internet using firewalls. An interesting advantage is that tunnels can be set up on demand to include, for example, the computer of an employee at his home or while he is traveling as long as he has an Internet connection.
+
+When the system is brought up, each pair of firewalls has to negotiate the parameters of its security association, including the services, modes, algorithms, and keys. If IPsec is used for tunneling, it is possible to aggregate all traffic between any pair of offices into a single authenticated, encrypted SA. This can provide integrity control, secrecy, and even some immunity to traffic analysis.
+
+Many firewalls have built-in VPN capabilities.
+Some routers can also do this. Therefore, firewalls, VPNs, and IPsec with ESP in tunnel-mode are a natural combination.
+For a router in the Internet, a packet traveling along a VPN tunnel is just another IP packet.
+The only difference being the presence of the IPsec header after the IP header, which does not matter for the forwarding process \cite[p.~822]{computer-networks-tanenbaum-2012}.
+
+Another possibility is to have the ISP set up the VPN. Using \href{https://en.wikipedia.org/wiki/Multiprotocol_Label_Switching}{multiprotocol label switching}, paths for the VPN traffic can be set up across the ISP network between the company offices. These paths keep the VPN traffic separate from public traffic and can be guaranteed better quality of service.
+
+Except for the configuration steps, VPNs are completely transparent for end users \cite[p.~822]{computer-networks-tanenbaum-2012}.
+
 \section{Solved exercises}
 
 \subsection{Solved course exercises}
