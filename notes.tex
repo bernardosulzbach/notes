@@ -2739,6 +2739,13 @@ There are two protocols which dictate how these keys are actually used to provid
 The first one was \textbf{TKIP}, which has been broken and should no longer be used.
 The newer protocol is \textbf{CCMP}, which is stronger and has not been broken \cite[p.~825]{computer-networks-tanenbaum-2012}.
 
+\subsubsection{Bluetooth security}
+
+Bluetooth has a shorter range than 802.11. However, it is also a possible vulnerability.
+A Bluetooth keyboard output, for instance, could be sniffed to find out what someone was typing.
+To establish a channel, the slave and master go through a pairing process, which may involve a passkey, for example.
+After pairing, they negotiate whether that channel will be encrypted, integrity controlled, or both \cite[p.~827]{computer-networks-tanenbaum-2012}.
+
 \section{Solved exercises}
 
 \subsection{Solved course exercises}
