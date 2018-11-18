@@ -3103,6 +3103,165 @@ DNS resolution will require DNS, which uses UDP over IP.
 SMTP will require SMTP, which uses TCP over IP.
 \end{Answer}
 
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+A router has the following routing table. For each of the following datagrams list all possible routes and the selected route.
+
+\begin{center}
+\begin{tabular}{c c c}
+    Destination network & Next hop   & Mask            \\ \hline
+           195.112.92.1 & 200.10.1.1 & 255.255.252.255 \\ \hline
+           195.112.80.0 & 192.10.2.1 & 255.255.240.0   \\ \hline
+           195.112.64.0 & 192.10.2.2 & 255.255.192.0   \\ \hline
+                Default & 200.10.1.2 & 0.0.0.0
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+    \item 195.112.92.1
+    \item 195.112.94.1
+    \item 195.112.96.1
+    \item 195.112.130.1
+\end{enumerate}
+\end{Exercise}
+\begin{Answer}
+\begin{enumerate}
+    \item 195.112.92.1 \& 255.255.252.255 = 195.112.92.1. Possible. \textbf{Selected}.
+
+    195.112.92.1 \& 255.255.240.0 = 195.112.80.0. Possible.
+
+    195.112.92.1 \& 255.255.192.0 = 195.112.64.0. Possible.
+
+    195.112.92.1 \& 0.0.0.0 = 0.0.0.0. Possible.
+
+    \item 195.112.94.1 \& 255.255.252.255 = 195.112.94.1. Not possible.
+
+    195.112.94.1 \& 255.255.240.0 = 195.112.80.0. Possible. \textbf{Selected}.
+
+    195.112.94.1 \& 255.255.192.0 = 195.112.64.0. Possible.
+
+    195.112.94.1 \& 0.0.0.0 = 0.0.0.0. Possible.
+
+    \item 195.112.96.1 \& 255.255.252.255 = 195.112.96.1. Not possible.
+
+    195.112.96.1 \& 255.255.240.0 = 195.112.96.0. Not possible.
+
+    195.112.96.1 \& 255.255.192.0 = 195.112.64.0. Possible. \textbf{Selected}.
+
+    195.112.96.1 \& 0.0.0.0 = 0.0.0.0. Possible.
+
+    \item 195.112.130.1 \& 255.255.252.255 = 195.112.130.1. Not possible.
+
+    195.112.130.1 \& 255.255.240.0 = 195.112.128.0. Not possible.
+
+    195.112.130.1 \& 255.255.192.0 = 195.112.128.0. Not possible.
+
+    195.112.130.1 \& 0.0.0.0 = 0.0.0.0. Possible. \textbf{Selected}.
+\end{enumerate}
+\end{Answer}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+What is the prefix and the most restrictive mask for an IP network in which a server has the address 192.168.1.5 and the single router has the address 192.168.2.1?
+\end{Exercise}
+\begin{Answer}
+We need to allow the last 9 bits for the host to uniquely identify machines in this network.
+So 9 bits, making the mask 255.255.254.0.
+\end{Answer}
+
+\begin{Exercise}
+An organization has the following networks.
+\begin{enumerate}
+    \item 200.10.0.0/26
+    \item 200.10.0.64/26
+    \item 200.10.0.128/26
+    \item 200.10.0.192/26
+    \item 200.10.1.0/26
+    \item 200.10.1.64/26
+    \item 200.10.1.128/25
+\end{enumerate}
+What is the address block allocated to the institution?
+\end{Exercise}
+\begin{Answer}
+200.10.0.0/23.
+\end{Answer}
+
 \subsection{Solved textbook exercises}
 \setcounter{Exercise}{0}
 
