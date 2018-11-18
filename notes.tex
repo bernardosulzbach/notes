@@ -3333,9 +3333,75 @@ An illustrative table of the division follows.
     \multirow{4}*{25} & \multirow{4}*{195.168.1.128} & \multirow{4}*{\checkmark} \\ \\ \\ \\ \hline
 \end{tabular}
 \end{center}
-
 \end{Answer}
 
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+In a Windows XP machine, the command \texttt{netstat -na} presented the following result, explain it.
+
+\texttt{TCP 127.0.0.1:2222 0.0.0.0:* LISTENING}
+\end{Exercise}
+\begin{Answer}
+There is a TCP socket listening on port 2222 for connections from any address and any port.
+\end{Answer}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+Repeated from 11.
+\end{Exercise}
+\begin{Answer}
+Will note be done.
+\end{Answer}
+
+\begin{Exercise}
+Assume that a machine has infinite processing capacity and infinite memory.
+What would be the maximum theoretical number of TCP connections established at the same time of this machine?
+\end{Exercise}
+\begin{Answer}
+Because each TCP connection identifier consists of (source IP address, source port, destination IP address, destination port), \textbf{assuming we can use all IPv4 addresses}, we would have \(2^{32} \cdot 2^{16} \cdot 2^{32} \cdot 2^{16} = 2^{96}\) possible TCP connections to this machine.
+
+\begin{displayquote}
+A TCP port plus its host's IP address forms a 48-bit unique end point.
+The source and destination end points together identify the connection.
+\cite[p.~557]{computer-networks-tanenbaum-2012}
+\end{displayquote}
+\end{Answer}
+
+\begin{Exercise}
+What advantages do autonomous systems bring to the routing process?
+\end{Exercise}
+\begin{Answer}
+% Review.
+The main advantages that autonomous systems bring to the routing process are intradomain routing freedom (intradomain routing can be done however deemed adequate) and a reduction of the number of systems visible for inter-domain routing.
+\end{Answer}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+\end{Exercise}
 
 \subsection{Solved textbook exercises}
 \setcounter{Exercise}{0}
