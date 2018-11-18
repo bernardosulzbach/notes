@@ -12,6 +12,7 @@
 \usepackage[backend=biber]{biblatex}
 % Latin Modern (a font with all the characters).
 \usepackage{lmodern}
+\usepackage{multirow}
 % Proof environment.
 \usepackage{amsthm}
 % Vertical matrices.
@@ -3303,6 +3304,39 @@ It is also worth noting that in large networks, hierarchical routing allows each
 
 See \ref{Distance vector routing}, \ref{Link state routing}, and \ref{Hierarchical routing} for more.
 \end{Answer}
+
+\begin{Exercise}
+An ISP has the 195.168.0.0/16 block. Divide it in three blocks of 30 addresses, one block of 62 addresses, and two blocks of 126 addresses.
+\end{Exercise}
+\begin{Answer}
+\begin{enumerate}
+    \item 195.168.0.0/27
+    \item 195.168.0.32/27
+    \item 195.168.0.64/27
+    \item 195.168.0.128/26
+    \item 195.168.1.0/25
+    \item 195.168.1.128/25
+\end{enumerate}
+
+An illustrative table of the division follows.
+
+\begin{center}
+\begin{tabular}{r r c}
+          Prefix size &                First address & Used                               \\ \hline
+                   27 &                  195.168.0.0 & \checkmark                         \\ \hline
+                   27 &                 195.168.0.32 & \checkmark                         \\ \hline
+                   27 &                 195.168.0.64 & \checkmark                         \\ \hline
+                   27 &                 195.168.0.96 &                                    \\ \hline
+    \multirow{2}*{26} & \multirow{2}*{195.168.0.128} & \multirow{2}*{\checkmark}       \\ \\ \hline
+    \multirow{2}*{26} & \multirow{2}*{195.168.0.192} & \multirow{2}*{}                 \\ \\ \hline
+    \multirow{4}*{25} & \multirow{4}*{  195.168.1.0} & \multirow{4}*{\checkmark} \\ \\ \\ \\ \hline
+    \multirow{4}*{25} & \multirow{4}*{195.168.1.128} & \multirow{4}*{\checkmark} \\ \\ \\ \\ \hline
+\end{tabular}
+\end{center}
+
+\end{Answer}
+
+
 \subsection{Solved textbook exercises}
 \setcounter{Exercise}{0}
 
