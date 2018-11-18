@@ -3383,13 +3383,36 @@ The main advantages that autonomous systems bring to the routing process are int
 \end{Exercise}
 
 \begin{Exercise}
+UDP only uses the destination port to demultiplex the received datagrams.
+TCP, on the other hand, uses a pair of endpoints.
+Why can't TCP only use the destination port?
 \end{Exercise}
+\begin{Answer}
+The reason why TCP can't use only the destination port is that UDP datagrams are addressed to a host and port, while TCP datagrams belong to a connection identified also by the source host and source port.
+Therefore, if only the destination port was used to demultiplex TCP datagrams and two connections were established using the same destination port, traffic from both connections would be mixed.
+% Review.
+\end{Answer}
 
 \begin{Exercise}
+What are autonomous systems?
+What is the main reason for their creation?
+How are they used in the Internet?
 \end{Exercise}
+\begin{Answer}
+An AS is a portion of a network that is under another administrative authority.
+The main reason for their creation was to decentralize the network, providing both hierarchy and freedom for choosing whichever internal routing protocol (IRP) the responsible authority wanted to use.
+In the Internet, generally ISPs have their own autonomous systems, which they route internally however they deem appropriate and externally using BGP, which is the external routing protocol (ERP) of the Internet.
+\end{Answer}
 
 \begin{Exercise}
+What problem could arise if TCP connections always started with the sequence number zero?
 \end{Exercise}
+\begin{Answer}
+The main problem is that a segment which is still present in the network from a previous connection between two hosts might be mistaken for a valid segment in a new connection between these two hosts if they happen to be using the same ports.
+Using a random or monotonically increasing segment sequence number greatly reduces the risk of this happening \cite[p.~236]{computer-networking-kurose-2012}.
+
+Another problem is that attacks based on sequence number spoofing are possible in the Internet if the attacker gags a host which is trusted by the target, impersonates the IP address and completes the three-way handshake based on its guess at the next initial sequence number to be used. See \href{https://tools.ietf.org/html/rfc1948}{RFC 1948} for more.
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
