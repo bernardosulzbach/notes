@@ -2242,7 +2242,7 @@ Flooding, as one might expect, generates a huge (possibly infinite) number of du
 
 This algorithm ensures that a packet is delivered to every node in the network, which is wasteful if there is a single destination that needs the packet, but effective for broadcasting information. Flooding is tremendously robust, because even if a large number of routers are destroyed, flooding will find a path (if one still exists) to get a packet to its destination. It also requires very little setup \cite[p.~370]{computer-networks-tanenbaum-2012}.
 
-\subsubsection{Distance vector routing}
+\subsubsection{Distance vector routing}\label{Distance vector routing}
 
 A distance vector routing algorithm operates by having a table in each router giving the best known distance to each destination and which link to use to get there.
 These tables are updated by communicating with neighbor routers.
@@ -2253,7 +2253,7 @@ Distance vector routing is useful as a simple technique by which routers can col
 
 Assuming synchronized routing table exchanges, if a network's longest path has N hops, within N exchanges all routers will know about an improvement \cite[p.~372]{computer-networks-tanenbaum-2012}. However, propagating to the network that a route is now slower is much less efficient. Due to a problem known as the \textbf{count-to-infinity problem} \cite[p.~373]{computer-networks-tanenbaum-2012}, if there are no more routes to a given router, the distance to it in the routing tables will approach the value defined to represent infinite distance linearly, which may take a very long time. Therefore, one could say that \textit{this algorithm reacts rapidly to good news, but slowly to bad news}.
 
-\subsubsection{Link state routing}
+\subsubsection{Link state routing}\label{Link state routing}
 
 Link state routing is the historical successor of distance vector routing algorithm and it does not have the count-to-infinity problem \cite[p.~373]{computer-networks-tanenbaum-2012}.
 
@@ -2276,6 +2276,33 @@ Many ISPs use the \textbf{IS-IS} (Intermediate System-Intermediate System) link 
 \textbf{OSPF} (Open Shortest Path First) is the other main link state protocol \cite[p.~378]{computer-networks-tanenbaum-2012}.
 
 It is important to understand that link state routing, distance vector routing, and some other algorithms rely on processing at all the routers to compute routes. Problems at even a small number of routers can disrupt the whole network. As the network grows, the probability of at least one router failing gets bigger, so it is important to think about this when designing large networks \cite[p.~378]{computer-networks-tanenbaum-2012}.
+
+\subsubsection{Hierarchical routing}\label{Hierarchical routing}
+
+With network growth comes routing table growth.
+Bigger routing tables require more memory to store them, more CPU time to scan them, and more bandwidth to send them around \cite[p.~378]{computer-networks-tanenbaum-2012}.
+There is a point at which the tables are so big that it is no longer feasible to have each router know about every other router, so the routing has to be done hierarchically, very much like in telephone networks \cite[p.~379]{computer-networks-tanenbaum-2012}.
+
+In hierarchical routing, the routers are divided into \textbf{regions}.
+Each router knows all the details about how to route packets to destinations within its own region, but does not know about the structure of other regions \cite[p.~379]{computer-networks-tanenbaum-2012}.
+
+For very large networks, regions may not be enough, then more levels of aggregation are required.
+These gains are not free, because in many cases the path grows as we need to reach upper aggregation levels instead of sending directly to another router \cite[p.~379]{computer-networks-tanenbaum-2012}.
+
+It 1979, it was shown that the optimal number of levels for a network with \(N\) routers is \(\ln n\), which requires a total of \(e \ln N\) entries per routing table. It was also shown that the increase in effective mean path length caused by hierarchical routing is sufficiently small that it is usually acceptable \cite{kamoun-kleinrock-1976}.
+
+\subsubsection{Broadcast routing}
+
+Sending a packet to all destinations is called \textbf{broadcasting}.
+The trivial solution of sending multiple packets, one for each destination, is called \textbf{separately addressed packets}.
+An improvement to the trivial solution is to use \textbf{multidestination routing}.
+In this case each packet contains either a list of destinations or a bitmap which indicates to which devices the packet has to be delivered. Both solutions require the source to know all the destinations.
+
+A better broadcasting technique is \textbf{flooding}, which is not a very good solution for point-to-point communication. However, if properly implemented using a sequence numbers per source, it is a very efficient broadcasting algorithm \cite[p.~381]{computer-networks-tanenbaum-2012}.
+
+However, one can do better than flooding by using \textbf{reverse path forwarding}, which requires all the shortest path routes for regular packets to have been computed. This algorithm analyzes the link through which the packet arrived at the router. If it came from the the link that is normally used for sending packets toward the source of the broadcast, there is an excellent chance that the broadcast packet itself followed the best route to the router and is the first copy to arrive. Then the router forwards copies of it onto all links except the one it arrived one. If, however, the broadcast packet arrived on a link other than the best one, the packet is discarded as it is likely a duplicate. This algorithm does not need to know in anticipation all the destinations and it does not require any methods for flood control \cite[p.~381]{computer-networks-tanenbaum-2012}.
+
+A last alternative, which is optimal, is to use a \textbf{spanning tree} of the network. If each router knows the sink tree of the network, then it is possible to do broadcasting with forwarding perfection. However, this requires each router to be able to compute the sink tree, which is possible when using some routing algorithms, such as link state routing, but impossible under other algorithms, such as distance vector routing \cite[p.~382]{computer-networks-tanenbaum-2012}.
 
 \subsection{IP addresses}
 
@@ -3262,6 +3289,20 @@ What is the address block allocated to the institution?
 200.10.0.0/23.
 \end{Answer}
 
+\begin{Exercise}
+\end{Exercise}
+
+\begin{Exercise}
+What are the advantages of hierarchical routing for the routing process?
+\end{Exercise}
+\begin{Answer}
+For the routing process, hierarchical routing reduces routing table size, which greatly impacts routing performance.
+Keeping very large routing tables, even if they fit in memory, means that more bandwidth will be used when running the routing algorithms to synchronize routing tables between routers.
+
+It is also worth noting that in large networks, hierarchical routing allows each region to use whatever routing algorithm is best for it. If there weren't multiple hierarchical levels for routing, every router in the whole network would have to use the same routing algorithm.
+
+See \ref{Distance vector routing}, \ref{Link state routing}, and \ref{Hierarchical routing} for more.
+\end{Answer}
 \subsection{Solved textbook exercises}
 \setcounter{Exercise}{0}
 
