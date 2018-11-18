@@ -2145,9 +2145,12 @@ VLANs have been implemented according to the 802.1Q standard, issued in 1998. Th
 
 In the network layer, the Internet can be viewed as a collection of networks or \textbf{autonomous systems} that are interconnected. Despite there not being any real structure, several major backbones exist. These are constructed from high-bandwidth lines and fast routers.
 
-What holds the whole Internet together is the network layer protocol, IP (Internet Protocol).
+In the internet, there are \textbf{Interior Gateway Protocols (IGPs)}, which include protocols like RIP, OSPF, IS-IS, and E-IGRP.
+In contrast, \textbf{Border Gateway Protocol (BGP)} is an interdomain routing protocol.
+Operationally, a key difference between BGP and IGPs is that BGP is concerned with exchanging reachability information between ASes in a scalable manner while allowing each AS to implement autonomous routing policies, whereas the latter are typically concerned with optimizing a path metric.
+In general, IGPs do not scale as well as BGP does with respect to the number of participants involved.
 
-A good way to think of the network layer is this: its job is to provide a way to transport packets from source to destination, with no regard to whether these machines are on the same network or whether there are other networks in between them and without delivery guarantees. \cite{computer-networks-tanenbaum-2012}
+A good way to think of the network layer is this: its job is to provide a way to transport packets from source to destination, with no regard to whether these machines are on the same network or whether there are other networks in between them and without delivery guarantees \cite{computer-networks-tanenbaum-2012}.
 
 Communication in the Internet happens through the transport layer, which takes data streams and breaks them up so that they are viable IP packets. Even though IP packets can be up to 64 KiB, in practice they are not more than 1500 bytes (to make sure they fit in a single Ethernet frame) according to \cite{computer-networks-tanenbaum-2012}.
 IP routers forward packets until the destination is reached. At the destination, the network layer reassembles the packets into the original datagram, which is then handled to the transport layer.
@@ -2410,9 +2413,14 @@ On the other hand, at the application layer the Internet has witnessed rapid dep
 
 \section{Transport layer}
 
-\subsection{TCP/IP}
+\subsection{TCP}
 
-TCP/IP groups OSI layers 1 and 2 under Network Interface and 5, 6, and 7 under Application.
+Transmission control protocol (TCP) was specifically designed to provide a reliable end-to-end byte stream over an unreliable network.
+TCP was created to dynamically adapt to properties of the network and to be robust in the face of many kinds of failures.
+
+When talking about TCP/IP, it is common to group OSI layers 1 and 2 under Network Interface and 5, 6, and 7 under Application.
+
+
 
 \section{Application layer}
 
