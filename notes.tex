@@ -2233,7 +2233,7 @@ These dynamic routing algorithms differ in where they get their information, whe
 
 \textbf{The optimality principle} states that if a router J is on the optimal path between I and K, then the optimal path from J to K also falls along the same route. As a consequence of this, the optimal routes from all sources to a given destination form a \textbf{sink tree} \cite{dynamic-programming-bellman-2003}. Note that multiple sink trees may exist. Routing algorithms have to discover and use the sink trees for all routers.
 
-\subsubsection{Shortest path algorithm}
+\subsubsection{Shortest path algorithm}\label{Shortest path algorithm}
 
 The routing algorithm may be a shortest path algorithm, which tries to find shortest paths in a weighted graph on which the edge weights are functions which evaluate how expensive it is to take a given route.
 This might be done with Dijkstra's algorithm and is a static routing algorithm.
@@ -2911,17 +2911,34 @@ If, instead, the router R were to just forward broadcasts, the sequence would be
 \end{Answer}
 
 \begin{Exercise}
-Explain the following routing algorithms and compare them with each other. Which of these algorithms are related to static routing and which are related to dynamic routing?
+Explain the following routing algorithms and compare them with each other.
+Which of these algorithms are related to static routing and which are related to dynamic routing?
 
 \begin{enumerate}
-    \item Shortest-path (SP)
-    \item Distance-vector (DV)
-    \item Link-state (LS)
+    \item Shortest path (SP)
+    \item Distance vector (DV)
+    \item Link state (LS)
 \end{enumerate}
 \end{Exercise}
+\begin{Answer}
+SP is a static routing algorithm as it relies on calculating routes before the network is online.
+It uses a graph algorithm such as Dijkstra's to find the shortest paths. See \ref{Shortest path algorithm}.
+
+DV is a dynamic routing algorithm. One DV update works by inspecting the direct neighbors of the router being updated and setting the entries of its distance vector to the minimum possible combined cost of getting to the neighbor and cost to get to the destination from the neighbor. See \ref{Distance vector routing}.
+
+LS is another dynamic routing algorithm. It works by allowing each router to know the entire topology of the network and then evaluating shortest paths from this knowledge. See \ref{Link state routing}.
+
+Both DV and LS are much more sophisticated than SP as they can work automatically in existing networks, while SP is static and can not adapt on-the-fly to network topology changes.
+DV has better scalability than LS because its complexity is proportional to the number of direct neighbors, which is usually limited by the number of network interfaces of the router, which is relatively small.
+LS does not have the count-to-infinity problem which exists in DV. This problem causes DV to approach the value considered to be infinity just linearly. Therefore, it might take quite some time until all routers see that a previously existing route is no longer online. In DV, good news travel fast, but bad news travel slow.
+\end{Answer}
 
 \begin{Exercise}
+A machine in a TCP/IP network has the IP address 143.54.13.100 and the network mask 255.255.255.192. What is the network number, the broadcast address of this network, the first and last valid IP addresses for hosts?
 \end{Exercise}
+\begin{Answer}
+The network is 143.54.13.64/26. The broadcast address is 143.54.13.127 and the first and last valid IP addresses are 143.54.13.65 and 143.54.13.126, respectively.
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
