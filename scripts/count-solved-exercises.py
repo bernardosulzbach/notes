@@ -1,6 +1,7 @@
 FILENAME = 'notes.tex'
 
-SUBSECTION_START = '\\subsection{Solved course exercises}'
+BEGIN_SUBSECTION = '\\subsection'
+BEGIN_SUBSECTION_OF_INTEREST = '\\subsection{Solved course exercises}'
 BEGIN_EXERCISE = '\\begin{Exercise}'
 END_EXERCISE = '\\end{Exercise}'
 BEGIN_ANSWER = '\\begin{Answer}'
@@ -12,11 +13,11 @@ with open(FILENAME) as file_handler:
     answered = []
     for line in file_handler:
         line = line.strip()
-        if line == SUBSECTION_START:
+        if line == BEGIN_SUBSECTION_OF_INTEREST:
             capturing = True
             continue
         if capturing:
-            if line.startswith('\\subsection'):
+            if line.startswith(BEGIN_SUBSECTION):
                 capturing = False
             elif line == BEGIN_EXERCISE:
                 if len(answered) < len(exercises):
