@@ -2941,7 +2941,12 @@ The network is 143.54.13.64/26. The broadcast address is 143.54.13.127 and the f
 \end{Answer}
 
 \begin{Exercise}
+You have 200.61.0.0/18. Distribute it between A, which needs 1800 addresses, B, which needs 800 addresses, and C, which needs 600 addresses.
 \end{Exercise}
+\begin{Answer}
+A needs a /21, B and C need a /22.
+A gets 200.61.0.0/21. B gets 200.61.8.0/22. C gets 200.61.12.0/22.
+\end{Answer}
 
 \begin{Exercise}
 Assuming a network uses the distance vector routing algorithm, compute the new distance vector for router J.
