@@ -3423,10 +3423,26 @@ Another problem is that attacks based on sequence number spoofing are possible i
 \end{Answer}
 
 \begin{Exercise}
+Which are the network protocols usually activated by a MUA such as \href{https://en.wikipedia.org/wiki/Mozilla_Thunderbird}{Thunderbird}?
+What functionality is provided by each one of these protocols?
 \end{Exercise}
+\begin{Answer}
+\begin{itemize}
+    \item DNS, a protocol used to resolving names into IP addresses and other registered resources. For instance, to find out where to send gmail.com traffic.
+    \item SMTP, a protocol used to send emails.
+    \item POP3 and IMAP, protocols used for reading and deleting emails stored in a remote server.
+\end{itemize}
+\end{Answer}
 
 \begin{Exercise}
+An ISP allocated the 200.231.15.240 network with 16 IP addresses. What is the first and last valid addresses for network interfaces? What is the network mask? What is the broadcast address?
 \end{Exercise}
+\begin{Answer}
+The first valid address is 200.231.15.241, and the last valid address is 200.231.15.254.
+The network mask is 255.255.255.240. The broadcast address is 200.231.15.255.
+
+One can test this by issuing \texttt{ipcalc 200.231.15.240/28}.
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
