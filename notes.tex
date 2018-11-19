@@ -2982,7 +2982,18 @@ Assume the following delays.
 \end{Answer}
 
 \begin{Exercise}
+Considering a 802.3 network, why can't the ARP protocol identify the MAC address of a machine in a different network?
+Explain the solution using default gateways and the solution using ARP proxies.
 \end{Exercise}
+
+\begin{Exercise}
+What is the maximum number of bits in the suffix of a class C IP network which can be used to define subnetworks?
+\end{Exercise}
+\begin{Answer}
+Six.
+Eight is clearly impossible as that would imply no bits for host identification.
+Seven is also not possible because a network must have at least two hosts and two IP addresses are needed for the network address and network broadcast address, so we get that we must have at least 2 bits for the host to get a valid network.
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
@@ -2997,7 +3008,11 @@ Assume the following delays.
 \end{Exercise}
 
 \begin{Exercise}
+Duplicate of exercise 13.
 \end{Exercise}
+\begin{Answer}
+None.
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
@@ -3009,10 +3024,13 @@ Assume the following delays.
 \end{Exercise}
 
 \begin{Exercise}
+What is the maximum number of bits in a suffix that can be used to define subnetworks in an IP network?
 \end{Exercise}
-
-\begin{Exercise}
-\end{Exercise}
+\begin{Answer}
+If the suffix has \(n\) bits, then it is \(n - 2\).
+It is \(n - 2\) because the host part must have at least two bits for it to be a valid network.
+See exercise 13 to understand why.
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
@@ -3381,10 +3399,10 @@ There is a TCP socket listening on port 2222 for connections from any address an
 \end{Exercise}
 
 \begin{Exercise}
-Repeated from 11.
+Duplicate of exercise 11.
 \end{Exercise}
 \begin{Answer}
-Will note be done.
+None.
 \end{Answer}
 
 \begin{Exercise}
