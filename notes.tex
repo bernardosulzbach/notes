@@ -2763,17 +2763,17 @@ This happens if some machines use wireless and radio communication, which passes
 The range of 802.11 networks is often a few hundred meters, so unprotected wireless networks can be a major vulnerability \cite[p.~823]{computer-networks-tanenbaum-2012}.
 
 Data link level security protocols such as WPA2 provide real security.
-WEP and WPA are too weak and should not be used \cite[p.~824]{computer-networks-tanenbaum-2012}.
+WEP and WPA are too weak and should no longer be used \cite[p.~824]{computer-networks-tanenbaum-2012}.
 
 There are two scenarios in which WPA2 is used.
 
 \textbf{In enterprise settings}, a separate authentication server can use provided username and passwords to determine if a wireless client is allowed to access the network.
 
-\textbf{In residential settings}, there is no authentication server. Instead, there is a single shared password that is used by clients to access the network. This setup is much simpler, but it is also less secure. In this setup, a handshake is performed so that each client has two keys, one for direct communication with the access point (AP) and a key which is shared across all clients so that the AP can broadcast packages.
+\textbf{In personal settings}, there is no authentication server. Instead, there is a single shared password that is used by clients to access the network. This setup is much simpler, but it is also less secure. In this setup, a handshake is performed so that each client has two keys, one for direct communication with the access point (AP) and a key which is shared across all clients so that the AP can broadcast packages.
 
 There are two protocols which dictate how these keys are actually used to provide security.
 The first one was \textbf{TKIP}, which has been broken and should no longer be used.
-The newer protocol is \textbf{CCMP}, which is stronger and has not been broken \cite[p.~825]{computer-networks-tanenbaum-2012}.
+The newer protocol is \textbf{CCMP}, which is based on 128-bit AES encryption. It is stronger and has not been broken yet \cite[p.~825]{computer-networks-tanenbaum-2012}.
 
 \subsubsection{Bluetooth security}
 
