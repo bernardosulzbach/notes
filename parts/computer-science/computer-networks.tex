@@ -1036,13 +1036,63 @@ Answered according to \cite{computer-networking-kurose-2012} and according to an
 \end{Answer}
 
 \begin{Exercise}
+Explain how a client host can find a server process in another machine using TCP/IP. Is it any different when using UDP/IP?
 \end{Exercise}
+\begin{Answer}
+IP is used to find the other host, then the port information will be used to specify which process on that machine will handle the requests.
+Using TCP/IP, the server process will be listening for new connections in a given port. Using UDP/IP the server process will be listening to all datagrams coming into a given port.
+Therefore, there is no difference in regard to how the host and process is determined.
+\end{Answer}
 
 \begin{Exercise}
+\begin{enumerate}
+\item Regarding network layer fragmentation, why is the reassembly done at the endpoint and not in intermediary nodes?
+\item If the reassembly was done in the intermediary nodes, which impact would this have for network services which are not connection-oriented?
+\end{enumerate}
 \end{Exercise}
+\begin{Answer}
+\begin{enumerate}
+\item If reassembly happened in the intermediary nodes, fragmentation likely would have to happen again in order to reach the receiving endpoint, resulting in more packet reassembly for the next intermediary nodes. Because of this, in the the Internet only fragmentation happens and the receiving endpoint performs reassembly. See \ref{Packet fragmentation}.
+\item It would remove the need for the code and processing time required to perform reassembly at the end system.
+\end{enumerate}
+\end{Answer}
 
 \begin{Exercise}
+Compare distance vector routing algorithms with link state routing algorithms.
+\begin{enumerate}
+\item What information they exchange?
+\item How much data they have to exchange?
+\item How is routing done?
+\item Are there any convergence problems?
+\end{enumerate}
+Mention protocols which use these algorithms.
 \end{Exercise}
+\begin{Answer}
+\begin{enumerate}
+\item What information they exchange?
+
+Distance vector algorithms require routers to exchange distance vectors, which contain the estimated cost to go from a router to each of its direct neighbors.
+
+Link state algorithms also make routers exchange information about their direct neighbors, but this information has to be sent to all other routers, not only to the router's direct neighbors.
+
+\item How much data they have to exchange?
+
+The amount of data exchanged in distance vector routing algorithms is directly proportional to the number of neighbors the routers have, while the amount of data exchanged in link state routing algorithms is directly proportional to the number of routers in the whole network and the number of neighbors the routers have.
+
+\item How is routing done?
+
+Routing in distance vector routing algorithms is done by calculating the new distance vector based on the latency to the direct neighbors and the vectors sent in by these neighbors.
+In link state routing algorithms, routing is done by running a shortest paths graph algorithm such as Dijkstra's to find out the optimal paths to each router.
+
+\item Are there any convergence problems?
+
+Yes. Distance vector routing algorithms have very slow convergence to detect a router failure. Distance vector routing algorithms react quickly to network latency improvements, but very slowly to network fragmentation.
+\end{enumerate}
+
+RIP is a distance vector routing algorithm. OSPF and IS-IS are link state routing (LSR) algorithms.
+
+See \ref{Distance vector routing} and \ref{Link state routing} for more.
+\end{Answer}
 
 \begin{Exercise}
 Duplicate of exercise 13.
