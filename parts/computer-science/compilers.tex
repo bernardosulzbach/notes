@@ -1,0 +1,26 @@
+\chapter{Compilers}
+
+\section{Libraries}
+
+\subsection{Global offset table}
+
+If the dynamic linker could only perform relocations, when the value of global symbol is required, the dynamic linker would have to look up the memory address of that symbol and rewrite the code to load that address \cite{computer-science-from-the-bottom-up}.
+
+An enhancement would be to set aside space in the binary to hold the address of that symbol, and use the dynamic linker to put the address there rather than in the code directly.
+This way the code of the binary would never have to be changed in runtime.
+This area exists and is called the global offset table (GOT) \cite{computer-science-from-the-bottom-up}.
+
+\subsection{Procedure lookup table}
+
+The procedure lookup table (PLT) serves to facilitate \textit{lazy binding} in programs.
+Binding is the name given to assigning an entry of the table the real address \cite{computer-science-from-the-bottom-up}.
+
+Binding a function involves loading library code into memory if this hasn't been done yet, searching through it to find the function being called, and writing its real address to memory.
+Therefore, binding unused functions is wasteful.
+Each library function has an entry in the PLT, which initially points to a dummy function \cite{computer-science-from-the-bottom-up}.
+
+When the program calls the function, it is actually calling the PLT entry.
+This function loads a few parameters that are needed by the dynamic linker for it to resolve the function and then calls into a special lookup function of the dynamic linker.
+The dynamic linker then changes the stub code so that the next time the function is called it will go straight to the right address \cite{computer-science-from-the-bottom-up}.
+
+While the PLT is usually filled lazily in runtime, the GOT is filled before the program begins executing \cite{computer-science-from-the-bottom-up}.

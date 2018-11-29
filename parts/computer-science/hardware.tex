@@ -1,0 +1,40 @@
+\chapter{Hardware}
+\section{Hard disks}
+Any hard disk drive (HDD) can contain only four primary partitions. This
+limitation may be circumvented with an extended partition, a special type of
+primary partition that allows multiple logical partitions to be created within
+it. An HDD may contain only one extended partition.
+
+An HDD records data by magnetizing a thin film of ferromagnetic material on a
+disk. Sequential changes in the direction of magnetization represent binary
+data bits.
+
+A typical HDD design consists of a spindle that holds flat circular disks, also
+called platters, which hold the recorded data. The platters are made from a
+non-magnetic material, usually aluminium alloy, glass, or ceramic, and are
+coated with a shallow layer of magnetic material typically 10–20 nm in depth,
+with an outer layer of carbon for protection.
+
+The platters in contemporary HDDs are spun at speeds varying from 4,200 rpm in
+energy-efficient portable devices, to 15,000 rpm for high-performance servers.
+The first HDDs spun at 1,200 rpm and, for many years, 3,600 rpm was the norm.
+Nowadays, the platters in most consumer-grade HDDs spin at either 5,400 rpm or
+7,200 rpm.
+
+Information is written to and read from a platter as it rotates past devices
+called read-and-write heads that operate very close (often tens of nanometers)
+over the magnetic surface. The read-and-write head is used to detect and modify
+the magnetization of the material immediately under it.
+
+\paragraph{Partial response maximum likelihood.} In computer data storage,
+partial response maximum likelihood (PRML) is a method for converting the weak
+analog signal from the head of a magnetic disk or tape drive into a digital
+signal. PRML attempts to interpret correctly even small changes in the analog
+signal, whereas peak detection relies on fixed thresholds. Because PRML can
+correctly decode a weaker signal it \textbf{allows higher density recording}.
+
+For example, PRML would read the magnetic flux density pattern 70, 60, 55, 60,
+70 (where 60 is the baseline signal) as binary ``101'', and the same for 45, 40,
+30, 40, 45 (baseline of 40) whereas peak detector would decode everything
+above, say, 50 as high, and below 50 as low, so the first pattern would read
+``111'' and the second as ``000''.

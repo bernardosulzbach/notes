@@ -1,0 +1,89 @@
+\chapter{Distributed systems}
+
+\section{Replication}
+
+There are two major approaches to achieving fault tolerance.
+In \textbf{passive (primary-backup) replication}, clients communicate with a distinguished replica.
+In \textbf{active replication}, clients communicate by multicast with all replicas \cite[p.~766]{distributed-systems-coulouris-2013}.
+
+Replication is used in many day-to-day situations.
+For example, the caching of resources from web servers in browsers is a form of replication, since the data held in the caches and at the servers are replicas of one another.
+DNS maintains copies of name-to-attribute mappings for computers, replicating the name resolution information in many different places \cite[p.~766]{distributed-systems-coulouris-2013}.
+
+Replication may be used for \textbf{performance enhancement}. Caching of already downloaded and probably still valid data at clients is a classical example. A DNS lookup, for instance, may return one of the many possible IP addresses for a given resource, in a round-robin fashion \cite[p.~766]{distributed-systems-coulouris-2013}. This is also a way to improve performance by sharing the workload across multiple servers.
+Replication has limits as a performance-enhancement technique when it comes to mutable data, as there must be protocols to determine whether or not the replicated copies are still valid \cite[p.~766]{distributed-systems-coulouris-2013}.
+
+Replication may also be used for \textbf{increased availability}. Availability is usually affected by server failures and network partitions.
+Replication allows alternative servers to be used if a default server fails or becomes unavailable \cite[p.~766]{distributed-systems-coulouris-2013}.
+Network partitions can cause conflicts to emerge as the processes may get to have conflicting data due to the lack of synchronization between them \cite[p.~767]{distributed-systems-coulouris-2013}.
+
+Lastly, replication may also provide \textbf{fault tolerance}. By having multiple servers capable of delivering a service correctly a system may be able to cope with server crashes and Byzantine faults, as long as there are enough servers to outvote the failed servers.
+
+\textit{Replication transparency} is when clients do not have to be aware that multiple physical copies of data exist. Clients should only be concerned about the manipulation of the logical objects, even if there are multiple physical objects in the architecture.
+
+A \textbf{replica manager} is a component that contain a replica of a given set of logical objects in a computer \cite[p.~769]{distributed-systems-coulouris-2013}.
+It is important that operations conducted by replica managers are recoverable.
+This allows the assumption that an operation at a replica manager does not leave inconsistent results if it fails part way through.
+
+\textit{The set of replica managers may be static or dynamic}.
+In a dynamic system, new replica managers may appear.
+This is not allowed in a static system \cite[p.~769]{distributed-systems-coulouris-2013}.
+
+The general model of replica management includes a component called the \textit{front end}, whose role is to communicate with one or more of the replica managers, rather than forcing the client to do this explicitly. It is important to make replication transparent. The front end may be implemented in the client's address space or it may be a separate process \cite[p.~770]{distributed-systems-coulouris-2013}.
+
+An important consideration is how a group management service treats network
+partitions. Disconnection or the failure of components such as a router in a network may
+split a group of processes into two or more subgroups, with communication between the
+subgroups impossible.
+
+A \textbf{primary-partition group management service} allows at most one subgroup (a majority) to survive a partition, suspending the other processes. A \textbf{partitionable group management service} allows two or more subgroups to continue to operate \cite[p.~772]{distributed-systems-coulouris-2013}.
+
+\subsection{Linearizability and sequential consistency}
+
+There are various correctness criteria for replicated objects.
+The most strictly correct systems are linearizable, and this property is called \textbf{linearizability}.
+A replicated shared object service is linearizable if \textit{for any execution} there is some interleaving of the operations issued by the clients that satisfies that \textit{the order of operations in the interleaving is consistent with the \textbf{real times} at which the operations occurred in the actual execution} \cite[p.~777]{distributed-systems-coulouris-2013}.
+
+It is important to note that \textit{linearizability concerns only the interleaving of individual operations}, giving no transactional guarantees.
+
+There are obvious issues from the practicality of linearizability, because we cannot always synchronize clocks to the required accuracy.
+
+A weaker but similar correctness condition is \textbf{sequential consistency}.
+A replicated shared object service is said to be sequentially consistent if for any execution there is some interleaving of the series of operations issued by all the clients that satisfies that \textit{the order of operations in the interleaving is consistent with the \textbf{program order} in which each individual client executed them} \cite[p.~777]{distributed-systems-coulouris-2013}.
+In the sequential consistency definition the only notion of ordering that is relevant is the order of events at each separate client, that is, the program order.
+
+Every linearizable service is also sequentially consistent, but the converse does not hold \cite[p.~777]{distributed-systems-coulouris-2013}.
+
+There are weaker consistency models, such as coherence \cite[p.~759]{distributed-systems-coulouris-2009} and weak consistency \cite[p.~760]{distributed-systems-coulouris-2009}.
+
+\subsection{Passive (primary-backup) replication}
+
+In the passive or primary-backup model of replication there is at any one time a \textbf{single primary replica manager} and \textbf{one or more secondary replica managers} \cite[p.~778]{distributed-systems-coulouris-2013}.
+
+In a pure implementation of the model, the front ends communicate only with the primary replica manager to obtain the service.
+The primary replica manager executes the operations and propagates the updates to the secondary replica managers.
+If the primary fails, one of the secondary replica managers has to be elected and promoted to act as the primary.
+
+This system is linearizable as long as the primary is correct, since the primary sequences all the operations to the other replica managers.
+
+The system will only retain linearizability after the primary crashes if a single secondary becomes the new primary and if the the surviving replica managers agree on which operations had been performed at the point when the replacement primary took over \cite[p.~779]{distributed-systems-coulouris-2013}.
+
+The front end only requires the ability to look up the new primary when the current primary does not respond to achieve fault tolerance  \cite[p.~780]{distributed-systems-coulouris-2013}.
+
+For a passive replication system to survive up to \(f\) process crashes it requires \(f + 1\) replica managers.
+A passive replication system cannot tolerate Byzantine failures \cite[p.~780]{distributed-systems-coulouris-2013}.
+
+The passive replication model has very large overheads.
+In a variation of the model, clients may be able to submit read requests to the secondary replica managers, offloading work from the primary.
+The guarantee of linearizability is thereby lost, but the clients receive a sequentially consistent service \cite[p.~780]{distributed-systems-coulouris-2013}.
+
+\subsection{Active replication}
+
+In the active replication model, front ends multicast their requests to the group of replica managers and all the replica managers process the request independently.
+
+Active replication \textbf{can tolerate Byzantine failures}, as the front ends can collect and compare the replies they receive \cite[p.~780]{distributed-systems-coulouris-2013}.
+
+\textbf{Active replication systems do not achieve linearizability} because the total order in which the replica managers process requests may not be the same as the real-time order in which the clients made the requests. However, they do achieve sequential consistency \cite[p.~781]{distributed-systems-coulouris-2013}.
+
+Front ends may send read-only requests only to individual replica managers.
+In doing so, they lose the fault tolerance. However, the service remains sequentially consistent and the overall workload is reduced \cite[p.~782]{distributed-systems-coulouris-2013}.

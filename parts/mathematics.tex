@@ -1,0 +1,941 @@
+\part{Mathematics}
+
+\chapter{Significant figures}
+
+\section{Definition}
+The significant figures of a number are those digits that carry meaning
+contributing to its precision. This includes all digits except all leading zeros
+and trailing zeros when they are used to indicate the scale of the number.
+
+\section{Calculations}
+The result of addition and subtraction should have as many decimal places as the
+term with less decimal places.
+
+The result of multiplication and division should have as many significant
+figures as the least precise term.
+
+\section{Rounding}
+If the first non-significant figure is a 5 not followed by any other digits or
+followed only by zeros, rounding requires a tie-breaking rule.
+\paragraph{Round half up} is the default rounding method implied in many
+disciplines if not specified.
+\paragraph{Round half to even} which rounds to the nearest even number.
+
+\chapter{Set theory}
+
+\section{Power set}
+The power set \(P(S)\) is the set of all subsets of \(S\), including the empty
+set and the set \(S\) itself.
+
+It has \(2^n\) elements where \(n\) is the number of elements in \(S\).
+
+\chapter{Linear algebra}
+
+\section{Row operations}
+\begin{itemize}
+\item{Replace one row by the sum of itself and a multiple of another row.}
+\item{Interchange two rows.}
+\item{Multiply all entries in a row by a nonzero constant.}
+\end{itemize}
+
+\section{Row equivalence}
+Two matrices are \textbf{row equivalent} if, and only if, there is a sequence
+of row operations that transform one matrix into another.
+Row equivalence is indicated by a tilde (\(\sim\)) between matrices.
+\section{Echelon form}
+A matrix is in \textbf{echelon form} if it has the shape resulting from a
+Gaussian
+elimination.
+The following are properties of the echelon matrix:
+\begin{itemize}
+\item{All nonzero rows are above any rows of all zeros.}
+\item{The leading entry of a row is at least one column to the right of the
+leading entry of the row above it.}
+\end{itemize}
+The following are properties of the \textbf{reduced echelon matrix}:
+\begin{itemize}
+\item{The leading entry in any nonzero row is 1.}
+\item{Each leading 1 is the only nonzero in its column.}
+\end{itemize}
+
+\section{Row reducing algorithm}
+The \textbf{forward phase} of the row reducing algorithm produces the row
+echelon form.
+The \textbf{backward phase} produces the unique reduced row echelon form.
+Computer algorithms usually select as a pivot the entry in a column that has the
+largest value.
+This strategy, called partial pivoting, is used to reduce roundoff errors in the
+calculations.
+Computers do not perform the backward phase in order to find the reduced echelon
+form, instead,
+they perform back substitution.
+The best strategy is to use the reduced echelon form only when solving a system
+by hand.
+A flop is one arithmetic operation (+, -, *, /) on two real floating point
+numbers.
+(Traditionally, + and - were not considered to be flops, but nowadays they are).
+
+\section{Solution existence and uniqueness}
+A solution exists if there are no invalid equations, such as \( 0 = 1 \). The
+solution is unique if, and only if, there are no free variables.
+
+\subsection{Existence and uniqueness theorem}
+A system is consistent if, and only if, the rightmost column of the augmented
+matrix is not a pivot column.
+Stated differently, a matrix equation of the form \(A\mathbf{x} = \mathbf{b}\)
+has a solution if, and only if, \(\mathbf{b}\) is a linear combination of the
+columns of \(\mathbf{A}\), that is, if \(\mathbf{b} \in \mathrm{Span}
+\{\mathbf{a}_1, \ldots, \mathbf{a}_n\}\).
+
+\section{Parallelogram rule for addition}
+If \(\mathbf{u}\) and \(\mathbf{v}\) in \(\mathbb{R}^2\)
+are represented as points in the plane,
+then \(\mathbf{u} + \mathbf{v}\) corresponds to the fourth vertex of the
+parallelogram whose other vertices are \(\mathbf{0}\), \(\mathbf{u}\) and
+\(\mathbf{v}\).
+
+\section{Linear combinations}
+Given vectors \(\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p\) in
+\(\mathbb{R}^n\) and given scalars \(c_1, c_2, \ldots, c_p\) in \(\mathbb{R}\),
+the vector \(\mathbf{y}\) defined by
+\[ \mathbf{y} = c_1 \mathbf{v}_1 + \ldots + c_p \mathbf{v}_p \]
+is called a \textbf{linear combination} of
+\(\mathbf{v}_1, \ldots, \mathbf{v}_p\) with weights \(c_1, \ldots, c_p\).
+
+\section{Span}
+The set of all linear combinations of \(\mathbf{v}_1, \ldots, \mathbf{v}_p\) in
+\(\mathbb{R}^n\) is called the \textbf{subset of}\(\mathbb{R}^n\) spanned (or
+generated) by \(\mathbf{v}_1, \ldots, \mathbf{v}_p\) and is denoted by
+
+\(\mathrm{Span}\{\mathbf{v}_1, \ldots, \mathbf{v}_p\}\). If a matrix \(A\) has a
+pivot in every row, then \(\mathrm{Span} \{\mathbf{a}_1, \ldots, \mathbf{a}_n\}
+= \mathbb{R}^m\).
+
+\section{Matrix equation solution}
+If \(A\) is a \(m \times n\) matrix, with columns \(\mathbf{a}_1, \ldots,
+\mathbf{a}_n\) and \(\mathbf{b}\) is in \(\mathbb{R}^m\),
+the matrix equation
+\[ A\mathbf{x} = \mathbf{b} \]
+has the same solution as the vector equation
+\[ x_1\mathbf{a}_1 + \ldots + x_n\mathbf{a}_n = \mathbf{b} \]
+which, in turn,
+has the same solution as the system of linear equations whose
+augmented matrix is
+\[ [ \mathbf{a}_1 \ldots \mathbf{a}_n \mathbf{b} ] \]
+
+\section{Solution sets of linear systems}
+A system of linear equations is \textbf{homogeneous}
+if it can be written in the form \( \mathbf{A x} = \mathbf{0} \).
+All homogeneous systems have a \textbf{trivial solution} that is \(\mathbf{0}\).
+If the system has at least one free variable, it has a nontrivial solution.
+
+\begin{theorem}
+  Suppose that \( \mathbf{Ax} = \mathbf{b} \) is consistent for some given
+  \(\mathbf{b}\), let \(\mathbf {p}\) be a solution. Then the solution set of
+  \( \mathbf{Ax} = \mathbf{b} \) is the set of all vectors of the form
+  \( \mathbf{w} = \mathbf{p} + \mathbf{v} \), where \( \mathbf{v} \) is any
+  solution of the homogeneous equation \( \mathbf{Ax} = \mathbf{0} \).
+\end{theorem}
+
+\section{Solution of a system in parametric form}
+\begin{enumerate}
+\item{Row reduce the augmented matrix to reduced row echelon form.}
+\item{Express each basic variable in terms of any free variables.}
+\item{Write \(\mathbf{x}\) as a vector whose entries depend on the free
+variables.}
+\item{Decompose \(\mathbf{x}\) into a linear combination of vectors.}
+\end{enumerate}
+
+\subsection*{Solved problem}
+Write the general solution of \( 10 x_1 - 3 x_2 - 2 x_3 = 7\)
+in parametric vector form.
+\[ \left[ \begin{array}{cccc}
+10 & -3 & -2 & 7 \end{array} \right] \sim
+\left[ \begin{array}{cccc}
+1 & -.3 & -.2 & .7 \end{array} \right] \]
+    \[ x_1 = .7 + .3x_2 + .2x_3 \]
+  \[ \mathbf{x} = \left[ \begin{array}{c} .7 \\ 0 \\ 0 \end{array} \right]
++ x_2 \left[ \begin{array}{c} .3 \\ 1 \\ 0 \end{array} \right]
++ x_3 \left[ \begin{array}{c} .2 \\ 0 \\ 1 \end{array} \right] \]
+
+\section{Applications of linear systems}
+In this section, it is shown how linear systems with multiple solutions can
+arise naturally.
+\subsection{Leontief model}
+Also known as the Leontief ``production'' model.
+If one knows the total output of a sector for a certain period of time and how
+it is
+divided among other sectors, then it is proven that
+\begin{quote}
+There exist equilibrium prices that can be assigned to the total outputs of the
+various sectors in such a way that the income of each sector exactly balances
+its
+expenses.
+\end{quote}
+
+Suppose the following model is a decent representation of an economic.
+\begin{center}
+\begin{tabular}{| c c c | l |}
+\hline
+Coal & Electric & Steel & Purchased by \\
+\hline
+.0 & .4 & .6 & Coal \\
+.6 & .1 & .2 & Electric \\
+.4 & .5 & .2 & Steel \\
+\hline
+\end{tabular}
+\end{center}
+
+Then it is known that the equilibrium price of coal \(p_C = .4p_E + .6p_S\).
+Therefore, \(p_C - .4p_E - .6p_S = 0\). Similar equations can be obtained from
+the other two lines. At the end of the process, the linear system is
+
+\[
+\begin{bmatrix}
+1   & -.4 & -.6 & 0 \\
+-.6 &  .9 & -.2 & 0 \\
+-.4 & -.5 &  .8 & 0
+\end{bmatrix}
+\]
+
+By solving this system, it is known that
+
+\[
+p = \begin{bmatrix} p_C \\ p_E \\ p_S \end{bmatrix}
+= \begin{bmatrix} .94 p_S \\ .85 p_S \\ p_S \end{bmatrix}
+\]
+
+Any (nonnegative) choice for \(p_S\) results in correct equilibrium prices.
+
+\subsection{Balancing chemical equations}
+Chemical equations describe the consumption of reactants and the formation
+of products in chemical reactions.
+Simple linear systems may be used to balance chemical reactions.
+The burning of butanol is represented by:
+\[
+\left( x_1 \right) \text{C}_4\text{H}_{10}\text{O} +
+\left( x_2 \right) \text{O}_2 \rightarrow
+\left( x_3 \right) \text{CO}_2 +
+\left( x_4 \right) \text{H}_2\text{O}
+\]
+In order to balance this reaction,
+one must find the coefficients that make both sides have the same amount of
+carbon,
+hydrogen and oxygen.
+This problem can be rewritten as:
+\[
+x_1 \begin{bmatrix} 4 \\ 10 \\  1\end{bmatrix} +
+x_2 \begin{bmatrix} 0 \\  0 \\  2\end{bmatrix} +
+x_3 \begin{bmatrix}-1 \\  0 \\ -2\end{bmatrix} +
+x_4 \begin{bmatrix} 0 \\ -2 \\ -1\end{bmatrix} =
+\begin{bmatrix}0 \\ 0 \\ 0\end{bmatrix}
+\]
+Row reduction of the corresponding augmented matrix gives us
+\[
+\textbf{p} = \begin{bmatrix}.2x_4 \\ 1.2x_4 \\ .8x_4 \\ x_4\end{bmatrix}
+\]
+The smallest selection of \(x_4\) that makes all coefficients integers is \(5\).
+This makes
+\[
+  \text{C}_4\text{H}_{10}\text{O} +
+6 \text{O}_2 \rightarrow
+4 \text{CO}_2 +
+5 \text{H}_2\text{O}
+\]
+a balanced chemical reaction.
+
+\subsection{Network flow}
+Systems of linear equations arise when scientists study the flow of something
+through a network.
+For instance, traffic engineers monitor the pattern of traffic flow in a grid of
+city streets.
+Electrical engineers calculate current flow through circuits.
+And economists analyze the distribution of products from manufacturers to
+consumers.
+A network consists of a set of points (called junctions or nodes),
+with lines or arcs called branches connecting some or all of the junctions.
+The direction of flow in each branch is indicated,
+and the flow amount (rate) is either shown or is denoted by a variable.
+The basic assumption of network flow is that the total flow into the network
+equals
+the total flow out of the network and that the total flow into a junction equals
+the total
+flow out of the junction.
+In a similar fashion, the flow at each junction is described by a linear
+equation. The
+problem of network analysis is to determine the flow in each branch when partial
+information (such as the flow into and out of the network) is known.
+
+\subsection{Solved exercises}
+\subsubsection{Introduction}
+This exercises are from the fourth edition of Linear Algebra and its
+Applications.
+\subsubsection{Leontief model}
+\paragraph{1)}
+An economy has four sectors: Agriculture, Manufacturing, Services, and
+Transportation.
+Agriculture sells 20\% of its output to Manufacturing, 30\% to Services, 30\% to
+Transportation, and retains the rest.
+Manufacturing sells 35\% of its output to Agriculture, 35\% to Services, 20\% to
+Transportation, and retains the rest.
+Services sells 10\% of its output to Agriculture, 20\% to Manufacturing, 20\% to
+Transportation, and retains the rest.
+Transportation sells 20\% of its output to Agriculture, 30\% to Manufacturing,
+20\% to Services, and retains the rest.
+
+\begin{enumerate}
+\item Construct the exchange table for this economy.
+\item Find a set of equilibrium prices for the economy if the value of
+  Transportation is \(\$10.00\) per unit.
+\item {The Services sector launches a successful ``eat farm fresh'' campaign,
+       and increases its share of the output from the Agricultural sector to
+40\%,
+       whereas the share of Agricultural production going to Manufacturing falls
+to 10\%.
+       Construct the exchange table for this new economy.}
+\item {Find a set of equilibrium prices for this new economy if the value of
+    Transportation is still \(\$20.00\) per unit.
+       What effect has the ``eat farm fresh'' campaign had on the equilibrium
+prices for the sectors in this economy?}
+\end{enumerate}
+
+\subparagraph{Solution}
+
+\begin{enumerate}
+  \item {
+  \[ \begin{bmatrix}
+.2 & .35 & .1 & .2 \\
+.2 &  .1 & .2 & .3 \\
+.3 & .35 & .5 & .2 \\
+.3 &  .2 & .2 & .3
+      \end{bmatrix} \]}
+  \item{\(p_A = 7.99\), \(p_M = 8.36\), \(p_S = 14.65\), and \(p_T = 10.00\).}
+  \item {\[ \begin{bmatrix}
+.2 & .35 & .1 & .2 \\
+.1 &  .1 & .2 & .3 \\
+.4 & .35 & .5 & .2 \\
+.3 &  .2 & .2 & .3
+            \end{bmatrix} \]}
+  \item{\(p_A = 7.81\), \(p_M = 7.67\), \(p_S = 15.62\), and \(p_T = 10.00\).}
+  \item{Therefore, the campaign has benefited Services.}
+\end{enumerate}
+
+\section{Matrices}
+\subsection{Properties of the determinant}
+\begin{enumerate}
+  \item{\(\det(I)=1\).}
+  \item{\(\det(A)=\det(A^{T})\).}
+  \item{If \(B\) is \(A\) with a row multiplied by \(k\),
+      then \(\det(B)=k\det(A)\).}
+  \item{If \(B\) is \(A\) with two rows swapped, then \(\det(B)=-\det(A)\).}
+  \item{If two or more rows of \(A\) are identical, then \(\det(A)=0\).}
+  \item{If the elements above or below the diagonal of \(A\) are \(0\), then
+      \(\det(A)=\prod_{i=1}^{m}{A_{i,i}}\).}
+  \item{If the elements of \(A\), \(B\), and \(C\) are equal,
+      except for one row of C that is equal to the sum of the two corresponding
+      rows of \(A\) e \(B\), then
+      \(\det{\left(C\right)}=\det{\left(A\right)}+\det{\left(B\right)}\).}
+  \item{For square matrices \(A\) and \(B\) of equal size,
+      \(\det{\left(AB\right)}=\det{\left(A\right)}\det{\left(B\right)}\).}
+  \item{If \(B\) is \(A\) with one row multiplied by a nonzero constant added
+      to a parallel row, then then \(\det(A)=\det(B)\).}
+  \item{\(\det{\left(A^{-1}\right)}=\frac{1}{\det{\left(A\right)}}\).}
+\end{enumerate}
+
+\subsection{Inverse matrix}
+
+\begin{proof}
+The inverse matrix is unique.
+
+Let \(B\) and \(C\) be the inverse matrices of \(A\).
+\[B = BI = B(AC) = (BA)C = IC = C\]
+\end{proof}
+
+\subsubsection{Inverse matrix by Gauss-Jordan}
+\[ \left[\mathrm{A} \mid \mathrm{I} \right] \rightarrow
+\left[\mathrm{I} \mid \mathrm{A} ^ {-1} \right] \]
+
+The adjoint matrix is the transposed of the cofactor matrix.
+\[A^{-1} = \frac{\mathrm{adj}(A)}{\mathrm{D}} =
+\frac{(\mathrm{cof}(A))^{T}}{\mathrm{D}}\]
+
+\subsection{Singular matrix}
+A square matrix that does not have a matrix inverse. A matrix is singular if,
+and only if, its determinant is 0.
+
+
+\chapter{Series}
+
+\section{Arithmetic series}
+An arithmetic series is the sum of a sequence in which each term is computed
+from the previous one by adding (or subtracting) a constant.
+\[a_n = a_1 + (n-1)r\]
+\[S_{p..q} = \frac{(q - p + 1)(a_q + a_p)}{2}\]
+Note that this expression is just the product of the number of terms by the
+average value.
+
+\section{Geometric series}
+\[a_n = a_1 q^{(n-1)}\]
+\[S_n = a_1 \frac{q^n - 1}{q-1}\]
+
+\chapter{Complex numbers}
+
+\section{Notation}
+\[\cis \left ( \argument \right ) =  \cos \left ( \argument \right ) + i \sin
+\left ( \argument \right )\]
+
+\section{Formulas}
+\[a + bi = r \left( \cos \left ( \argument \right ) + i \sin \left ( \argument
+\right ) \right )
+= r \cis \left ( \argument \right )\]
+\[\conj{z} = a - bi = r \cis \left (- \argument \right)\]
+\[r = \sqrt{a^2 + b^2}\]
+\[\phi = \tan^{-1} \left ( \frac{b}{a} \right)\]
+
+\[z_1 z_2 = r_1 r_2 \left ( \cis \left ( \phi_1 + \phi_2 \right ) \right )\]
+\[\frac{z_1}{z_2} = \frac{r_1}{r_2} \left ( \cis \left ( \phi_1 - \phi_2 \right
+) \right )\]
+\[z^n = r^n \cis \left ( n \argument \right )\]
+\[z^{\reciprocal{n}} = r^{\reciprocal{n}} \cis \left ( \frac{\argument + 2 \pi
+k}{n} \right ), \quad
+k : k \in \integers \text{ and } 0 \le k \le n - 1\]
+
+Euler's Formula
+\[e^{ix} = \cis \left ( x \right)\]
+
+\chapter{Logarithms}
+
+\paragraph{Logarithm.} The logarithm is the inverse operation to exponentiation.
+The natural logarithm of \(t\) equals the integral of \(x^{-1}\) in respect to x
+from \(1\) to \(t\).
+
+\section{Definition}
+
+\[y = \log_a x \iff a^y = x, \quad a > 0, a \ne 0\]
+\[\log_a 0 = \begin{cases} -\infty, \quad a > 1 \\ +\infty, \quad a < 1
+\end{cases}\]
+\[\log x y = \log x + \log y\]
+\[\log \frac{x}{y} = \log x - \log y\]
+\[\log x^n = n \log x\]
+\[\log_a b = \frac{\log_c b}{\log_c a} = \left ( \log_a c \right ) \left (
+\log_c b \right )\]
+\[\log a_b = \reciprocal{\log_b a}\]
+\[e=\lim_{k\to\infty} \left ( 1 + \reciprocal{k} \right ) ^ k\]
+
+\chapter{Statistics}
+
+\section{Discrete distributions}
+
+\subsection{Geometric distribution}
+\subsubsection*{Probability mass function}
+\[P(X = k) = (1 - p)^{k - 1}p\]
+\subsubsection*{Tail probabilities function}
+\[P(X \ge k) = (1 - p)^{k - 1}\]
+This probability distribution has mean \(\frac{1}{p}\) and variance \(\frac{1 - p}{p^2}\).
+
+\paragraph{Problem.}
+Suppose that the probability of an item on an assembly
+line being defective is \(p = 0.02\). What is the average number of items
+inspected before finding the first defective item?
+\paragraph{Solution.}
+\[\frac{1}{p} = \frac{1}{0.02} = 50\]
+
+\paragraph{Problem.}
+What is the probability that none of the first ten sampled
+items are not defective?
+\paragraph{Solution.}
+\[P(X \ge 11) = (1 - p)^{10} = 0.98^{10} \approx 0.817\]
+
+\subsection{Poisson distribution}
+\subsubsection*{Probability mass function}
+\[P(X = k) = e^{-\lambda}\frac{\lambda^k}{k!}\]
+
+\paragraph{Problem.}
+This probability distribution has mean \(\lambda\) and variance \(\lambda\).
+Suppose that the number of creatures of a given species that we expect to find
+in a one square meter follows the Poisson(5) distribution. What is the
+probability of finding exactly 7 creatures of this species?
+\paragraph{Solution.}
+\[P(X = 7) = e^{-5}\frac{5^7}{7!} = e^{-5}\frac{78125}{5040} \approx 0.104\]
+
+\paragraph{Problem.}
+For a Poisson(\(\lambda\)) distribution, suppose that the probability
+attached to 0 is 0.02949. Determine \(\lambda\).
+\paragraph{Solution.}
+\begin{align*}
+P(X = 0) = e^{-\lambda}\frac{\lambda^0}{0!} &= e^{-\lambda} = 0.02949 \\
+& \therefore -\lambda = \ln \left(0.02949\right)\\
+& \therefore \lambda \approx 3.524
+\end{align*}
+
+\section{Linear relationship}
+A linear relationship between \(y\) and \(x\) is denoted by:
+\[\mu_{y | x} = \beta_0 + \beta_1 x + \epsilon\]
+where
+\begin{itemize}
+  \item[\(\mu_{y | x}\)] is the true mean of y for a given value of x
+  \item[\(\beta_0 + \beta_1 x\)] is a line
+  \item[\(\epsilon\)] is a random error
+\end{itemize}
+
+The estimated relation line:
+\[\hat y = \hat {\beta_0} + \hat {\beta_1} x\]
+
+\section{Pythagorean means}
+The three classical Pythagorean means are the arithmetic mean (A), the
+geometric mean (G), and the harmonic mean (H). They are defined by:
+\[A = \frac{\sum{x}}{n}\]
+\[G = \left( \prod{x} \right) ^ \reciprocal{n}\]
+\[H = \frac{n}{\sum{\reciprocal{x}}}\]
+
+If all \(x\) are positive, the following relation holds
+\[min \le H \le G \le A \le max\]
+
+\section{Measures of statistical dispersion}
+Variance
+\[\sigma^2 = \sum \frac{\left ( k-\mean{x} \right ) ^ 2}{n}\]
+Standard Deviation
+\[\sigma = \sqrt{\sum \frac{\left ( k-\mean{x} \right ) ^ 2}{n}}\]
+
+\section{Normal distribution}
+The normal distribution is a common continuous probability distribution denoted
+by \(N(\mu, \sigma)\). \(\mu\) is the mean of the distribution (and also its
+median and mode) and \(\sigma\) is its standard deviation.
+
+If \(\mu = 0\) and \(\sigma = 1\), the distribution is called the
+\textbf{standard normal distribution}.
+
+\chapter{Geometry}
+
+\section{Trigonometry}
+
+For a right triangle with sides a and b, hypotenuse c
+\[\sin{\alpha} = \frac{a}{c}\]
+\[\cos{\alpha} = \frac{b}{c}\]
+\[\tan{\alpha} = \frac{a}{b}\]
+\[\csc{\alpha} = \reciprocal{\sin{\alpha}} = \frac{c}{a}\]
+\[\sec{\alpha} = \reciprocal{\cos{\alpha}} = \frac{c}{b}\]
+\[\cot{\alpha} = \reciprocal{\tan{\alpha}} = \frac{b}{a}\]
+
+Sums and differences of sines, cosines, and tangents
+\[{\sin{\left( \alpha \pm \beta \right)} =
+  \sin{\alpha}\cos{\beta} \pm \sin{\beta}\cos{\alpha}}\]
+\[{\cos{\left( \alpha \pm \beta \right)} =
+  \cos{\alpha}\cos{\beta} \mp \sin{\alpha}\sin{\beta}}\]
+\[{\tan{\left( \alpha \pm \beta \right)} =
+  \frac{\tan{\alpha} \pm \tan{\beta}}{1 \mp \tan{\alpha} \tan{\beta}}}\]
+
+\section{Right triangle}
+For a right triangle with sides a and b, hypotenuse c, projections m and n (of
+a and b, respectively), and height h,
+the following expressions are true
+
+\[a^2 = m c\]
+\[b^2 = n c\]
+\[h^2 = m n\]
+\[a b = c h\]
+
+\section{Equilateral triangle}
+\[h = \frac{a \sqrt{3}}{2}\]
+\[r = \frac{a \sqrt{3}}{6}\]
+\[R = \frac{a \sqrt{3}}{3}\]
+\[A = \frac{a^2 \sqrt{3}}{4}\]
+
+\section{All triangles}
+\[A = a b \sin \gamma \]
+\[A = p r\]
+\[A = \sqrt{p \left ( p - a \right ) \left ( p - b \right ) \left ( p - c
+\right )}\]
+
+where
+
+\begin{itemize}
+  \item[\(p\)] is the semiperimeter;
+  \item[\(r\)] is the inradius (the radius of the inscribed circle).
+\end{itemize}
+
+\paragraph{Median.} In geometry, a median of a triangle is a line segment
+joining a vertex to the midpoint of the opposing side. Every triangle has
+exactly three medians, one from each vertex. In the case of isosceles and
+equilateral triangles, a median bisects any angle at a vertex whose two adjacent
+sides are equal in length.
+
+\paragraph{Relation to center of mass.} Each median of a triangle passes through
+the triangle's centroid, which is the center of mass of an object of uniform
+density in the shape of the triangle. Thus the object would balance on the
+intersection point of the medians.
+
+\paragraph{Each median divides the area of the triangle in half.}
+
+\section{Law of sines}
+\[\frac{a}{\sin{A}} = \frac{b}{\sin{B}} = \frac{c}{\sin{C}} = 2R\]
+where \(a\), \(b\), and \(c\) are the lengths of the sides of a triangle, and
+\(A\), \(B\), and \(C\) are the opposite angles, and \(R\) is the radius of
+the triangle's circumcircle.
+
+\section{Law of cosines}
+\[a^2 = b^2 + c^2 - 2bc\cos{A}\]
+
+\section{Quadrilateral}
+\[A = \frac{d_1 d_2 \sin{\phi}}{2}\]
+
+where
+
+\begin{itemize}
+  \item[\(d\)] is a diagonal;
+  \item[\(\phi\)] is the angle between the diagonals.
+\end{itemize}
+
+\section{Regular hexagon}
+
+\[r = m = \frac{l \sqrt{3}}{2}\]
+\[A = pr = 3 l r = \frac{3 l^2 \sqrt{3}}{2}\]
+
+\section{Circle}
+\paragraph{Intersecting Chord Theorem.} When two chords intersect each
+other inside a circle, the products of their segments are equal.
+\[a_1 a_2 = b_1 b_2\]
+
+\section{Ellipse}
+In mathematics, an ellipse is a curve on a plane that surrounds two focal points
+such that the sum of the distances to the two focal points is constant for every
+point on the curve.
+
+An ellipse with center \(C \left( x_0, y_0 \right)\) is represented by
+\[\frac{\left(x - x_0\right)^2}{a^2}+\frac{\left(y - y_0\right)^2}{b^2}=1\]
+or
+\[\frac{\left(x - x_0\right)^2}{b^2}+\frac{\left(y - y_0\right)^2}{a^2}=1\]
+\subsection{Focus}
+The focal distance \(c\) is given by the Pythagorean theorem:
+
+\[a^2=b^2+c^2\]
+
+\subsection{Area}
+The area of an ellipse is:
+
+\[A = \pi a b\]
+
+\subsection{Eccentricity}
+The eccentricity of an ellipse, usually denoted by \(\epsilon\), is the ratio of
+the distance between the two foci, to the length of the major axis:
+
+\[\epsilon = \frac{2f}{2a} = \frac{f}{a}\]
+
+\section{Pyramids}
+\[V = \frac{bh}{3}\]
+
+\chapter{Equations}
+\section{Discriminant}
+\[\Delta = b^2 - 4ac\]
+
+\section{Vieta's formulas}
+A polynomial \(P(x) = a_n x^n + a_{n-1} x^{n-1} + ... + a_0\), (with the
+coefficients being real or complex numbers and \(a_n \neq 0\)) is known by the
+fundamental theorem of algebra to have \(n\) (not necessarily distinct) complex
+roots \(x_1, x_2, ..., x_n\).
+
+Vieta's formulas relate the polynomial's coefficients \(a_k\) to signed sums
+and products of its roots \(x_i\) as follows:
+
+\[\sum_{1 \le i \le n} x_i = - \frac{a_{n-1}}{a_n}\]
+\[\sum_{1 \le i_1 < i_2 \le n} x_{i_1} x_{i_2} = \frac{a_{n-2}}{a_n}\]
+\[\sum_{1 \le i_1 < i_2 < i_3 \le n} x_{i_1} x_{i_2} x_{i_3} = -
+\frac{a_{n-3}}{a_n}\]
+\[\sum_{1 \le i_1 < i_2 < ... < i_k \le n} x_{i_1} x_{i_2} ... x_{i_k} = (-1)^k
+\frac{a_{n-k}}{a_n}\]
+
+\chapter{Calculus}
+\section{Limits}
+\subsection{Limits with multiple variables}
+If the function is continuous where you are trying to find the limit, simply
+plug in the variables. If this is not possible, the squeeze theorem might be a
+better solution. Lastly, you should try to prove that the limit does not exist.
+
+When proving that the limit of a function of one variable does not exist, you
+would test if the limits from the right and from the left were different.
+When dealing with functions of multiple variables, if the limits along any two
+different smooth curves are different, the limit you are trying to find does
+not exist. Usually, \(x = 0\), \(y = 0\) and \(x = y\) are good choices when
+proving that a limit does not exist.
+
+\subsection{Limits with multiple variables exercises}
+
+\paragraph{Problem.}
+Show that the following limit does not exist.
+\[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} \frac{x + y}{2x^2 + y^2}\]
+\paragraph{Solution.}
+We look at the limit as \(y \rightarrow 0\) by the smooth curve \(x = 0\).
+\[\lim_{y \rightarrow 0} \frac{x + y}{2x^2 + y^2}
+= \lim_{y \rightarrow 0} \frac{y}{y^2}
+= \lim_{y \rightarrow 0} \frac{1}{y} = +\infty\]
+Therefore, the limit does not exist.
+
+\paragraph{Problem.}
+Evaluate the following limit.
+\[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} \frac{\sin \left(x^2 + y^2\right)}{x^2 + y^2}\]
+\paragraph{Solution.}
+Let \(z = x^2 + y^2\), then
+\[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} \frac{\sin \left(x^2 + y^2\right)}{x^2 + y^2}
+= \lim_{z \rightarrow 0^+} \frac{\sin \left(z\right)}{z}
+= 1\]
+by the squeeze theorem or by l'Hôpital's rule.
+
+\paragraph{Problem.}
+Evaluate the following limit.
+\[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} e^{-1/\left(x^2 + y^2\right)}\]
+\paragraph{Solution.}
+Let \(z = x^2 + y^2\), then
+\[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} e^{-1/\left(x^2 + y^2\right)}
+= \lim_{z \rightarrow 0^+} e^{-z^{-1}}\]
+Because \[\lim_{z \rightarrow 0^+} -z^{-1} = -\infty\]
+we know that \[\lim_{z \rightarrow 0^+} e^{-z^{-1}} = \lim_{x \rightarrow -\infty} e^{x} = 0\]
+
+\paragraph{Problem.}
+Determine if the following limit exists. If so, find its value.
+\[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} \frac{x^4 - y^4}{x^2 + y^2}\]
+\paragraph{Solution.}
+First we simplify the expression.
+\[\frac{x^4 - y^4}{x^2 + y^2} = \frac{\left(x^2 - y^2\right) \left(x^2 + y^2\right)}{x^2 + y^2} = x^2 - y^2\]
+Then we find the limit of the simplified expression. Clearly, this limit does
+exist because \(x^2 - y^2\) is continuous everywhere.
+\[\lim_{\left(x, y\right) \rightarrow \left(0, 0\right)}{\frac{x^4 - y^4}{x^2 + y^2}}
+= \lim_{\left(x, y\right) \rightarrow \left(0, 0\right)} x^2 - y^2 = 0\]
+
+\section{Derivatives}
+\[\frac{\dif}{\dif x} \sin x = \cos x\]
+\[\frac{\dif}{\dif x} \cos x = -\sin x\]
+
+\subsection{Identities}
+\[\frac{\dif}{\dif x} \ln x = \reciprocal{x}\]
+\textbf{Chain Rule}
+\[\left\{f\left[g\left(x\right)\right]\right\}'
+= f'\left[g\left(x\right)\right] g'\left(x\right)\]
+
+\subsection{Partial derivatives}
+A partial derivative is a derivative of a function of two or more variables
+with respect to a single variable while the others are treated as constants.
+The partial derivative of a function \(f\) with respect to \(x\) is indicated by
+\(\frac{\partial f}{\partial x}\).
+
+Some authors call \(\frac{\partial f}{\partial x}\left(x_0, y_0\right)\) the
+slope of the surface in the x-direction at \(\left(x_0, y_0\right)\).
+Similarly, \(\frac{\partial f}{\partial y}\left(x_0, y_0\right)\) is the slope
+of the surface in the y-direction at \(\left(x_0, y_0\right)\).
+
+\paragraph{Problem.}
+Find the slope of the surface \(f(x, y) = x^{3}y^{2} + 5y\) in the y-direction at the point \((1, -2)\).
+\paragraph{Solution.}
+First, we differentiate with respect to \(y\) to find an expression for the slope we are interested in.
+\[\frac{\partial f}{\partial y} = 2x^{3} + 5\]
+Then we evaluate the expression at the point of interest.
+\[\frac{\partial f}{\partial y}\left(1, -2\right) = 2 + 5 = 7\]
+Therefore, the slope of the surface \(f(x, y) = x^{3}y^{2} + 5y\) in the y-direction at the point \((1, -2)\) is 7.
+
+\subsubsection{Higher-Order Partial Derivatives}
+The partial derivatives of partial derivatives are called second-order partial
+derivatives. The second-order derivatives for a function \(f\left(x, y\right)\)
+are
+\[\frac{\partial^2 f}{\partial x \partial x} = f_{xx},
+\quad \frac{\partial^2 f}{\partial x \partial y} = f_{yx},
+\quad \frac{\partial^2 f}{\partial y \partial x} = f_{xy},
+\quad \frac{\partial^2 f}{\partial y \partial y} = f_{yy}\]
+Notice how these notations have different conventions for the order of
+differentiation. The \(\partial\) notation being evaluated from right to left
+and the subscript notation being evaluated from left to right.
+
+The second-order partials \(f_{xy}\) and \(f_{yx}\) are called mixed partials.
+
+\begin{theorem}
+    Let \(f\) be a function of two variables. If \(f_{xy}\) and \(f_{yx}\) are
+    continuous on some open disk, then \(f_{xy} = f_{yx}\) on that disk.
+\end{theorem}
+
+\paragraph{Problem.} Let \(f\left(x, y\right) = x^2 e^x e^y + xy\). Find \(f_{xxy}\).
+\paragraph{Solution.}
+\begin{align*}
+    &\frac{\partial^3}{\partial y \partial x \partial x} \left(x^2 e^x e^y + xy\right) \\
+    &=\frac{\partial^2}{\partial y \partial x} \left(\frac{\partial}{\partial x} \left(x^2 e^x e^y + xy\right)\right) \\
+    &=\frac{\partial^2}{\partial y \partial x} \left(2x e^x e^y + x^2 e^x e^y + y\right) \\
+    &=\frac{\partial}{\partial y} \left(\frac{\partial}{\partial x} \left(2x e^x e^y + x^2 e^x e^y + y\right)\right) \\
+    &=\frac{\partial}{\partial y} \left(\frac{\partial}{\partial x} \left(\left(2x + x^2\right) e^x e^y\right)\right) \\
+    &=\frac{\partial}{\partial y} \left(\left(2x + x^2\right) e^x e^y + \left(2 + 2x\right) e^x e^y\right) \\
+    &=\frac{\partial}{\partial y} \left(\left(x^2 + 4x + 2\right) e^x e^y\right) \\
+    &= \left(x^2 + 4x + 2\right) e^x e^y
+\end{align*}
+
+\subsubsection{Local Linear Approximations}
+For a function \(f\left(x, y\right)\) We call
+\[L\left(x, y\right) = f\left(x_0, y_0\right) + f_x\left(x_0, y_0\right)\left(x - x_0\right) + f_y\left(x_0, y_0\right)\left(y - y_0\right)\]
+the local linear approximation of \(f\) at \(\left(x_0, y_0\right)\).
+
+\subsubsection{Chain Rule for Partial Derivatives}
+For a function \(z\left(x, y\right)\), where \(x = x\left(u, v\right)\) and \(y = y\left(u, v\right)\).
+\[\frac{\partial z}{\partial u} = \frac{\partial z}{\partial x}\frac{\partial x}{\partial u} + \frac{\partial z}{\partial y}\frac{\partial y}{\partial u}\]
+
+Similar formulas may be derived for functions of three or more variables.
+
+\paragraph{Problem.} Let
+\[w = e^{xyz}, \quad x = 3u + v, \quad y = 3u - v, \quad z = u^2v.\]
+Use the chain rule to find \(\frac{\partial w}{\partial u}\). \cite{anton-bivens-davis}
+\paragraph{Solution.}
+\begin{align*}
+    \frac{\partial w}{\partial u}
+    &= \frac{\partial w}{\partial x}\frac{\partial x}{\partial u}
+    + \frac{\partial w}{\partial y}\frac{\partial y}{\partial u}
+    + \frac{\partial w}{\partial z}\frac{\partial z}{\partial u} \\
+    &= 3 yz e^{xyz} + 3 xz e^{xyz} + 2 xyuv e^{xyz} \\
+    &= e^{xyz} \left(3 yz + 3 xz + 2 xyuv\right)
+\end{align*}
+
+\paragraph{Problem.} Let
+\[w = x^2 + y^2 - z^2, \quad x = \rho \sin \phi \cos \theta, \quad y = \rho \sin \phi \sin \theta, \quad z = \rho \cos \phi.\]
+Use the chain rule to find \(\frac{\partial w}{\partial \rho}\). \cite{anton-bivens-davis}
+\paragraph{Solution.}
+\begin{align*}
+    \frac{\partial w}{\partial \rho}
+    &= \frac{\partial w}{\partial x}\frac{\partial x}{\partial \rho}
+    + \frac{\partial w}{\partial y}\frac{\partial y}{\partial \rho}
+    + \frac{\partial w}{\partial z}\frac{\partial z}{\partial \rho} \\
+    &= 2 x \sin \phi \cos \theta
+    + 2 y \sin \phi \sin \theta
+    - 2 z \cos \phi \\
+    &= 2 \rho \sin ^2 \phi \cos ^2 \theta
+    + 2 \rho \sin ^2 \phi \sin ^2 \theta
+    - 2 \rho \cos ^2 \phi \\
+    &= 2 \left( \rho \sin ^2 \phi \cos ^2 \theta + \rho \sin ^2 \phi \sin ^2 \theta - \rho \cos ^2 \phi \right) \\
+    &= 2 \left( \left( \rho \sin ^2 \phi \right) \left( \cos^2 \theta + \sin ^2 \theta \right) - \rho \cos ^2 \phi \right) \\
+    &= 2 \left( \rho \sin ^2 \phi - \rho \cos ^2 \phi \right) \\
+    &= 2 \rho \left( \sin ^2 \phi - \cos ^2 \phi \right) \\
+    &= - 2 \rho \cos 2 \phi
+\end{align*}
+
+\section{Series}
+\section{Series for e}
+\[e^x = \frac{x^0}{0!} + \frac{x^1}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} + \ldots\]
+
+\subsection{Intuition behind this series}
+The following demonstration should help one understand why the abovementioned
+series converges to \(e\).
+
+\begin{align*}
+    \frac{\dif}{\dif x} e^x
+    &= \frac{\dif}{\dif x} \left( \frac{x^0}{0!} + \frac{x^1}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} + \ldots \right) \\
+    &= \frac{0 x^{-1}}{0!} + \frac{1 x^0}{1!} + \frac{2 x^1}{2!} + \frac{3 x^2}{3!} + \ldots \\
+    &= \frac{x^0}{0!} + \frac{x^1}{1!} + \frac{x^2}{2!} + \ldots = e^x
+\end{align*}
+
+\subsection{Maclaurin series}
+A Maclaurin series is a Taylor series expansion of a function about 0.
+
+\[f\left(x\right) = f\left(0\right) + f'\left(0\right)x + f''\left(0\right)\frac{x^2}{2!} + f^{\left( 3 \right)}\left(0\right)\frac{x^3}{3!} + \ldots\]
+
+\section{Indefinite integrals}
+\subsection{Reversed chain rule}
+\paragraph{Examples}
+\[\int \tan x \dif x = \int \frac{\sin{x}}{\cos{x}} \dif x\]
+Letting \(f(x) = \cos x\),
+\[\int \frac{\sin{x}}{\cos{x}} \dif x = - \int \frac{f'(x)}{f(x)} \dif x
+= - \ln{f(x)} + C = - \ln{\cos x} + C\]
+Note that, in this case, \(g'(x) = x^{-1}\), and that the integral of the
+reciprocal function is the natural logarithm function.
+
+\subsection{Substitution}\label{substitution}
+\paragraph{Examples}
+\[\int \cos^3 x \dif x
+= \int \left( 1 - \sin^2 x \right) \cos x \dif x
+= \int \cos x \dif x - \int \sin^2 x \cos x \dif x\]
+\[\int \cos x \dif x = \sin x + C\]
+Let \(u = \sin x\), therefore \(\dif u = \cos x \dif x\).
+\[\int \sin^2 x \cos x \dif x = \int u^2 \dif u = \frac{\sin^3 x}{3} + C\]
+\[\int \cos x \dif x - \int \sin^2 x \cos x \dif x
+= \sin x + \frac{\sin^3 x}{3} + C\]
+
+\subsection{Trigonometric substitutions}
+Some integrals require the substitution of a variable by an expression. This is
+the opposite of what is done in \ref{substitution}, on which an expression is
+replaced by a variable.
+
+The following table summarizes the most effective trigonometric substitutions
+and their intervals. The interval restrictions are important to ensure that the
+function which defines the substitution is one-to-one. \cite{stewart}
+
+\begin{center}
+    % 2 is the default, but here we want more spacing.
+    \renewcommand{\arraystretch}{2}
+    \begin{tabular}{ |c|c|c| }
+        \hline
+        Expression & Substitution & Interval \\
+        \hline
+        \(\sqrt{a^2 - x^2}\)
+          & \(x = a\sin\theta\)
+          & \(-\frac{\pi}{2} \le \theta \le \frac{\pi}{2}\) \\
+        \hline
+        \(\sqrt{a^2 + x^2}\)
+          & \(x = a\tan\theta\)
+          & \(-\frac{\pi}{2} < \theta < \frac{\pi}{2}\) \\
+        \hline
+        \(\sqrt{x^2 - a^2}\)
+          & \(x = a\sec\theta\)
+          & \(0 \le \theta < \frac{\pi}{2} \lor \pi \le \theta < \frac{3\pi}{2}\) \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\paragraph{Example}
+Find the area enclosed by an ellipse of the form
+\[\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1\]
+
+Isolating \(y\) gives
+\[y = \pm \frac{b}{a} \sqrt{a^2 - x^2}\]
+
+The area of the ellipse on the first quadrant is given by
+\[\int_{0}^{a} \frac{b}{a} \sqrt{a^2 - x^2} \dif x\]
+
+This is one fourth of the total area of the ellipse, therefore
+\[A = 4 \int_{0}^{a} \frac{b}{a} \sqrt{a^2 - x^2} \dif x\]
+
+To solve the integral, let \(x = a\sin\theta\) and, consequently, \(\dif x = a
+\cos \theta \dif \theta\). It is made simpler by changing the integration
+limits. When \(x = 0\), \(\sin x = 0\), thus \(\theta = 0\). When \(x = a\),
+\(\sin \theta = 1\), thus \(\theta = \pi / 2\).
+
+\begin{align*}
+    4 \int_{0}^{\frac{\pi}{2}} \frac{b}{a} \sqrt{a^2 - x^2} \dif x
+    &= \frac{4b}{a} \int_{0}^{\frac{\pi}{2}} \sqrt{a^2 - a^2 \sin^2 \theta} a \cos \theta \dif \theta \\
+    &= 4ab \int_{0}^{\frac{\pi}{2}} \sqrt{1 - \sin^2 \theta} \cos \theta \dif \theta \\
+    &= 4ab \int_{0}^{\frac{\pi}{2}} \sqrt{\cos^2 \theta} \cos \theta \dif \theta \\
+    &= 4ab \int_{0}^{\frac{\pi}{2}} \abs{\cos \theta} \cos \theta \dif \theta \\
+    &= 4ab \int_{0}^{\frac{\pi}{2}} \cos^2 \theta \dif \theta \\
+    &= 2ab \int_{0}^{\frac{\pi}{2}} 1 + \cos {2 \theta} \dif \theta \\
+    &= 2ab \left[ \theta + \frac{1}{2} \sin {2 \theta} \right]_{0}^{\frac{\pi}{2}} \\
+    &= 2ab \left(\frac{\pi}{2} + 0 - 0 - 0\right) \\
+    &= \pi a b
+\end{align*}
+
+Which is the formula for the area of an ellipse. Furthermore, it is also the
+formula for the area of a circle as a circle is an ellipse with \(a = b\).
+
+\section{Definite integrals}
+\subsection{Multiple integrals}
+\paragraph{Problem.} Simplify
+\[\iint_D {\left(2x - y\right) \dif A}\]
+where D is bounded by the circle with center at the origin and radius 2.
+\paragraph{Solution.} We rewrite the double integral as an iterated integral.
+If \(x\) ranges from \(-2\) to \(2\), and \(y\), as a function of \(x\), is
+bounded by \(-\sqrt{4 - x^2}\) and \(\sqrt{4 - x^2}\).
+\begin{align*}
+    &\int_{-2}^{2} \int_{-\sqrt{4 - x^2}}^{\sqrt{4 - x^2}} {\left(2x - y\right) \dif y} \dif x \\
+    &= \int_{-2}^{2} \left[ 2xy - \frac{y^2}{2} \right]_{y = -\sqrt{4 - x^2}}^{y = \sqrt{4 - x^2}} \dif x \\
+    &= \int_{-2}^{2} \left( 2x\sqrt{4 - x^2} - \frac{4 - x^2}{2} + 2x\sqrt{4 - x^2} + \frac{4 - x^2}{2} \right) \dif x \\
+    &= \int_{-2}^{2} \left( 4x\sqrt{4 - x^2} \right) \dif x
+\end{align*}
+At this point the \(x = a\sin{t}\) trigonometric substitution is used.
+\begin{align*}
+    &\int_{-2}^{2} 4x\sqrt{4 - x^2} \dif x \\
+    &=\int_{-\pi/2}^{\pi/2} 4 \left(a \sin{t}\right) \sqrt{a^2 - \left(a \sin{t}\right)^2} \dif t \\
+    &=\int_{-\pi/2}^{\pi/2} 4 a \sin{t} \sqrt{a^2 - a^2\sin^2{t}} \dif t \\
+    &=\int_{-\pi/2}^{\pi/2} 4 a^2 \sin{t} \sqrt{1 - \sin^2{t}} \dif t \\
+    &=\int_{-\pi/2}^{\pi/2} 16 \sin{t} \cos{t} \dif t \\
+    &=16 \left[ - \frac{\cos^2{t}}{2} \right]_{-\pi/2}^{\pi/2} \\
+    &=16 \left( - \frac{\cos^2{\left(\frac{\pi}{2}\right)}}{2} + \frac{\cos^2{\left(-\frac{\pi}{2}\right)}}{2} \right) = 0
+\end{align*}

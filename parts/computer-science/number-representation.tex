@@ -1,0 +1,253 @@
+\chapter{Number representation}
+
+\section{Fixed point}
+Fixed point is a form of representing real numbers with a fixed number of digits
+after the radix point.
+
+\subsection{Fixed point conversion exercises}
+\paragraph{Problem.}
+Convert \texttt{01101011} and \texttt{11001100} from fixed
+point notation with four bits for the integral part and four bits for the
+fractional part to decimal first using unsigned arithmetic and then using two's
+complement.
+\paragraph{Solution.}
+Using unsigned arithmetic,
+\[0110.1011_{2} = 4_{10} + 2_{10} + 0.5_{10} + 0.125_{10} + 0.0625_{10}
+  = 6.6875_{10}\]
+\[1100.1100_{2} = 8_{10} + 4_{10} + 0.5_{10} + 0.25_{10} = 12.75_{10}\]
+
+Using two's complement,
+\[0110.1011_{2} = 4_{10} + 2_{10} + 0.5_{10} + 0.125_{10} + 0.0625_{10}
+ = 6.6875_{10}\]
+\[1100.1100_{2} = \left( 8_{10} + 4_{10} \right) - 16_{10} + 0.5_{10}
+ + 0.25_{10} = -3.25_{10}\]
+
+\paragraph{Problem.}
+Evaluate the following expressions using 8-bit unsigned
+fixed point arithmetic. The results should have 4 bits for the integral part and
+4 bits for the fractional part. The results must be rounded if necessary.
+Overflow and rounding must be indicated.
+
+\begin{enumerate}
+    \item \(0111.0110_{2} + 0010.0010_{2}\)
+    \item \(1000.1001_{2} - 1001.1000_{2}\)
+    \item \(11.101011_{2} + 001100.00_{2}\)
+\end{enumerate}
+
+\paragraph{Solution.}
+\begin{enumerate}
+    \item \(0111.0110_{2} + 0010.0010_{2} = 1001.1000_{2}\)
+    \item \(1000.1001_{2} - 1001.1000_{2} = 0010.0001_{2}\) \textbf{(overflow)}
+    \item \(11.101011_{2} + 001100.00_{2} = 1111.1011_{2}\) \textbf{(rounding)}
+\end{enumerate}
+
+\section{Floating Point}
+Floating point is a form of representing real numbers while supporting a
+trade-off between range and precision.
+
+All exact values a floating point may assume are of the form
+\[\text{significand} \cdot \text{base}^\text{exponent}\]
+where significand, base, and exponent are integers and base is greater than or
+equal to two.
+
+\subsection{Usage}
+Albeit more computationally expensive than fixed point arithmetic, floating
+point arithmetic is more commonly used in modern times. The main reasons for
+this is that the same floating point format is suitable for representing a wider
+range of values than its fixed point counterpart.
+
+Supercomputers are often compared in terms of FLOPS. FLOPS stands for
+floating-point operations per second. It is a more accurate measure of computer
+performance for computers which make heavy usage of floating-poing
+operations.
+
+\subsection{IEEE 754}
+The IEEE 754 is the IEEE standard for floating-point arithmetic. It is a
+technical standard for floating-point computation established in 1985.
+
+The value of a single precision IEEE-754 number is given by
+\[\text{sign} \cdot \text{significand} \cdot 2^\text{exponent}\]
+
+\subsubsection{IEEE 754 Number Formats}
+The standard defines five number formats, two of which are in wide usage:
+binary32 and binary64.
+
+The binary32 format defines 32-bit floating point numbers in base 2. These are
+also known as \textbf{single precision floating point numbers}. This format
+delegates one bit to the sign, 8 bits to the exponent and the remaining 23 bits
+to the significand.
+
+The binary64 format defines 64-bit floating point numbers in base 2. These are
+also known as \textbf{double precision floating point numbers}. This format
+delegates one bit to the sign, 11 bits to the exponent and the remaining 52 bits
+to the significand.
+
+\subsubsection{IEEE 754 Conversion Algorithm}
+In order to convert the decimal representation of a real number to an IEEE 754
+number the following algorithm may be used.
+\begin{enumerate}
+\item Set the first bit if the number is negative.
+\item Find the biggest power of two which is less than or equal to the absolute
+    value of the number and express it in the exponent bits biased by 127.
+\item Express the fractional part of the quotient between the number whose
+    representation is of interest and the abovementioned power of two in the
+    significand bits.
+\end{enumerate}
+
+An algorithm for the conversion from the IEEE 754 format to decimal is not
+described as it is much more obvious than the one required for the conversion
+from decimal values to this floating point format.
+
+\subsubsection{IEEE 754 Conversion Exercises}
+\paragraph{Problem.}
+Convert -7 to a single-precision IEEE 754 floating point number.
+\paragraph{Solution.}
+\begin{enumerate}
+\item It is negative, therefore the first bit is set.
+\item The biggest power of two less than or equal to the absolute value is
+    \(2^2 = 4\). Therefore, the exponent should be \(127 + 2 = 129\).
+\item Determine the significand: \(7 \div 4 = 1.75\).
+\item This results in \singleprecision{11000001011000000000000000000000}.
+\end{enumerate}
+
+\paragraph{Problem.}
+Convert 255 to a single-precision IEEE 754 floating point number.
+\paragraph{Solution.}
+\begin{enumerate}
+\item It is positive, therefore the first bit is unset.
+\item The biggest power of two less than or equal to the absolute value is
+    \(2^7 = 128\). Therefore, the exponent should be \(127 + 7 = 134\).
+\item Determine the significand: \(255 \div 128 = 1.9921875\).
+\item This results in \singleprecision{01000011011111110000000000000000}.
+\end{enumerate}
+
+\paragraph{Problem.}
+Convert \singleprecision{01000110110000000000000000000000} from IEEE 754 single
+precision floating point to a decimal number.
+\paragraph{Solution.}
+\begin{enumerate}
+\item The first bit is unset, therefore it is positive.
+\item The exponent is \(141 - 127 = 14\).
+\item The significand is \(1 + 2^{-1} = 1.5\).
+\item This results in \(1.5 \times 2^{14} = 1.5 \times 16384 = 24576\).
+\end{enumerate}
+
+\paragraph{Problem.}
+Convert \singleprecision{11001011010100000000000011000000} from IEEE 754 single
+precision floating point to a decimal number.
+\paragraph{Solution.}
+\begin{enumerate}
+\item The first bit is set, therefore it is negative.
+\item The exponent is \(150 - 127 = 23\).
+\item The significand is \(1 + 2^{-1} + 2^{-3} + 2^{-16} + 2^{-17} =
+    1.62502288818359375\).
+\item This results in \(-1.62502288818359375 \times 2^{23} = 13,631,680\).
+\end{enumerate}
+
+\textbf{Finding Representation Limits}
+
+\textit{Find the largest positive number that can be represented with a single
+precision IEE 754 floating point number.}
+
+Straightforwardly enough, this number has the largest possible significand and
+the largest possible exponent of a normalized value.
+
+Therefore, this number is \singleprecision{01111111011111111111111111111111},
+which in decimal is
+
+\begin{align}
+    &\left(1 + \sum_{i=1}^{23} 2^{-i}\right) \times 2^{127} \nonumber \\
+    &= \frac{16777215}{8388608} \times 2^{127} \nonumber \\
+    &= 340282346638528859811704183484516925440 \label{largest-positive-32} \\
+    &\approx 3.403 \times 10^{38} \nonumber
+\end{align}
+
+\textit{Find the second largest positive number that can be represented with a
+single precision IEEE 754 floating point number.}
+
+This number is easily derived from the largest positive number, which is
+\ref{largest-positive-32}. To obtain the first number smaller than the current
+number, one should subtract one from the significand bits. However, if the
+significand is 1.0, one should make the significand the biggest possible value
+it may assume and decrement the exponent\footnote{Take the two options as
+alternatives to obtain a number smaller than the largest positive representable
+number. Decrementing the exponent will produce a number equal to the product of
+\(0.5\) and the largest positive number. However, decrementing the significand
+bits would produce a number approximately equal to the product of
+\(0.999999881\) and largest positive number. This clearly demonstrates that the
+sought after number is found by decrementing the significant bits.}.
+
+Therefore, the second largest positive number that can be represented with a
+single precision IEEE 754 floating point number is
+
+% Could have used align*, but let us keep using align in case we need labels in
+% the future.
+\begin{align}
+    \left(1 + \sum_{i=1}^{22} 2^{-i}\right) \times 2^{127}
+    &= \frac{8388607}{4194304} \times 2^{127} \nonumber \\
+    &= 340282326356119256160033759537265639424 \nonumber \\
+    &\approx 3.403 \times 10^{38} \nonumber
+\end{align}
+
+This also shows that the difference between the largest possible number and the
+second largest possible number is approximately \(2.03 \times 10^{31}\).
+
+\textit{Find the smallest positive number that can be represented with a single
+precision IEE 754 floating point number.}
+
+This number is the product of the smallest positive significand by the power of
+the base raised to the smallest normalized exponent.
+
+Namely, this number is \singleprecision{00000000100000000000000000000000}, whose
+decimal representation is
+
+\begin{align}
+    2^{-126}
+    &= \frac{1}{85070591730234615865843651857942052864}
+    \label{smallest-positive-32} \\
+    &\approx 1.175 \times 10^{-38} \nonumber
+\end{align}
+
+\textit{Find the second smallest positive number that can be represented with a
+single precision IEE 754 floating point number.}
+
+The opposite of what was done to find the second largest positive number may be
+done to find the second smallest positive number. Therefore, the significand is
+made \(1 + 2^{-23}\) and the exponent is left unchanged.
+
+\begin{align}
+    &\left(1 + 2^{-23}\right) \times 2^{-126} \nonumber \\
+    &= \frac{8388609}{713623846352979940529142984724747568191373312} \nonumber
+    \\ &\approx 1.175 \times 10^{-38} \nonumber
+\end{align}
+
+This also shows that the difference between the smallest possible number and the
+second smallest possible number is approximately \(1.401 \times 10^{-45}\).
+
+\textit{Find the sum of the following floating point numbers.}
+\begin{itemize}
+    % Remove bullets
+    \item[] \singleprecision{11000011010100000000000000000000}
+    \item[] \singleprecision{01000110110000000000000000000000}
+\end{itemize}
+
+As the exponent of the positive number is greater, the result is positive.
+Evaluating the addition is easier if the significands are aligned. In order to
+achieve this, denormalize the negative value so that its exponent is also 14.
+The \textbf{actual} significand then changes in the following way:
+
+\begin{itemize}
+    % Remove bullets
+    \item[] \texttt{1.1010000000}
+    \item[] \texttt{0.0000001101}
+\end{itemize}
+
+Therefore, the operation on the significands is a simple binary subtraction.
+\[\texttt{1.1000000000} - \texttt{0.0000001101} = \texttt{1.0111110011}\]
+This results in a normalized significand. Therefore, straightforwardly enough,
+the complete result is \singleprecision{01000110101111100110000000000000}.
+
+One might convert these numbers to decimal to better understand what is
+happening. After doing so, it is found that the subtraction performed was
+\(24576 - 208 = 24368\).
+
