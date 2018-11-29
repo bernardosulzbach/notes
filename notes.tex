@@ -1980,7 +1980,9 @@ While the PLT is usually filled lazily in runtime, the GOT is filled before the 
 
 \section{Replication}
 
-There are two major approaches to achieving fault tolerance: \textbf{passive (primary-backup) replication}, in which clients communicate with a distinguished replica, and \textbf{active replication}, in which clients communicate by multicast with all replicas \cite[p.~766]{distributed-systems-coulouris-2013}.
+There are two major approaches to achieving fault tolerance.
+In \textbf{passive (primary-backup) replication}, clients communicate with a distinguished replica.
+In \textbf{active replication}, clients communicate by multicast with all replicas \cite[p.~766]{distributed-systems-coulouris-2013}.
 
 Replication is used in many day-to-day situations.
 For example, the caching of resources from web servers in browsers is a form of replication, since the data held in the caches and at the servers are replicas of one another.
