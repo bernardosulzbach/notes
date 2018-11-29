@@ -269,6 +269,16 @@ However, one can do better than flooding by using \textbf{reverse path forwardin
 
 A last alternative, which is optimal, is to use a \textbf{spanning tree} of the network. If each router knows the sink tree of the network, then it is possible to do broadcasting with forwarding perfection. However, this requires each router to be able to compute the sink tree, which is possible when using some routing algorithms, such as link state routing, but impossible under other algorithms, such as distance vector routing \cite[p.~382]{computer-networks-tanenbaum-2012}.
 
+\subsection{Packet fragmentation}\label{Packet fragmentation}
+
+There are two approaches for packet fragmentation in networks, \textbf{transparent fragmentation}, which performs reassembly if the router knows it is sending to a ``larger-packet'' network, and \textbf{nontransparent fragmentation}, which performs no packet reassembly in intermediary nodes.
+Transparent fragmentation might be quite wasteful if the packets are being constantly disassembled and reassembled in intermediary nodes.
+Nontransparent fragmentation requires less work from the routers.
+IP works by using nontransparent fragmentation.
+It gives every fragment a packet number, an absolute byte offset within the packet, and a flag indicating whether it is the end of the packet \cite[p.~434]{computer-networks-tanenbaum-2012}. This allows for fragments as small as a single byte plus the header size.
+
+Because of the inefficiency introduced by packet fragmentation, the modern Internet uses path MTU discovery, so that the fragmentation is done in the sending host \cite[p.~435]{computer-networks-tanenbaum-2012}.
+
 \subsection{IP addresses}
 
 IP addresses are hierarchical, unlike Ethernet addresses. Each 32-bit address is comprised of a variable-length network portion in the top bits and a host portion in the bottom bits.
