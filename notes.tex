@@ -3025,7 +3025,75 @@ Seven is also not possible because a network must have at least two hosts and tw
 \end{Answer}
 
 \begin{Exercise}
+Assume two hosts A and B desire to exchange the following messages over TCP.
+
+\begin{enumerate}
+\item A sends 50 bytes to B.
+\item B sends 10 bytes to A.
+\item A sends 20 bytes to B.
+\item A sends 30 bytes to B.
+\item B sends 90 bytes to A.
+\item B sends 50 bytes to A.
+\end{enumerate}
+
+Assume A starts and also ends the connection. A proposes the sequence number 300 and B proposes the sequence number 100. Draw the message exchange with the SEQ value, the ACK value, and the flags used (SYN, ACK, FIN).
 \end{Exercise}
+\begin{Answer}
+
+[SYN] SEQ = 300
+
+\hspace*{\fill} [SYN, ACK] SEQ = 100, ACK = 301
+
+[ACK] SEQ = 301, ACK = 101
+
+\noindent\rule[0.5ex]{\linewidth}{1pt}
+
+[PSH, ACK] SEQ = 301, ACK = 101
+
+\hspace*{\fill} [ACK] SEQ = 101, ACK = 351
+
+\noindent\rule[0.5ex]{\linewidth}{0.5pt}
+
+\hspace*{\fill} [PSH, ACK] SEQ = 101, ACK = 351
+
+[ACK] SEQ = 351, ACK = 111
+
+\noindent\rule[0.5ex]{\linewidth}{0.5pt}
+
+[PSH, ACK] SEQ = 351, ACK = 111
+
+\hspace*{\fill} [ACK] SEQ = 111, ACK = 371
+
+\noindent\rule[0.5ex]{\linewidth}{0.5pt}
+
+[PSH, ACK] SEQ = 371, ACK = 111
+
+\hspace*{\fill} [ACK] SEQ = 111, ACK = 401
+
+\noindent\rule[0.5ex]{\linewidth}{0.5pt}
+
+\hspace*{\fill} [PSH, ACK] SEQ = 111, ACK = 401
+
+[ACK] SEQ = 401, ACK = 201
+
+\noindent\rule[0.5ex]{\linewidth}{0.5pt}
+
+\hspace*{\fill} [PSH, ACK] SEQ = 201, ACK = 401
+
+[ACK] SEQ = 401, ACK = 251
+
+\noindent\rule[0.5ex]{\linewidth}{1pt}
+
+[FIN, ACK] SEQ = 401, ACK = 251
+
+\hspace*{\fill} [ACK] SEQ = 251, ACK = 402
+
+\hspace*{\fill} [FIN, ACK] SEQ = 251, ACK = 402
+
+[ACK] SEQ = 402, ACK = 252
+
+Answered according to \cite{computer-networking-kurose-2012} and according to an experiment using Python and Wireshark.
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
