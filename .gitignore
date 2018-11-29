@@ -2,6 +2,10 @@
 scripts/.idea
 release.txt
 
+# Python
+__pycache__
+.idea
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
