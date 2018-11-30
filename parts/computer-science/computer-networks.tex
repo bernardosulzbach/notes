@@ -1574,7 +1574,30 @@ Then the occupancy would be \(5000 / 65536 \approx 0.07629\).
 \end{Answer}
 
 \begin{Exercise}
+The HTTP protocol supports non-persistent and persistent connections.
+Multiple non-persistent connections can be established in parallel.
+Persistent connection may use request pipelining.
+
+Assuming a web page references other 15 objects and that the client cannot open an infinite number of connections.
+
+How many connections are established, at least, by a client employing the following techniques?
+
+\begin{enumerate}[a)]
+\item A single non-persistent connection.
+\item Parallel non-persistent connections.
+\item Persistent connections without pipelining.
+\item Persistent connections with pipelining.
+\end{enumerate}
 \end{Exercise}
+\begin{Answer}
+\begin{enumerate}[a)]
+\item There are 16 connections. One at a time.
+\item There are 16 connections. Even if done in parallel, one connection gets one object.
+\item Assuming that the server does not close the connection, 1 connection suffices.
+\item Assuming that the server does not close the connection, 1 connection suffices.
+\end{enumerate}
+
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
