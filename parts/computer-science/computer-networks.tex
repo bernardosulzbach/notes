@@ -1102,13 +1102,32 @@ None.
 \end{Answer}
 
 \begin{Exercise}
+Duplicate of exercise 17.
 \end{Exercise}
+\begin{Answer}
+None.
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
 
 \begin{Exercise}
+\begin{enumerate}
+\item Why TCP uses three-way handshakes instead of two-way handshakes?
+\item Describe the T-PDUs exchanged when connections are terminated symmetrically, asymmetically, and abruptly.
+\item What is TSAP?
+\end{enumerate}
 \end{Exercise}
+\begin{Answer}
+\begin{enumerate}
+\item TCP requires both parties to establish sequence numbers. As the initial sequence number of the server also has to be acknowledged, a third message is required.
+% TODO: review this item.
+\item \textbf{Symmetrically}, the entity which desires to close the connection will send a FIN and wait for the other side to send any data it still has to transmit and a FIN. \textbf{Asymmetrically}, the entity which desires to close the connection will send a FIN message and close the connection. \textbf{Abruptly}, just a RST is sent.
+\item A TSAP (transport service access point) is a specific endpoint in the transport layer. A TSAP identifies an instance of a service.
+An NSAP (network service access point) only specifies a host, the TSAP is needed to specify a process running on that specific host.
+An IP address is an example of an NSAP, whereas an IP address and port number pair is an example of a TSAP.
+\end{enumerate}
+\end{Answer}
 
 \begin{Exercise}
 What is the maximum number of bits in a suffix that can be used to define subnetworks in an IP network?
@@ -1120,7 +1139,19 @@ See exercise 13 to understand why.
 \end{Answer}
 
 \begin{Exercise}
+What is CIDR? How does it help solve the IPv4 addresses exhaustion?
+Give an example of CIDR block allocation.
+What is meant by least and most restrictive masks?
 \end{Exercise}
+\begin{Answer}
+CIDR is a design for dividing networks in a classless manner.
+It helps with IPv4 address exhaustion by allowing for networks of sizes other than \(2^{8}\), \(2^{16}\) and \(2^{24}\).
+
+Given the 220.100.0.0/16 network, it can be further subdivided into 220.100.0.0/17, 220.100.128.0/18, and 220.100.192.0/18 assuming that we can use the all-zeros and all-ones sub-networks.
+
+The most restrictive mask is the longest mask. It has the highest priority.
+The least restrictive mask is the shortest mask. It has the least priority.
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
