@@ -1465,7 +1465,41 @@ Therefore, the original block was 192.168.0.0/20.
 \end{Exercise}
 
 \begin{Exercise}
+A router supports classless routing and has the following routing table.
+
+\begin{center}
+\begin{tabular}{c c c}
+    Destination network & Next hop   & Mask            \\ \hline
+           150.100.92.1 & 200.10.1.1 & 255.255.255.255 \\ \hline
+           150.100.80.0 & 192.10.2.1 & 255.255.240.0   \\ \hline
+           150.100.64.0 & 192.10.2.2 & 255.255.192.0   \\ \hline
+                Default & 200.10.1.2 & 0.0.0.0
+\end{tabular}
+\end{center}
+
+List all possible routes and the selected routes for datagrams to following addresses.
+\begin{enumerate}
+\item 150.100.92.1
+\item 150.100.94.1
+\item 150.100.128.1
+\end{enumerate}
 \end{Exercise}
+\begin{Answer}
+\begin{enumerate}
+\item 150.100.92.1 \& 255.255.255.255 = 150.100.92.1. Possible. \textbf{Selected 200.10.1.1}.
+\item 150.100.94.1 \& 255.255.255.255 = 150.100.94.1. Not possible.
+
+150.100.94.1 \& 255.255.240.0 = 150.100.80.0. Possible. \textbf{Selected 192.10.2.1}.
+
+\item 150.100.128.1 \& 255.255.255.255 = 150.100.128.1. Not possible.
+
+150.100.128.1 \& 255.255.240.0 = 150.100.128.0. Not possible.
+
+150.100.128.1 \& 255.255.192.0 = 150.100.128.0. Not possible.
+
+150.100.128.1 \& 0.0.0.0 = 0.0.0.0. Possible. \textbf{Selected 200.10.1.2}.
+\end{enumerate}
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
