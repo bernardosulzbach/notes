@@ -1600,7 +1600,11 @@ How many connections are established, at least, by a client employing the follow
 \end{Answer}
 
 \begin{Exercise}
+Duplicate of exercise 61.
 \end{Exercise}
+\begin{Answer}
+None.
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
@@ -1735,7 +1739,41 @@ An illustrative table of the division follows.
 \end{Answer}
 
 \begin{Exercise}
+A network administrator is trying to identify which services are being offered by a certain machine. The output of \texttt{netstat -tuan} is as follows.
+
+\begin{verbatim}
+Proto Recv-Q  Send-Q Local Address   Foreign Address     State
+tcp      0       0   0.0.0.0:25      0.0.0.0:*           LISTEN
+tcp      0       0   0.0.0.0:80      0.0.0.0:*           LISTEN
+tcp      0       0   192.10.1.33:21  0.0.0.0:*           LISTEN
+tcp      0       0   192.10.1.65:25  192.10.1.1:55120    ESTABLISHED
+tcp      0       0   192.10.1.33:21  200.20.1.1:63472    ESTABLISHED
+tcp      0       0   192.10.1.65:80  150.10.50.1:54387   ESTABLISHED
+udp      0       0   0.0.0.0:7       0.0.0.0:*
+udp      0       0   192.10.1.97:53  0.0.0.0:*
+\end{verbatim}
+
+\begin{enumerate}
+\item How many services are running on this machine?
+Which transport protocols are being used by these services?
+How many services of each type of protocol exist?
+\item Which sockets are waiting new connection requests?
+\item How many clients are using the services right now?
+\item Are the IP addresses of this machine shown? If so, what are they?
+\item This machine received a SYN segment whose source and destination ports are 55120 and 25. Which socket is this segment using?
+\item The UDP sockets are not in any state. Is this a problem?
+\end{enumerate}
 \end{Exercise}
+\begin{Answer}
+\begin{enumerate}
+\item Five services. Three using TCP and two using UDP.
+\item The first three ones (TCP and listening).
+\item At least three, because there are at least three established TCP connections. It is not possible to determine the number of UDP clients.
+\item At least three of this machine IP addresses are shown as the bound to address of a few sockets. They are 192.10.1.33, 192.10.1.65, 192.10.1.97.
+\item It went to the fourth socket, which is established to 192.10.1.1:55120.
+\item No. UDP sockets do not have the notion of state.
+\end{enumerate}
+\end{Answer}
 
 \begin{Exercise}
 In a Windows XP machine, the command \texttt{netstat -na} presented the following result, explain it.
@@ -1747,7 +1785,14 @@ There is a TCP socket listening on port 2222 for connections from any address an
 \end{Answer}
 
 \begin{Exercise}
+When dividing the IP address range 200.30.40.0 with a /24 mask in seven sub-networks, is there any difference between a classful and a classless design?
+If so, which network parameters are affected?
 \end{Exercise}
+\begin{Answer}
+There is. In a classful network which complies to RFC 950, the sub-network zero and the all-ones sub-network have to be avoided.
+Therefore, in order to get 7 sub-networks, a classful design will require 4 bits for the network portion while a classless design could use just 3 bits for the network portion.
+The affected network parameter is the sub-network mask.
+\end{Answer}
 
 \begin{Exercise}
 Duplicate of exercise 11.
@@ -1779,7 +1824,37 @@ The main advantages that autonomous systems bring to the routing process are int
 \end{Answer}
 
 \begin{Exercise}
+A corporation has the block 192.50.32.0/19.
+It has to be divided in 14 sub-networks, according to the following valid host IP address requirements.
+Propose an allocation scheme.
+\begin{enumerate}
+\item N1 - 800
+\item N2, N3 - 400
+\item N4 - 350
+\item N5, N6 - 200
+\item N7, N8, N9, N10, N11 - 100
+\item N12, N13, N14 - 80
+\end{enumerate}
 \end{Exercise}
+\begin{Answer}
+\begin{enumerate}
+\item N1 - 192.50.32.0/22
+\item N2 - 192.50.36.0/23
+\item N3 - 192.50.38.0/23
+\item N4 - 192.50.40.0/23
+\item N5 - 192.50.42.0/24
+\item N6 - 192.50.43.0/24
+\item N7 - 192.50.44.0/25
+\item N8 - 192.50.44.128/25
+\item N9 - 192.50.45.0/25
+\item N10 - 192.50.45.128/25
+\item N11 - 192.50.46.0/25
+\item N12 - 192.50.46.128/25
+\item N13 - 192.50.47.0/25
+\item N14 - 192.50.47.128/25
+\end{enumerate}
+
+\end{Answer}
 
 \begin{Exercise}
 UDP only uses the destination port to demultiplex the received datagrams.
