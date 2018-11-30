@@ -1392,7 +1392,15 @@ Additionally, some modern operating systems allow multiple sockets to be bound t
 \end{Answer}
 
 \begin{Exercise}
+Why and when does SSL use asymmetric and symmetric cryptography?
 \end{Exercise}
+\begin{Answer}
+The server sends a copy of its public key to the client, which then generates a session key and uses this public key to encrypt it and send it to the server.
+The server decrypts the encrypted session key using its private key.
+After this exchange, both server and client will use symmetric key cryptography to exchange messages.
+
+The main reason for doing this is that symmetric key cryptography algorithms have much higher throughput than asymmetric key cryptography algorithms.
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
