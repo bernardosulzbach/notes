@@ -1215,7 +1215,17 @@ Determine the next hop for datagrams addressed to the following addresses.
 \end{Answer}
 
 \begin{Exercise}
+Why link state routing requires both sequence numbers and age in its PDUs?
 \end{Exercise}
+\begin{Answer}
+The sequence number is important for the routers to know whether a PDU has to be discarded (because it is an older PDU or a duplicate of the newest PDU) or kept.
+However, just using a sequence number can cause major issues if a router is restarted, as all of its first PDUs will be ignored for having a lower sequence number.
+Therefore, an age field is also used. Eventually, the stale information about the restarted router will be discarded and new PDUs (even if they have a much lower sequence number) will be accepted.
+
+An age field also mitigates the risk of data corruption affecting the PDU sequence number. A bit flip could increase the PDU sequence number substantially, which would cause many updates to be ignored if existing values were not subject to aging.
+
+If only the age field were to be used, the flood would not be stopped by the detection of repeated PDUs, which could lead to a substantial waste of bandwidth.
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
