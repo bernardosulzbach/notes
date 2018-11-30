@@ -1320,7 +1320,30 @@ SMTP will require SMTP, which uses TCP over IP.
 \end{Exercise}
 
 \begin{Exercise}
+A network administrator needs to divide the address block 10.1.2.0/24 into five sub-networks.
+Determine, for both classful (avoiding all-zeros and all-ones sub-networks) and classless sub-netting, the network mask, the first host address, the last host addresses, and the broadcast address of the sub-networks.
 \end{Exercise}
+\begin{Answer}
+We need 5 networks, so 3 bits are needed for both classful and classless subdivisions.
+
+Using classful we have the following.
+\begin{enumerate}
+\item 10.1.2.32/27, 10.1.2.33, 10.1.2.62, 10.1.2.63
+\item 10.1.2.64/27, 10.1.2.65, 10.1.2.94, 10.1.2.95
+\item 10.1.2.96/27, 10.1.2.97, 10.1.2.126, 10.1.2.127
+\item 10.1.2.128/27, 10.1.2.129, 10.1.2.158, 10.1.2.159
+\item 10.1.2.160/27, 10.1.2.161, 10.1.2.190, 10.1.2.191
+\end{enumerate}
+
+Using classless we have the following.
+\begin{enumerate}
+\item 10.1.2.0/27, 10.1.2.1, 10.1.2.30, 10.1.2.31
+\item 10.1.2.32/27, 10.1.2.33, 10.1.2.62, 10.1.2.63
+\item 10.1.2.64/27, 10.1.2.65, 10.1.2.94, 10.1.2.95
+\item 10.1.2.96/27, 10.1.2.97, 10.1.2.126, 10.1.2.127
+\item 10.1.2.128/27, 10.1.2.129, 10.1.2.158, 10.1.2.159
+\end{enumerate}
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
