@@ -393,17 +393,41 @@ When talking about TCP/IP, it is common to group OSI layers 1 and 2 under Networ
 
 \section{Application layer}
 
-\subsection{File transfer protocol (FTP)}
-
-FTP is used to allow a local host to transfer files to or from a remote host. The protocol uses password authentication but uses no encryption whatsoever \cite[p.~116]{computer-networking-kurose-2012}.
-
-FTP uses TCP on the ports 20 and 21 for data and control, respectively \cite[p.~117]{computer-networking-kurose-2012}. Because of this separation, one can say that FTP sends its control information \textbf{out-of-band}. HTTP, however, sends its control information \textbf{in-band}.
-
-In FTP, a single control connection is used throughout the user session. However, a new data connection is created for each file transferred. The server also has to keep \textbf{state} for each open session.
-
 \subsection{HTTP}
 
+\subsubsection{Non-persistent and persistent connections}
+
+In many applications, multiple HTTP requests are done in a short period of time.
+Therefore, the developer has to make a decision between sending these requests over separate TCP connections (using \textbf{non-persistent connections}) or over the same TCP connection (using \textbf{persistent connections}) \cite[p.~100]{computer-networking-kurose-2012}. By default, HTTP uses persistent connections.
+HTTP (which is defined in \href{https://tools.ietf.org/html/rfc1945}{RFC 1945} and \href{https://tools.ietf.org/html/rfc2616}{RFC 2616}) does not define anything regarding HTML.
+
+The following enumeration is an explanation of a request to a server to obtain an HTML page with one JavaScript file referenced using non-persistent connections.
+
+\begin{enumerate}
+\item The HTTP client opens a TCP connection to the server.
+This requires a socket in the client and a socket in the server.
+\item The HTTP client sends an HTTP request message to the server through this socket.
+\item The server reads the HTTP message and answers it by sending back an HTTP response.
+\item The HTTP server tells TCP stack to close the connection.
+The connection will be closed when TCP knows the client has received the whole message.
+\item The client application now extracts the payload of the message and finds a HTML file which references another file.
+\end{enumerate}
+
+After the last step, the client application will need to open another TCP connection to request the file mentioned in the HTML document.
+
+When using HTTP with non-persistent connections, each connection transports exactly one request and one response \cite[p.~101]{computer-networking-kurose-2012}.
+Browsers using non-persistent connections can use parallel connections to speed up the process of loading an entire page.
+
+Roughly, the time taken to obtain a response using non-persistent connections is two RTTs plus the time it takes for the client to send the request and the time it takes for the server to send the response.
+This is because the third part of the TCP handshake can already include the request in it \cite[p.~102]{computer-networking-kurose-2012}.
+
+With persistent connections, the client can reuse a connection to send multiple requests. These requests can be made back-to-back, without waiting for replies.
+This is called \textbf{pipelining}.
+
+Typically, the HTTP server will close a connection which has not been used for a certain time \cite[p.~103]{computer-networking-kurose-2012}.
+
 \subsubsection{HTTP status codes}
+
 HTTP status codes convey the result of the attempts of the server to satisfy the request.
 
 \begin{itemize}
@@ -413,6 +437,14 @@ HTTP status codes convey the result of the attempts of the server to satisfy the
  \item 4xx : client error
  \item 5xx : server error
 \end{itemize}
+
+\subsection{File transfer protocol (FTP)}
+
+FTP is used to allow a local host to transfer files to or from a remote host. The protocol uses password authentication but uses no encryption whatsoever \cite[p.~116]{computer-networking-kurose-2012}.
+
+FTP uses TCP on the ports 20 and 21 for data and control, respectively \cite[p.~117]{computer-networking-kurose-2012}. Because of this separation, one can say that FTP sends its control information \textbf{out-of-band}. HTTP, however, sends its control information \textbf{in-band}.
+
+In FTP, a single control connection is used throughout the user session. However, a new data connection is created for each file transferred. The server also has to keep \textbf{state} for each open session.
 
 \section{Network security}
 
@@ -1527,7 +1559,19 @@ When sending a message, the sender will use the receiver's public key to encrypt
 \end{Answer}
 
 \begin{Exercise}
+An institution has 5000 hosts uniformly distributed over 100 networks.
+Propose a CIDR and a classful allocation scheme and compare the amount of wasted addresses.
 \end{Exercise}
+\begin{Answer}
+There are 100 networks of 50 hosts each. Therefore, 62-host networks are enough.
+The most efficient uniform distribution is to have 128 networks of 62-hosts.
+This requires \(7 + 6 = 13\) bits for the network and host parts.
+Therefore, a block with \(2^{13} = 8192\) addresses will be needed.
+The occupancy then is \(5000 / 8192 \approx 0.61035\).
+
+Using a Class B network, there would be \(2^{16}\) available addresses.
+Then the occupancy would be \(5000 / 65536 \approx 0.07629\).
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
