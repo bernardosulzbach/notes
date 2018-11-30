@@ -807,15 +807,13 @@ Multiple IP addresses may have been resolved to the MAC of the router.
 \end{Answer}
 
 \begin{Exercise}
-A TCP/IP device in a network has the IP address 128.138.243.100 and the mask 255.255.255.192.
+A host in a network has the IP address 128.138.243.100 and the mask 255.255.255.192.
 Find out the network number, the network broadcast address, the first and last valid IP addresses.
-Assume a classful system. Seems to be from \cite{unix-system-administration-handbook-nemeth-2000}.
+Assume a classful system. Seems to be taken from \cite{unix-system-administration-handbook-nemeth-2000}.
 \end{Exercise}
 \begin{Answer}
 The logic and of 128.138.243.100 and 255.255.255.192 is 128.138.243.64, which is the network number.
 As it is a /26, it has \(2^{32-26} - 2 = 2^{6} - 2 = 64 - 2 = 62\) hosts.
-
-One could express the network number as 128.138.243.64/26.
 
 The network broadcast address is 128.138.243.127.
 
