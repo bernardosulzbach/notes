@@ -1,4 +1,4 @@
-FILENAME = 'notes.tex'
+FILENAME = 'parts/computer-science/computer-networks.tex'
 
 BEGIN_SUBSECTION = '\\subsection'
 BEGIN_SUBSECTION_OF_INTEREST = '\\subsection{Solved course exercises}'
