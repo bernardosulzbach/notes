@@ -1403,7 +1403,18 @@ The main reason for doing this is that symmetric key cryptography algorithms hav
 \end{Answer}
 
 \begin{Exercise}
+A corporation has the following three IPv4 blocks.
+\begin{enumerate}
+\item 150.10.0.0/19
+\item 150.10.32.0/19
+\item 150.10.96.0/19
+\end{enumerate}
+Can they be aggregated?
+If not, determine which blocks are missing and what the aggregated block address would be.
 \end{Exercise}
+\begin{Answer}
+No, they cannot. 150.10.64.0/19 is missing to make 150.10.0.0/17.
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
