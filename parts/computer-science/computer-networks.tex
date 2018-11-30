@@ -1445,7 +1445,21 @@ See \href{https://www.cisco.com/c/en/us/support/docs/ip/dynamic-address-allocati
 \end{Answer}
 
 \begin{Exercise}
+An institution has a block of 4096 addresses.
+This block was subdivided in 2 blocks of 1024 addresses and 4 blocks of 512 addresses.
+Identify the block and all sub-networks knowing that 192.168.2.5 and 192.168.4.1 belong to different blocks of 1024 addresses and that 192.168.9.20, 192.168.10.1, 192.168.12.1 e 192.168.15.50 belong to different blocks of 512 addresses.
 \end{Exercise}
+\begin{Answer}
+\begin{itemize}
+\item The logical and of 192.168.2.5 and 255.255.252.0 is 192.168.0.0.
+\item The logical and of 192.168.4.1 and 255.255.252.0 is 192.168.4.0.
+\item The logical and of 192.168.9.20 and 255.255.254.0 is 192.168.8.0.
+\item The logical and of 192.168.10.1 and 255.255.254.0 is 192.168.10.0.
+\item The logical and of 192.168.12.1 and 255.255.254.0 is 192.168.12.0.
+\item The logical and of 192.168.15.50 and 255.255.254.0 is 192.168.14.0.
+\end{itemize}
+Therefore, the original block was 192.168.0.0/20.
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
