@@ -1512,7 +1512,19 @@ None.
 \end{Exercise}
 
 \begin{Exercise}
+Two users A and B want to communicate over the public Internet with confidentiality.
+\begin{enumerate}[a)]
+\item Can they use symmetric cryptography? What about asymmetric cryptography?
+\item For each possible case, which keys are present?
+\end{enumerate}
 \end{Exercise}
+\begin{Answer}
+\begin{enumerate}[a)]
+\item Both symmetric and asymmetric cryptography can be used.
+\item When using symmetric cryptography, the users must have a shared secret key. When using asymmetric cryptography, both users need a public and a private key.
+When sending a message, the sender will use the receiver's public key to encrypt it in such a way that only the receiver -- who has the private key -- can reverse the process.
+\end{enumerate}
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
