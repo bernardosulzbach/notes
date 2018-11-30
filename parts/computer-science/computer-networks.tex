@@ -1281,7 +1281,18 @@ The count-to-infinity problem, which is why the distance vector may take a very 
 \end{Exercise}
 
 \begin{Exercise}
+A network administrator has to subdivide 200.30.40.0/24 in five sub-networks.
+Perform this division considering a classless scheme and provide the broadcast addresses.
 \end{Exercise}
+\begin{Answer}
+\begin{enumerate}
+\item 200.30.40.0/27, 200.30.40.31
+\item 200.30.40.32/27, 200.30.40.63
+\item 200.30.40.64/27, 200.30.40.95
+\item 200.30.40.96/27, 200.30.40.127
+\item 200.30.40.128/27, 200.30.40.159
+\end{enumerate}
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
@@ -1694,7 +1705,14 @@ What is the address block allocated to the institution?
 \end{Answer}
 
 \begin{Exercise}
+An user downloads files from a remote FTP server.
+Assuming there is no cached information, list all protocols used to accomplish this, in the order they are requested.
 \end{Exercise}
+\begin{Answer}
+The user tries to use FTP at the application layer to connect to the server.
+In order to know the IP address of the server, another application layer protocol, DNS, has to be used. DNS is built on top of UDP, which is built on top of IP.
+Once the name has been resolved, FTP can start being used and call onto the TCP stack, which is itself is built on top of IP.
+\end{Answer}
 
 \begin{Exercise}
 What are the advantages of hierarchical routing for the routing process?
@@ -1703,7 +1721,8 @@ What are the advantages of hierarchical routing for the routing process?
 For the routing process, hierarchical routing reduces routing table size, which greatly impacts routing performance.
 Keeping very large routing tables, even if they fit in memory, means that more bandwidth will be used when running the routing algorithms to synchronize routing tables between routers.
 
-It is also worth noting that in large networks, hierarchical routing allows each region to use whatever routing algorithm is best for it. If there weren't multiple hierarchical levels for routing, every router in the whole network would have to use the same routing algorithm.
+It is also worth noting that in large networks, hierarchical routing allows each region to use whatever routing algorithm is best for it.
+If there weren't multiple hierarchical levels for routing, every router in the whole network would have to use the same routing algorithm.
 
 See \ref{Distance vector routing}, \ref{Link state routing}, and \ref{Hierarchical routing} for more.
 \end{Answer}
