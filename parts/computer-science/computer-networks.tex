@@ -1528,7 +1528,7 @@ A router has the following routing table. For each of the following datagrams li
 \begin{center}
 \begin{tabular}{c c c}
     Destination network & Next hop   & Mask            \\ \hline
-           195.112.92.1 & 200.10.1.1 & 255.255.252.255 \\ \hline
+           195.112.92.1 & 200.10.1.1 & 255.255.255.255 \\ \hline
            195.112.80.0 & 192.10.2.1 & 255.255.240.0   \\ \hline
            195.112.64.0 & 192.10.2.2 & 255.255.192.0   \\ \hline
                 Default & 200.10.1.2 & 0.0.0.0
@@ -1544,7 +1544,7 @@ A router has the following routing table. For each of the following datagrams li
 \end{Exercise}
 \begin{Answer}
 \begin{enumerate}
-    \item 195.112.92.1 \& 255.255.252.255 = 195.112.92.1. Possible. \textbf{Selected}.
+    \item 195.112.92.1 \& 255.255.255.255 = 195.112.92.1. Possible. \textbf{Selected}.
 
     195.112.92.1 \& 255.255.240.0 = 195.112.80.0. Possible.
 
@@ -1552,7 +1552,7 @@ A router has the following routing table. For each of the following datagrams li
 
     195.112.92.1 \& 0.0.0.0 = 0.0.0.0. Possible.
 
-    \item 195.112.94.1 \& 255.255.252.255 = 195.112.94.1. Not possible.
+    \item 195.112.94.1 \& 255.255.255.255 = 195.112.94.1. Not possible.
 
     195.112.94.1 \& 255.255.240.0 = 195.112.80.0. Possible. \textbf{Selected}.
 
@@ -1560,7 +1560,7 @@ A router has the following routing table. For each of the following datagrams li
 
     195.112.94.1 \& 0.0.0.0 = 0.0.0.0. Possible.
 
-    \item 195.112.96.1 \& 255.255.252.255 = 195.112.96.1. Not possible.
+    \item 195.112.96.1 \& 255.255.255.255 = 195.112.96.1. Not possible.
 
     195.112.96.1 \& 255.255.240.0 = 195.112.96.0. Not possible.
 
@@ -1568,7 +1568,7 @@ A router has the following routing table. For each of the following datagrams li
 
     195.112.96.1 \& 0.0.0.0 = 0.0.0.0. Possible.
 
-    \item 195.112.130.1 \& 255.255.252.255 = 195.112.130.1. Not possible.
+    \item 195.112.130.1 \& 255.255.255.255 = 195.112.130.1. Not possible.
 
     195.112.130.1 \& 255.255.240.0 = 195.112.128.0. Not possible.
 
