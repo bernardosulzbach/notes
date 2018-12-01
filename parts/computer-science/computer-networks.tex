@@ -980,6 +980,11 @@ Assume the following delays.
 Considering a 802.3 network, why can't the ARP protocol identify the MAC address of a machine in a different network?
 Explain the solution using default gateways and the solution using ARP proxies.
 \end{Exercise}
+\begin{Answer}
+The ARP protocol relies on broadcasts to work, which are usually not routed.
+The solution using default gateways works by allowing hosts to send packets which they cannot delivery directly to the default gateway, which will then carry out the delivery.
+The solution using proxy ARP works by having the router ``faking'' being the destination machine by replying to the ARP request with its own MAC address. Then it just relays whichever messages are sent to it but meant to the destination machine transparently.
+\end{Answer}
 
 \begin{Exercise}
 What is the maximum number of bits in the suffix of a class C IP network which can be used to define subnetworks?
