@@ -1146,8 +1146,8 @@ None.
 \end{Exercise}
 \begin{Answer}
 \begin{enumerate}
-\item TCP requires both parties to establish sequence numbers. As the initial sequence number of the server also has to be acknowledged, a third message is required.
-% TODO: review this item.
+\item TCP requires both parties to establish their sequence numbers. As the initial sequence number of the receiving host also has to be acknowledged, a third message is required.
+Additionally, by sending a third message from A to B, B knows that there is a path through which A can receive messages from B.
 \item \textbf{Symmetrically}, the entity which desires to close the connection will send a FIN and wait for the other side to send any data it still has to transmit and a FIN. \textbf{Asymmetrically}, the entity which desires to close the connection will send a FIN message and close the connection. \textbf{Abruptly}, just a RST is sent.
 \item A TSAP (transport service access point) is a specific endpoint in the transport layer. A TSAP identifies an instance of a service.
 An NSAP (network service access point) only specifies a host, the TSAP is needed to specify a process running on that specific host.
@@ -1180,7 +1180,11 @@ The least restrictive mask is the shortest mask. It has the least priority.
 \end{Answer}
 
 \begin{Exercise}
+Duplicate of exercise 21.
 \end{Exercise}
+\begin{Answer}
+None.
+\end{Answer}
 
 \begin{Exercise}
 What is proxy ARP? How does it work? What alternatives are there to it?
