@@ -1437,10 +1437,20 @@ The packets include a sequence number. If the sequence number of a new packet co
 \end{Answer}
 
 \begin{Exercise}
+What is the difference when resolving IP addresses to MAC addresses when a machine is using default gateway instead of proxy ARP?
 \end{Exercise}
+\begin{Answer}
+When using default gateway, there will be no ARP response and the machine will have to send the packets to the default gateway.
+When using proxy ARP there are ARP responses from the router, ``impersonating'' the actual receiver.
+Then the frames are sent as if they were being sent directly to the destination, but they are being relayed through the router instead.
+\end{Answer}
 
 \begin{Exercise}
+Duplicate of exercise 36.
 \end{Exercise}
+\begin{Answer}
+None.
+\end{Answer}
 
 \begin{Exercise}
 What is the difference between message confidentiality and message integrity? Can you have one without the other?
