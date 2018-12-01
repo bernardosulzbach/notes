@@ -1634,10 +1634,29 @@ No, they cannot. 150.10.64.0/19 is missing to make 150.10.0.0/17.
 \end{Answer}
 
 \begin{Exercise}
+Duplicate of exercise 38.
 \end{Exercise}
+\begin{Answer}
+None.
+\end{Answer}
 
 \begin{Exercise}
+Some home computers are not working as they should. The network symptoms are the following.
+\begin{itemize}
+\item Websites cannot be accessed by their name, such as \texttt{google.com}.
+\item Users cannot send or receive emails.
+\item The network printer is not reachable.
+\item One computer cannot ``see'' the other computers through the O.S. interface.
+\end{itemize}
+What are the possible causes of the problem?
+How would you investigate the issue?
+The home network has four computers and one printer, all connected to the same local network and interconnected through ADSL, which supports DHCP and NAT.
 \end{Exercise}
+\begin{Answer}
+I would try running \texttt{ip addr} (or the equivalent command on Windows) on two different machines to see their IP addresses and try to ping one from the other. This will rule out DHCP problems.
+
+It might even be a router failure, which would interrupt all LAN traffic.
+\end{Answer}
 
 \begin{Exercise}
 An institution has the Class C address 200.10.10.0.
