@@ -1773,7 +1773,23 @@ None.
 \end{Answer}
 
 \begin{Exercise}
+For a computer to be able to access the public Internet it has to have the following four things.
+Describe what are the problems if each one of these things is missing.
+\begin{enumerate}
+\item An IP address.
+\item A network mask.
+\item A default gateway.
+\item The IP of a DNS server.
+\end{enumerate}
 \end{Exercise}
+\begin{Answer}
+\begin{enumerate}
+\item The computer cannot send valid IP packets if it does not have a valid IP address.
+\item The computer does not know which IP addresses belong to its network and which IP addresses must be sent to the default gateway because there is no network mask.
+\item The default gateway is required for the computer to know to whom to send packets which cannot be directly delivered.
+\item Without the address of a valid DNS server, the computer cannot resolve names such as \texttt{google.com} to IP addresses, which are required for it to send packets.
+\end{enumerate}
+\end{Answer}
 
 \begin{Exercise}
 Two users A and B want to communicate over the public Internet with confidentiality.
@@ -1839,7 +1855,33 @@ None.
 \end{Answer}
 
 \begin{Exercise}
+Users might use a web interface to access and manage their mailboxes.
+\begin{enumerate}
+\item Considering the browser and the web server, which one is the client and which one is the server? Which one opens the active socket and which one opens the passive socket?
+\item Assume that a web server is being used by a single client.
+Consider that the server is running in 192.168.10.1 and that the client is running in 192.168.20.2. Also, assume the server is using port 80 and the client is using port 65432. In this scenario, identify the endpoints (local and remote) and the state of all sockets used by both the server and the client.
+\end{enumerate}
 \end{Exercise}
+\begin{Answer}
+\begin{enumerate}
+\item The web browser is the client, it opens an active socket.
+The web server is the server, it opens a passive socket.
+\item These are the server sockets.
+\begin{center}
+\begin{tabular}{c|c|c|c|c}
+192.168.10.1 & 80 & * & * & LISTEN \\
+192.168.10.1 & 80 & 192.168.20.2 & 65432 & ESTABLISHED \\
+\end{tabular}
+\end{center}
+
+These are the client sockets.
+\begin{center}
+\begin{tabular}{c|c|c|c|c}
+192.168.20.2 & 65432 & 192.168.10.1 & 80 & ESTABLISHED \\
+\end{tabular}
+\end{center}
+\end{enumerate}
+\end{Answer}
 
 \begin{Exercise}
 A router has the following routing table. For each of the following datagrams list all possible routes and the selected route.
@@ -1863,42 +1905,50 @@ A router has the following routing table. For each of the following datagrams li
 \end{Exercise}
 \begin{Answer}
 \begin{enumerate}
-    \item 195.112.92.1 \& 255.255.255.255 = 195.112.92.1. Possible. \textbf{Selected}.
+\item 195.112.92.1 \& 255.255.255.255 = 195.112.92.1. Possible. \textbf{Selected}.
 
-    195.112.92.1 \& 255.255.240.0 = 195.112.80.0. Possible.
+195.112.92.1 \& 255.255.240.0 = 195.112.80.0. Possible.
 
-    195.112.92.1 \& 255.255.192.0 = 195.112.64.0. Possible.
+195.112.92.1 \& 255.255.192.0 = 195.112.64.0. Possible.
 
-    195.112.92.1 \& 0.0.0.0 = 0.0.0.0. Possible.
+195.112.92.1 \& 0.0.0.0 = 0.0.0.0. Possible.
 
-    \item 195.112.94.1 \& 255.255.255.255 = 195.112.94.1. Not possible.
+\item 195.112.94.1 \& 255.255.255.255 = 195.112.94.1. Not possible.
 
-    195.112.94.1 \& 255.255.240.0 = 195.112.80.0. Possible. \textbf{Selected}.
+195.112.94.1 \& 255.255.240.0 = 195.112.80.0. Possible. \textbf{Selected}.
 
-    195.112.94.1 \& 255.255.192.0 = 195.112.64.0. Possible.
+195.112.94.1 \& 255.255.192.0 = 195.112.64.0. Possible.
 
-    195.112.94.1 \& 0.0.0.0 = 0.0.0.0. Possible.
+195.112.94.1 \& 0.0.0.0 = 0.0.0.0. Possible.
 
-    \item 195.112.96.1 \& 255.255.255.255 = 195.112.96.1. Not possible.
+\item 195.112.96.1 \& 255.255.255.255 = 195.112.96.1. Not possible.
 
-    195.112.96.1 \& 255.255.240.0 = 195.112.96.0. Not possible.
+195.112.96.1 \& 255.255.240.0 = 195.112.96.0. Not possible.
 
-    195.112.96.1 \& 255.255.192.0 = 195.112.64.0. Possible. \textbf{Selected}.
+195.112.96.1 \& 255.255.192.0 = 195.112.64.0. Possible. \textbf{Selected}.
 
-    195.112.96.1 \& 0.0.0.0 = 0.0.0.0. Possible.
+195.112.96.1 \& 0.0.0.0 = 0.0.0.0. Possible.
 
-    \item 195.112.130.1 \& 255.255.255.255 = 195.112.130.1. Not possible.
+\item 195.112.130.1 \& 255.255.255.255 = 195.112.130.1. Not possible.
 
-    195.112.130.1 \& 255.255.240.0 = 195.112.128.0. Not possible.
+195.112.130.1 \& 255.255.240.0 = 195.112.128.0. Not possible.
 
-    195.112.130.1 \& 255.255.192.0 = 195.112.128.0. Not possible.
+195.112.130.1 \& 255.255.192.0 = 195.112.128.0. Not possible.
 
-    195.112.130.1 \& 0.0.0.0 = 0.0.0.0. Possible. \textbf{Selected}.
+195.112.130.1 \& 0.0.0.0 = 0.0.0.0. Possible. \textbf{Selected}.
 \end{enumerate}
 \end{Answer}
 
 \begin{Exercise}
+A person has an email at \texttt{acme.com}. They have their mail user agent correctly configured to use \texttt{smtp.acme.com} and \texttt{pop.acme.com}.
+Assume their network is properly configured and that nothing is in the caches.
+What happens when this person sends an email to \texttt{someone@example.com}?
+List the protocols in the order they are used down to the network layer.
 \end{Exercise}
+\begin{Answer}
+Their mail user agent will have to resolve the MX record in \texttt{example.com}, so DNS is the first protocol to be used. It uses UDP over IP.
+Then SMTP is used, which uses TCP over IP.
+\end{Answer}
 
 \begin{Exercise}
 What is the prefix and the most restrictive mask for an IP network in which a server has the address 192.168.1.5 and the single router has the address 192.168.2.1?
@@ -2101,10 +2151,10 @@ UDP only uses the destination port to demultiplex the received datagrams.
 TCP, on the other hand, uses a pair of endpoints.
 Why can't TCP only use the destination port?
 \end{Exercise}
+% Review.
 \begin{Answer}
 The reason why TCP can't use only the destination port is that UDP datagrams are addressed to a host and port, while TCP datagrams belong to a connection identified also by the source host and source port.
 Therefore, if only the destination port was used to demultiplex TCP datagrams and two connections were established using the same destination port, traffic from both connections would be mixed.
-% Review.
 \end{Answer}
 
 \begin{Exercise}
@@ -2151,10 +2201,32 @@ One can test this by issuing \texttt{ipcalc 200.231.15.240/28}.
 \end{Answer}
 
 \begin{Exercise}
+Duplicate of exercise 38.
 \end{Exercise}
+\begin{Answer}
+None.
+\end{Answer}
 
 \begin{Exercise}
+Describe what will happen in an IP network if one host has one of the following issues.
+\begin{enumerate}[a)]
+\item A host has a duplicated IP address.
+\item The sub-network mask is more restrictive than it should be.
+\item The sub-network mask is less restrictive than it should be.
+\item The default gateway is not configured and there is no proxy ARP.
+\item The DNS server address is not properly configured.
+\end{enumerate}
 \end{Exercise}
+\begin{Answer}
+\begin{enumerate}[a)]
+\item ARP requests will be responded by two different hosts, which is going to cause packets meant to that host to either be delivered only to one of the hosts with this IP or to neither of them.
+\item Some hosts which are in the sub-network will be considered as not being in the sub-network.
+This should not cause major issues as the host will send the packets for the default gateway for forwarding which will then sort things out.
+\item Some hosts which are not in the sub-network will be considered as being in the sub-network. This should cause issues as the host will attempt to perform ARP resolution and fail if there is no proxy ARP.
+\item Any attempt to send a packet to a computer which is not in the sub-network will fail, as there will be no way to reach the endpoint.
+\item The host will not be able to resolve names into IP addresses.
+\end{enumerate}
+\end{Answer}
 
 \subsection{Solved textbook exercises}
 \setcounter{Exercise}{0}
