@@ -1561,10 +1561,26 @@ A public-key signature also guarantees non-repudiation because, if we assume tha
 \end{Answer}
 
 \begin{Exercise}
+Duplicate of exercise 38.
 \end{Exercise}
+\begin{Answer}
+None.
+\end{Answer}
 
 \begin{Exercise}
+What is NAT and VPN? When are they used?
 \end{Exercise}
+\begin{Answer}
+NAT is used to remap an IP address space into another address space by modifying the packet headers when going through a router.
+VPN is used to extend a private network across a public network, enabling users to send and receive data across shared or public networks as if they were still in a private network.
+
+One use case for NAT is to allow computers which have been assigned an IP address which is not routable on the public Internet to use the public Internet.
+For instance, if a phone connected to a wireless network sends a packet over the public Internet, it may go to the public Internet using the same IP address that will be used for all devices using this same wireless network, due to the router performing NAT.
+
+One use case for VPN is to allow employees to work as if they were still in the private network of a company remotely over the public internet.
+Cryptography can aid in establishing VPN confidentiality.
+\end{Answer}
+
 
 \begin{Exercise}
 \end{Exercise}
