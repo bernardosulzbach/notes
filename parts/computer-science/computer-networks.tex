@@ -1378,10 +1378,42 @@ Perform this division considering a classless scheme and provide the broadcast a
 \end{Answer}
 
 \begin{Exercise}
+A router has the following forwarding table.
+\begin{center}
+\begin{tabular}{c|c}
+0.0.0.0/0 & \texttt{e1} \\
+10.0.0.0/8 & \texttt{e0} \\
+10.0.0.0/16 & \texttt{e1} \\
+10.1.0.0/16 & \texttt{s0} \\
+10.0.1.0/24 & \texttt{s0} \\
+10.1.1.0/24 & \texttt{s1} \\
+10.1.0.0/24 & \texttt{e1} \\
+10.1.1.1/32 & \texttt{s2}
+\end{tabular}
+\end{center}
+
+To which interface will a datagram addressed to 10.0.4.1 be forwarded?
 \end{Exercise}
+\begin{Answer}
+The most restrictive rule which will match this destination is the third one, so \texttt{e1}.
+\end{Answer}
 
 \begin{Exercise}
+Considering a client host in a network A and a server host in a network B. List, in the right order, the traffic a sniffer would capture for each of the following scenarios.
+Assume all caches are empty.
+\begin{enumerate}[a)]
+\item A browser fetching an URL as \texttt{http://www.google.com}.
+\item A mail user agent which is configured to use \texttt{smtp.acme.com} and \texttt{pop.acme.com} and is sending a message to a recipient in \texttt{acme.com}.
+\end{enumerate}
 \end{Exercise}
+\begin{Answer}
+\begin{enumerate}[a)]
+\item DNS is used at the application layer, over UDP at the transport layer, over IP at the network layer to resolve \texttt{www.google.com}.
+Then HTTP is used at the application layer, over TCP at the transport layer, over IP at the network layer, to actually fetch the page.
+\item DNS is used at the application layer, over UDP at the transport layer, over IP at the network layer to resolve \texttt{smtp.acme.com}.
+SMTP is used to send the message at the application layer, over UDP at the transport layer, over IP at the network layer.
+\end{enumerate}
+\end{Answer}
 
 \begin{Exercise}
 What is the reason for the active FTP protocol? Which problem does it solve?
