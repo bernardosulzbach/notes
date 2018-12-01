@@ -1474,10 +1474,29 @@ SMTP will require SMTP, which uses TCP over IP.
 \end{Answer}
 
 \begin{Exercise}
+What is the difference between establishing a virtual circuit and a connection?
+Which steps are present in each case?
+Can you have one without the other?
 \end{Exercise}
+\begin{Answer}
+Establishing a virtual circuit network \textbf{requires network layer support}.
+Routers must maintain \textbf{connection state information} for virtual circuits, while connections, which may be established in the transport layer, do not require routers to keep any additional information.
+
+To establish a virtual circuit the transport layer must request this to the network layer, which will then try to establish a well-defined path across the network to the other end system.
+All routers in this path also need to keep a virtual circuit number which is required for proper forwarding to happen.
+However, when establishing a connection at the transport layer, as long as packets are eventually delivered to the other end system, the process should be successful.
+The path taken by these connection establishment packets is irrelevant for the proper creation of a connection.
+
+Yes. TCP, for instance, establishes connections over IP, which is a connectionless protocol.
+Similarly, one could set up a virtual circuit and use it to send and receive data using a datagram-oriented transport protocol similar to UDP.
+\end{Answer}
 
 \begin{Exercise}
+Duplicate of exercise 31.
 \end{Exercise}
+\begin{Answer}
+None.
+\end{Answer}
 
 \begin{Exercise}
 \end{Exercise}
