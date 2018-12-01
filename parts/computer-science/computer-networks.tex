@@ -1700,7 +1700,33 @@ Therefore, the original block was 192.168.0.0/20.
 \end{Answer}
 
 \begin{Exercise}
+The ARP cache of a computer has the following entries.
+
+\begin{center}
+\begin{tabular}{c|c}
+            IP & MAC               \\ \hline
+  192.168.20.4 & 00:18:8B:DF:49:77 \\
+192.168.20.120 & 08:81:8B:FD:04:67 \\
+192.168.20.200 & 02:12:8B:DF:90:77 \\
+ 192.168.23.15 & 08:11:B8:A0:49:65 \\
+  143.15.30.12 & 00:18:8B:DF:49:77 \\
+  169.12.12.15 & 00:18:8B:DF:49:77 \\
+     61.15.6.1 & 00:18:8B:DF:49:77 \\
+  150.100.24.5 & 00:18:8B:DF:49:77 \\
+\end{tabular}
+\end{center}
+
+What can be said about the network (network address and mask) this computer belongs to?
+How can you explain the multiple entries of the MAC 00:18:8B:DF:49:77?
+Is there anything else worth mentioning about this table?
 \end{Exercise}
+\begin{Answer}
+% TODO: review.
+Apparently, this host's network mask is 0.0.0.0.
+
+Multiple entries to the same MAC are a consequence of the use of proxy ARP.
+The router is replying to ARP requests to allow the host to attempt to do direct delivery to the destination.
+\end{Answer}
 
 \begin{Exercise}
 A router supports classless routing and has the following routing table.
