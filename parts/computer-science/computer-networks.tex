@@ -1140,7 +1140,33 @@ None.
 \end{Answer}
 
 \begin{Exercise}
+A host A needs to communicate with a host B in another sub-network.
+There is a router R between these networks.
+Provide the PDU sequence, including ARP requests with their MAC and IP addresses.
+Both machines A and B are configured to use default gateway and have empty ARP caches.
 \end{Exercise}
+\begin{Answer}
+A sends an ARP request about the MAC address of B.
+Because direct delivery is not possible, there is no answer.
+After a timeout, A will make an ARP request for the MAC address of R, which will reply.
+A then sends the packet it needs to deliver to B to R.
+R then has to go through ARP to figure out the MAC address of B.
+Once this is done, R can send the packet to B directly.
+
+\begin{center}
+\begin{tabular}{c|c|c|c|c}
+    ARP & \(E_A\) & \(I_A\) &       0 & \(I_B\) \\
+    ARP & \(E_A\) & \(I_A\) &       0 & \(I_R\) \\
+    ARP & \(E_R\) & \(I_R\) & \(E_A\) & \(I_A\) \\
+    IP  & \(E_A\) & \(I_A\) & \(E_R\) & \(I_R\) \\
+    ARP & \(E_R\) & \(I_R\) &       0 & \(I_B\) \\
+    ARP & \(E_B\) & \(I_B\) & \(E_R\) & \(I_R\) \\
+    IP  & \(E_R\) & \(I_R\) & \(E_B\) & \(I_B\) \\
+\end{tabular}
+\end{center}
+
+See \href{https://www.cisco.com/c/en/us/support/docs/ip/dynamic-address-allocation-resolution/13718-5.html}{the Cisco page on proxy ARP}.
+\end{Answer}
 
 \begin{Exercise}
 \begin{enumerate}
