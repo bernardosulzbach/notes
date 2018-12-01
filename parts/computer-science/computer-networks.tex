@@ -1499,10 +1499,21 @@ None.
 \end{Answer}
 
 \begin{Exercise}
+Which parameters of a TCP/IP network have to be correctly configured in a computer in order for it to have access to network services in external networks?
 \end{Exercise}
+\begin{Answer}
+The current host IP address, which can be automatically configured from DHCP or manually configured.
+The default gateway, the network mask, and the addresses of the DNS servers.
+\end{Answer}
 
 \begin{Exercise}
+You are a network administrator and have to chose whether to use a distance vector routing algorithm or a link state routing algorithm in the internal network.
+Knowing that the network topology is large but changes are infrequent, which algorithm is a better choice? Why?
 \end{Exercise}
+\begin{Answer}
+Distance vector routing algorithms are better, because they require less bandwidth in large networks than link state routing algorithms and are worse only if changes are frequent, due to the count-to-infinity problem.
+It's also worth pointing out that, given enough time, distance vector routing algorithms will converge to the shortest paths just like link state algorithms would.
+\end{Answer}
 
 \begin{Exercise}
 A network administrator needs to divide the address block 10.1.2.0/24 into five sub-networks.
