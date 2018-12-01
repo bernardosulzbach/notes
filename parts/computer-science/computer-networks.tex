@@ -1265,20 +1265,43 @@ Which problems of the distance vector algorithm are solved by the link state alg
 \end{Exercise}
 \begin{Answer}
 The count-to-infinity problem, which is why the distance vector may take a very long time to notice that a node is unreachable, is solved because now at every synchronization the whole topology of the network is sent to each node.
-% TODO: finish.
 \end{Answer}
 
 \begin{Exercise}
+Which network parameters have to be correctly configured in a computer for it to have network access to external networks?
 \end{Exercise}
+\begin{Answer}
+The default gateway, which is required for the computer to know where to send packets to in order to get them forwarded to the destination.
+Possibly also the DNS servers, which are required for the computer to resolve names.
+\end{Answer}
 
 \begin{Exercise}
+Why do personal computers have a routing table if they usually only have one network interface?
 \end{Exercise}
+% TODO: review.
+\begin{Answer}
+Because personal computers also have to know what is their default gateway, an information which is stored in the routing tables as the destination of a default entry.
+\end{Answer}
 
 \begin{Exercise}
+Why is UDP necessary if it doesn't provide any more delivery guarantees than IP does?
 \end{Exercise}
+\begin{Answer}
+Even though UDP does not offer more delivery guarantees than IP does, UDP has the very important concept of ports, thus allowing for transport-layer multiplexing and demultiplexing.
+This makes it simpler for two services to be provided by the same host as if they were not sharing network resources between themselves.
+Without the concept of ports, IP packet multiplexing and demultiplexing would have to happen in the application layer, which would mean that an application would have to get all IP packets and then decide how to distribute them to all other applications.
+\end{Answer}
 
 \begin{Exercise}
+Provide a firewall rule to block all external hosts from opening TCP connections to machines which are in the internal network.
+Consider that the internal network is 200.20.20.0/24.
 \end{Exercise}
+\begin{Answer}
+\begin{verbatim}
+Source IP  Destination IP  Source port  Destination port  Flags
+*          200.20.20.*     *            *                 SYN
+\end{verbatim}
+\end{Answer}
 
 \begin{Exercise}
 A network administrator has to subdivide 200.30.40.0/24 in five sub-networks.
