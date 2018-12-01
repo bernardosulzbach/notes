@@ -820,14 +820,10 @@ If one could use IP, ICMP, and ARP:
 \end{Answer}
 
 \begin{Exercise}
-What is Proxy ARP? How does it work?
+Duplicate of exercise 25.
 \end{Exercise}
 \begin{Answer}
-Proxy ARP is used to make a host appear in a network even though it is in another network.
-
-It works with the help from routers as Ethernet-level broadcasts are not forwarded by routers.
-The router has to reply to the ARP request with \textbf{its own Ethernet address}.
-Then the sender host can send frames which are meant to the receiver host \textbf{to the router}, which will then forward these frames to the correct device.
+None.
 \end{Answer}
 
 \begin{Exercise}
@@ -1187,13 +1183,38 @@ The least restrictive mask is the shortest mask. It has the least priority.
 \end{Exercise}
 
 \begin{Exercise}
+What is proxy ARP? How does it work? What alternatives are there to it?
 \end{Exercise}
+\begin{Answer}
+Proxy ARP is used to make a host appear in a network even though it is in another network.
+It works with the help from routers, as normally Ethernet-level broadcasts are not forwarded by routers.
+The router has to reply to the ARP request with \textbf{its own Ethernet address}.
+Then the sender host can send frames which are meant to the receiver host \textbf{to the router}, which will then forward these frames to the correct device.
+To the sender it all happens transparently as if the receiver was in the same network.
+It allows for machines on a sub-network to reach remote sub-networks without the need to configure routing or a default gateway.
+
+An alternative to it is to go straight for routing. Instead of the router faking that it has the requested IP, it just does not respond to the ARP request and the device -- assuming it has been correctly configured -- will have to send frames explicitly to its default gateway, which will then forward the packets to their true destination.
+\end{Answer}
 
 \begin{Exercise}
+Why does the duration of a segment (time to live) has to be long enough to ensure that not only the segment but also all of its acknowledgements have disappeared from the network?
+How can this affect the establishment of a connection and the data transfer phase?
 \end{Exercise}
+\begin{Answer}
+If the TCP initial sequence number did not have a time to live, an acknowledge which still exists in the network might end up acknowledging a newer message, messing up the exchange protocols.
+
+During connection establishment, an acknowledge of an old connection can end up acknowledging this new connection, which will cause synchronization issues.
+
+During data transfer, an old acknowledge might end up acknowledging data that was not received, making the sender step forward and causing it to never resend data that it should resend.
+\end{Answer}
 
 \begin{Exercise}
+The fragmentation and reassembly of IP datagrams is a responsibility of the network layer, does this mean that the TCP stack does not have to care about ordering?
 \end{Exercise}
+\begin{Answer}
+No. IP only guarantees packets to be assembled correctly. They might still be dropped and delivered in the wrong order.
+Therefore, the TCP stack has to be aware of which packets have been delivered and in which order they should be placed.
+\end{Answer}
 
 \begin{Exercise}
 A router has the following entries on its routing table:
@@ -1211,36 +1232,36 @@ A router has the following entries on its routing table:
 Determine the next hop for datagrams addressed to the following addresses.
 
 \begin{enumerate}
-    \item 135.46.63.10
-    \item 135.46.57.14
-    \item 135.46.52.2
-    \item 192.53.40.7
-    \item 192.53.56.7
+\item 135.46.63.10
+\item 135.46.57.14
+\item 135.46.52.2
+\item 192.53.40.7
+\item 192.53.56.7
 \end{enumerate}
 \end{Exercise}
 \begin{Answer}
 \begin{enumerate}
-    \item 135.46.63.10 \& 255.255.254.0 = 135.46.62.0. No match for this prefix size.
+\item 135.46.63.10 \& 255.255.254.0 = 135.46.62.0. No match for this prefix size.
 
-    135.46.63.10 \& 255.255.252.0 = 135.46.60.0. \textbf{Matches interface 1}.
+135.46.63.10 \& 255.255.252.0 = 135.46.60.0. \textbf{Matches interface 1}.
 
-    \item 135.46.57.14 \& 255.255.254.0 = 135.46.56.0. No match for this prefix size.
+\item 135.46.57.14 \& 255.255.254.0 = 135.46.56.0. No match for this prefix size.
 
-    135.46.57.14 \& 255.255.252.0 = 135.46.56.0. \textbf{Matches interface 0}.
+135.46.57.14 \& 255.255.252.0 = 135.46.56.0. \textbf{Matches interface 0}.
 
-    \item 135.46.52.2 \& 255.255.254.0 = 135.46.52.0. No match for this prefix size.
+\item 135.46.52.2 \& 255.255.254.0 = 135.46.52.0. No match for this prefix size.
 
-    135.46.52.2 \& 255.255.252.0 = 135.46.52.0. No match for this prefix size.
+135.46.52.2 \& 255.255.252.0 = 135.46.52.0. No match for this prefix size.
 
-    135.46.52.2 \& 0.0.0.0 = 0.0.0.0. \textbf{Matches interface 3}.
+135.46.52.2 \& 0.0.0.0 = 0.0.0.0. \textbf{Matches interface 3}.
 
-    \item 192.53.40.7 \& 255.255.254.0 = 192.53.40.0. \textbf{Matches interface 2}.
+\item 192.53.40.7 \& 255.255.254.0 = 192.53.40.0. \textbf{Matches interface 2}.
 
-    \item 192.53.56.7 \& 255.255.254.0 = 192.53.56.0. No match for this prefix size.
+\item 192.53.56.7 \& 255.255.254.0 = 192.53.56.0. No match for this prefix size.
 
-    192.53.56.7 \& 255.255.252.0 = 192.53.56.0. No match for this prefix size.
+192.53.56.7 \& 255.255.252.0 = 192.53.56.0. No match for this prefix size.
 
-    192.53.56.7 \& 0.0.0.0 = 0.0.0.0. \textbf{Matches interface 3}.
+192.53.56.7 \& 0.0.0.0 = 0.0.0.0. \textbf{Matches interface 3}.
 \end{enumerate}
 \end{Answer}
 
@@ -1258,7 +1279,11 @@ If only the age field were to be used, the flood would not be stopped by the det
 \end{Answer}
 
 \begin{Exercise}
+Requires a drawing.
 \end{Exercise}
+\begin{Answer}
+None.
+\end{Answer}
 
 \begin{Exercise}
 Which problems of the distance vector algorithm are solved by the link state algorithm?
@@ -1848,7 +1873,7 @@ Assume that a machine has infinite processing capacity and infinite memory.
 What would be the maximum theoretical number of TCP connections established at the same time of this machine?
 \end{Exercise}
 \begin{Answer}
-Because each TCP connection identifier consists of (source IP address, source port, destination IP address, destination port), \textbf{assuming we can use all IPv4 addresses}, we would have \(2^{32} \cdot 2^{16} \cdot 2^{32} \cdot 2^{16} = 2^{96}\) possible TCP connections to this machine.
+Because each TCP connection identifier consists of (source IP address, source port, destination IP address, destination port), \textbf{assuming we can use all IPv4 addresses}, we would have \(\left(2^{16} \cdot 2^{32} \cdot 2^{16}\right) n = \left(2^{64}\right) n\) possible TCP connections to this machine, where \(n\) is the number of IP addresses this machine can listen on.
 
 \begin{displayquote}
 A TCP port plus its host's IP address forms a 48-bit unique end point.
