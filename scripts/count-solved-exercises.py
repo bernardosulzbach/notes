@@ -11,7 +11,7 @@ with open(FILENAME) as file_handler:
     exercises = []
     found_answer = False
     answered = []
-    for line_number, line in enumerate(file_handler):
+    for line_number, line in enumerate(file_handler, start=1):
         line = line.strip()
         if line == BEGIN_SUBSECTION_OF_INTEREST:
             capturing = True
