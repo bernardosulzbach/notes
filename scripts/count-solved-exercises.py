@@ -11,7 +11,7 @@ with open(FILENAME) as file_handler:
     exercises = []
     found_answer = False
     answered = []
-    for line in file_handler:
+    for line_number, line in enumerate(file_handler):
         line = line.strip()
         if line == BEGIN_SUBSECTION_OF_INTEREST:
             capturing = True
@@ -21,12 +21,17 @@ with open(FILENAME) as file_handler:
                 capturing = False
             elif line == BEGIN_EXERCISE:
                 if len(answered) < len(exercises):
-                    answered.append(found_answer)
-                exercises.append(line)
+                    answered.append(False)
+                exercises.append(line_number)
                 found_answer = False
             elif line == BEGIN_ANSWER:
-                found_answer = True
+                answered.append(True)
+    if len(answered) < len(exercises):
+        answered.append(False)
     answer_count = answered.count(True)
     exercise_count = len(exercises)
     print('Found {} exercises. {} are answered.'.format(exercise_count, answer_count))
+    for i, line in enumerate(exercises):
+        if not answered[i]:
+            print('Missing answer at line {}.'.format(line))
     print('Completion is {:.1f}%.'.format(100.0 * answer_count / exercise_count))
