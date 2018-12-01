@@ -1581,9 +1581,14 @@ One use case for VPN is to allow employees to work as if they were still in the 
 Cryptography can aid in establishing VPN confidentiality.
 \end{Answer}
 
-
 \begin{Exercise}
+A student used the command \texttt{arp -a} after pinging several hosts which are not in their network and noticed that there is only one entry in the table.
+Did they do something wrong? Why is there only one entry?
 \end{Exercise}
+\begin{Answer}
+Not necessarily. ARP resolution is not used with external hosts.
+For these cases, packet delivery always goes directly through the default gateway.
+\end{Answer}
 
 \begin{Exercise}
 Assuming a process offers a service X on port Y, using UDP.
