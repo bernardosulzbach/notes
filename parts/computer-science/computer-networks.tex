@@ -12,9 +12,8 @@ The \textbf{protocol stack} is the set of protocols used by a system.
 
 \subsection{Types of standard}
 
-\href{https://en.wikipedia.org/wiki/De_facto_standard}{\emph{De facto}
-standards} are standards which are actually in use. \emph{De jure}
-standards are recognized by a committee.
+\href{https://en.wikipedia.org/wiki/De_facto_standard}{\emph{De facto} standards} are standards which are actually in use.
+\emph{De jure} standards are recognized by a committee.
 
 \section{OSI model}
 
@@ -23,7 +22,7 @@ The \href{https://en.wikipedia.org/wiki/OSI_model}{OSI model} has seven layers. 
 \section{Transmission medium}
 
 The \textbf{bandwidth of a channel} is the range of frequencies that is passed by it.
-One can show that that the rate at which pulses can be transmitted over a channel is proportional to the bandwidth according to \cite{communication-networks-leon-garcia-2000}.
+One can show that that the rate at which pulses can be transmitted over a channel is proportional to the bandwidth \cite{communication-networks-leon-garcia-2000}.
 
 \subsection{Media layers}
 
@@ -39,7 +38,7 @@ One can show that that the rate at which pulses can be transmitted over a channe
 \item \textbf{Transport}. Reliable transmission of data segments between points on a network, including segmentation, acknowledgement and multiplexing.
 \item \textbf{Session}. Managing communication sessions, i.e. continuous exchange of information in the form of multiple back-and-forth transmissions between two nodes.
 \item \textbf{Presentation}. Translation of data between a networking service and an application; including character encoding, data compression and encryption/decryption.
-\item \textbf{Application}. High-level APIs, including resource sharing, remote file access.
+\item \textbf{Application}. High-level APIs, including resource sharing and remote file access.
 \end{enumerate}
 
 \section{Medium access control}
@@ -72,9 +71,9 @@ Unlike a hub, \textbf{each port has its own collision domain}.
 If the port has a full-duplex point-to-point line, the CSMA/CD algorithm is not needed.
 When a frame arrives, the switch extracts the destination address from the frame header and looks it up in a table to see where to send the frame.
 For Ethernet, this address is the 48-bit Ethernet destination address.
-The bridge only outputs the frame on the port where it is needed and can forward multiple frames to different ports at the same time.
+The switch only outputs the frame on the port where it is needed and can forward multiple frames to different ports at the same time.
 
-There are two algorithms used to create transparent bridges (that is, bridges which do not require any additional configuration): a \textit{backward learning algorithm} to stop traffic being sent where it is not needed, and a \textit{spanning tree algorithm} to break loops that may be formed by connecting switches without much thought \cite[p.~333]{computer-networks-tanenbaum-2012}.
+There are two algorithms used to create transparent switches (that is, switches which do not require any additional configuration): a \textit{backward learning algorithm} to stop traffic being sent where it is not needed, and a \textit{spanning tree algorithm} to break loops that may be formed by connecting switches without much thought \cite[p.~333]{computer-networks-tanenbaum-2012}.
 
 Switches have much better performance than hubs, and can also allow for the connection lines of different speeds. Internal buffers allow a switch to accept a frame on a port of a given speed and transmit it to another port at a different speed. Buffers are needed even if all the ports have the same speed as the switch may have to temporarily store frames if multiple ports are sending to the same destination port \cite[p.~341]{computer-networks-tanenbaum-2012}.
 
@@ -95,8 +94,8 @@ Load might be an issue if a given department is using all their network bandwidt
 
 Broadcast messages consume substantial LAN capacity on large LANs, so keeping the number of devices in a LAN low is a good idea to reduce the impact of broadcast traffic \cite[p.~344]{computer-networks-tanenbaum-2012}.
 
-Given these reasons, it is important to be able to separate the logical topology from the physical topology.
 Another reason for this decoupling is that the number of ports in a switch might be too low or too high for the number of users in a single LAN.
+Given these reasons, it is important to be able to separate the logical topology from the physical topology.
 
 This gave rise to standards for virtual LANs (VLANs). They are based on VLAN-aware switches, because for VLANs to work correctly it is important that the switches know which VLANs are accessible through which ports.
 
@@ -108,8 +107,8 @@ In the network layer, the Internet can be viewed as a collection of networks or 
 
 In the internet, there are \textbf{Interior Gateway Protocols (IGPs)}, which include protocols like RIP, OSPF, IS-IS, and E-IGRP.
 In contrast, \textbf{Border Gateway Protocol (BGP)} is an interdomain routing protocol.
-Operationally, a key difference between BGP and IGPs is that BGP is concerned with exchanging reachability information between ASes in a scalable manner while allowing each AS to implement autonomous routing policies, whereas the latter are typically concerned with optimizing a path metric.
-In general, IGPs do not scale as well as BGP does with respect to the number of participants involved.
+Operationally, a key difference between BGP and IGPs is that BGP is concerned with exchanging reachability information between ASes in a scalable manner while allowing each AS to implement its own routing policies.
+In general, IGPs do not scale as well as BGP with respect to the number of participants involved and are typically concerned with optimizing a path metric.
 
 A good way to think of the network layer is this: its job is to provide a way to transport packets from source to destination, with no regard to whether these machines are on the same network or whether there are other networks in between them and without delivery guarantees \cite{computer-networks-tanenbaum-2012}.
 
@@ -127,18 +126,21 @@ Connection-oriented services in the transport layer are implemented at the edge 
 \subsubsection{Virtual circuit networks}
 
 A virtual circuit (VC) consists of a path (a series of links and routers), VC numbers (one for each link along the path), and entries in the forwarding table of each router along the path.
+A packet of a VC will carry a VC number in its header.
+However, because a VC may have a different VC number on each link, intervening routers must replace the VC number of each packet with a new VC number, obtained from its own tables \cite[p.~314]{computer-networking-kurose-2012}.
 
-A packet of a VC will carry a VC number in its header. However, because a virtual circuit may have a different VC number on each link, each intervening router must replace the VC number of each packet with a new VC number, obtained from the forwarding table \cite[p.~314]{computer-networking-kurose-2012}.
+There are two main reasons for each link using its own VC number.
+First, using a by-link VC number reduces the required size of the field. If all the network used the same value, the field could need many more bits than it does if it is assigned on a by-link basis.
+Second, and more importantly, the VC setup is simplified by permitting a different VC number at each link along the path.
+Specifically, with multiple VC numbers, each router can choose a VC number without caring about the VC numbers the other routers are using. If it were required for all routers to use a common VC number for the same connection they would need to somehow reach consensus about which number to use \cite[p.~315]{computer-networking-kurose-2012}.
 
-There are two main reasons for each link using its own VC number. First, using a by-link VC number reduces the required size of the field. If all the network used the same value, the field could need many more bits than it does if it is assigned on a by-link basis. Second, and more importantly, the VC setup is simplified by permitting a different VC number at each link along the path of the VC. Specifically, with multiple VC numbers, each router can choose a VC without caring about the VC numbers the other routers are using. If it were required for all routers to use a common VC for the same connection there would be many message exchanges to reach consensus about which number to use \cite[p.~315]{computer-networking-kurose-2012}.
-
-In a VC network, routers must maintain \textbf{connection state information}.
+Therefore, in a VC network, routers must maintain \textbf{connection state information}.
 
 The three common phases in a virtual circuit are:
 \begin{enumerate}
-    \item \textbf{VC setup}. During the setup phase, the transport layer contacts the network and waits for the network to setup the VC. This involves adding an entry in the routing table of each router along the path.
-    \item \textbf{Data transfer}. As expected, after the virtual circuit is established, packets can begin to flow through the VC.
-    \item \textbf{VC teardown}. This is initiated by the sender, which must inform the network of its desire to terminate the VC. The network layer then typically informs the other end system about the termination and updates the forwarding tables in all intermediary routers.
+\item \textbf{VC setup}. During the setup phase, the transport layer contacts the network and waits for the network to setup the VC. This involves adding an entry in the routing table of each router along the path.
+\item \textbf{Data transfer}. As expected, after the virtual circuit is established, packets can begin to flow through the VC.
+\item \textbf{VC teardown}. This is initiated by the sender, which must inform the network of its desire to terminate the VC. The network layer then typically informs the other end system about the termination and updates the forwarding tables in all intermediary routers.
 \end{enumerate}
 
 A major difference between VC setup at the network layer and connection setup at the transport layer (as the TCP handshake) is that the \textbf{connection setup at the transport layer involves only the two end systems}. However, in VC network, \textbf{routers along the path between the two end systems are involved in VC setup, and each router must be aware of all VCs passing through it} \cite[p.~316]{computer-networking-kurose-2012}.
@@ -151,11 +153,11 @@ In a datagram network, such as the Internet, each time an end system needs to se
 Each router along the path just looks at the packet destination address to decide how it will forward the packet.
 The router forwarding table uses the \textbf{longest matching prefix} to determine which interface to use \cite[p.~318]{computer-networking-kurose-2012}.
 
-Because forwarding tables in datagram networks can be modified at any time, a series of packets sent from one end system to another may follow very different paths and, as a consequence, arrive out of order \cite[p.~319]{computer-networking-kurose-2012}.
+Because forwarding tables in datagram networks can be modified at any time, packets of the same series of packets sent from one end system to another may follow very different paths and, as a consequence, arrive out of order \cite[p.~319]{computer-networking-kurose-2012}.
 
 \subsection{Routing algorithms}
 
-The main function of the network layer is routing packets.
+\textbf{The main function of the network layer is routing packets}.
 The routing algorithm is the part of the network layer software responsible for deicing which output an incoming packet should take when leaving the router.
 In a datagram network, routing decisions must be made for every data packet since the best route may have changed.
 However, if the network uses virtual circuits, routing decisions are made only when a new virtual circuit is set up and packets will only follow the established route \cite[p.~362]{computer-networks-tanenbaum-2012}.
@@ -170,10 +172,11 @@ One can think that a router has two processes inside it.
 \end{enumerate}
 
 The desired properties of a routing algorithm are: correctness, simplicity, robustness, stability, fairness, and efficiency.
+
 Correctness and simplicity are self-explanatory, but the need for robustness may be less obvious.
 The routing algorithm should be able to cope with changes in the topology and traffic without requiring all jobs in all hosts to be aborted \cite[p.~363]{computer-networks-tanenbaum-2012}.
 
-Stability is also important. There exist routing algorithms that \textit{never} converge to a fixed set of paths.
+Stability is also important. There are routing algorithms that \textit{never} converge to a fixed set of paths.
 A stable algorithm reaches equilibrium and stays in equilibrium.
 The convergence should be quick, since communication may be disrupted while the algorithm is reaching equilibrium \cite[p.~363]{computer-networks-tanenbaum-2012}.
 
@@ -183,7 +186,7 @@ These two goals are also in conflict, since operating queuing systems near capac
 Many networks try to minimize the distance a packet must travel, or reduce the number of hops a packet must make.
 Either choice tends to improve the delay and also reduce the amount of bandwidth consumed per packet, which tends to improve the overall network throughput \cite[p.~363]{computer-networks-tanenbaum-2012}.
 
-\textbf{Nonadaptive routing algorithms} do not use measurements or estimates to make decisions of the current topology and traffic.
+\textbf{Non-adaptive routing algorithms} do not use measurements or estimates to make decisions of the current topology and traffic.
 Instead, the choice of the route to use to get from point A to point B is computed in advance and downloaded to the routers when the network is booted.
 This procedure is sometimes called \textbf{static routing}.
 Because it does not respond to failures, static routing is mostly useful for situations in which the routing choice is clear.
@@ -216,7 +219,7 @@ It is sometimes called the \textbf{distributed Bellman-Ford algorithm}.
 
 Distance vector routing is useful as a simple technique by which routers can collectively compute shortest paths, but its convergence (the settling of routes to best paths across the network) may be too slow \cite[p.~372]{computer-networks-tanenbaum-2012}.
 
-Assuming synchronized routing table exchanges, if a network's longest path has N hops, within N exchanges all routers will know about an improvement \cite[p.~372]{computer-networks-tanenbaum-2012}. However, propagating to the network that a route is now slower is much less efficient. Due to a problem known as the \textbf{count-to-infinity problem} \cite[p.~373]{computer-networks-tanenbaum-2012}, if there are no more routes to a given router, the distance to it in the routing tables will approach the value defined to represent infinite distance linearly, which may take a very long time. Therefore, one could say that \textit{this algorithm reacts rapidly to good news, but slowly to bad news}.
+Assuming synchronized routing table exchanges, if a network's longest path has \(n\) hops, within \(n\) exchanges all routers will know about an improvement \cite[p.~372]{computer-networks-tanenbaum-2012}. However, propagating to the network that a route is now slower is much less efficient. Due to a problem known as the \textbf{count-to-infinity problem} \cite[p.~373]{computer-networks-tanenbaum-2012}, if there are no more routes to a given router, the distance to it in the routing tables will approach the value defined to represent infinite cost linearly, which may take a very long time. Therefore, it is correct to state that distance vector routing \textbf{reacts rapidly to good news, but slowly to bad news}.
 
 \subsubsection{Link state routing}\label{Link state routing}
 
@@ -232,12 +235,12 @@ The algorithm can be described in the five following parts.
     \item Compute the shortest path to every other router.
 \end{enumerate}
 
-This process distributes the complete topology to every router, thus allowing Dijkstra's algorithm to be used at each router to find the shortest path to every other router \cite[p.~374]{computer-networks-tanenbaum-2012}.
+This process distributes the complete topology to every router, thus allowing Dijkstra's algorithm to be used at each router to find the shortest paths \cite[p.~374]{computer-networks-tanenbaum-2012}.
 
-Link state routing requires more memory and computation than distance vector.
+Link state routing requires more memory and computation than distance vector routing.
 For a network with \(n\) routers, each with up to \(k\) neighbors, the memory required to store the input data is proportional to \(kn\). Also, the computation time grows faster than \(kn\), an issue in large networks.
 However, link state routing works well because it doesn't have slow convergence problems.
-Many ISPs use the \textbf{IS-IS} (Intermediate System-Intermediate System) link state protocol.
+Many ISPs use the \textbf{IS-IS} (Intermediate System - Intermediate System) link state protocol.
 \textbf{OSPF} (Open Shortest Path First) is the other main link state protocol \cite[p.~378]{computer-networks-tanenbaum-2012}.
 
 It is important to understand that link state routing, distance vector routing, and some other algorithms rely on processing at all the routers to compute routes. Problems at even a small number of routers can disrupt the whole network. As the network grows, the probability of at least one router failing gets bigger, so it is important to think about this when designing large networks \cite[p.~378]{computer-networks-tanenbaum-2012}.
@@ -246,7 +249,7 @@ It is important to understand that link state routing, distance vector routing, 
 
 With network growth comes routing table growth.
 Bigger routing tables require more memory to store them, more CPU time to scan them, and more bandwidth to send them around \cite[p.~378]{computer-networks-tanenbaum-2012}.
-There is a point at which the tables are so big that it is no longer feasible to have each router know about every other router, so the routing has to be done hierarchically, very much like in telephone networks \cite[p.~379]{computer-networks-tanenbaum-2012}.
+There is a point at which the tables are so big that it is no longer feasible to have each router know about every other router, so routing has to be done hierarchically, very much like in telephone networks \cite[p.~379]{computer-networks-tanenbaum-2012}.
 
 In hierarchical routing, the routers are divided into \textbf{regions}.
 Each router knows all the details about how to route packets to destinations within its own region, but does not know about the structure of other regions \cite[p.~379]{computer-networks-tanenbaum-2012}.
@@ -263,7 +266,7 @@ The trivial solution of sending multiple packets, one for each destination, is c
 An improvement to the trivial solution is to use \textbf{multidestination routing}.
 In this case each packet contains either a list of destinations or a bitmap which indicates to which devices the packet has to be delivered. Both solutions require the source to know all the destinations.
 
-A better broadcasting technique is \textbf{flooding}, which is not a very good solution for point-to-point communication. However, if properly implemented using a sequence numbers per source, it is a very efficient broadcasting algorithm \cite[p.~381]{computer-networks-tanenbaum-2012}.
+A better broadcasting technique is \textbf{flooding}, which is not a very good solution for point-to-point communication. However, if properly implemented using sequence numbers per source, it is a very efficient broadcasting algorithm \cite[p.~381]{computer-networks-tanenbaum-2012}.
 
 However, one can do better than flooding by using \textbf{reverse path forwarding}, which requires all the shortest path routes for regular packets to have been computed. This algorithm analyzes the link through which the packet arrived at the router. If it came from the the link that is normally used for sending packets toward the source of the broadcast, there is an excellent chance that the broadcast packet itself followed the best route to the router and is the first copy to arrive. Then the router forwards copies of it onto all links except the one it arrived one. If, however, the broadcast packet arrived on a link other than the best one, the packet is discarded as it is likely a duplicate. This algorithm does not need to know in anticipation all the destinations and it does not require any methods for flood control \cite[p.~381]{computer-networks-tanenbaum-2012}.
 
@@ -275,14 +278,15 @@ There are two approaches for packet fragmentation in networks, \textbf{transpare
 Transparent fragmentation might be quite wasteful if the packets are being constantly disassembled and reassembled in intermediary nodes.
 Nontransparent fragmentation requires less work from the routers.
 IP works by using nontransparent fragmentation.
-It gives every fragment a packet number, an absolute byte offset within the packet, and a flag indicating whether it is the end of the packet \cite[p.~434]{computer-networks-tanenbaum-2012}. This allows for fragments as small as a single byte plus the header size.
+It gives every fragment a packet number, an absolute byte offset within the packet, and a flag indicating whether it is the end of the packet.
+Therefore, it allows for fragments as small as a single byte plus the header size \cite[p.~434]{computer-networks-tanenbaum-2012}.
 
 Because of the inefficiency introduced by packet fragmentation, the modern Internet uses path MTU discovery, so that the fragmentation is done in the sending host \cite[p.~435]{computer-networks-tanenbaum-2012}.
 
 \subsection{IP addresses}
 
 IP addresses are hierarchical, unlike Ethernet addresses. Each 32-bit address is comprised of a variable-length network portion in the top bits and a host portion in the bottom bits.
-The network portion is \emph{common across shared by all the same value for all hosts on a single network}.
+The network portion is \emph{shared by all hosts on a single network}.
 This means that a network corresponds to a contiguous block of IP address space with a common prefix \cite{computer-networks-tanenbaum-2012}.
 
 IP addresses are assigned to interfaces and not to computers.
@@ -292,6 +296,8 @@ Therefore, one computer can have more than one IP address.
 
 ARP (Address Resolution Protocol) is a protocol run by almost every machine on the Internet. It is defined in RFC
 826. It allows for configuration-less MAC resolution from IPv4 addresses. Essentially, a computer will broadcast a request for the MAC of whoever has a given IPv4 address. The device with this IPv4 address then will reply with its own MAC, thus resolving the question \cite{computer-networks-tanenbaum-2012}.
+
+IPv6 hosts can both automatically configure their MAC addresses into their IPv6 address and use ICMPv6 to discover MAC addresses.
 
 \subsection{IPv4}
 
@@ -345,7 +351,7 @@ It's design took into consideration operational experience with the IPv4.
 \subsubsection{IPv6 datagram format}
 
 The address changed from 32 to 128 bits.
-This makes it so that \textit{every grain of sand on the plant can be IP-addressable}\footnote{Earth has roughly \(7.5 \times 10^{18}\) grains of sand, a bit less than \(2^{63}\).} according to \cite{computer-networking-kurose-2012}.
+This makes it so that \textbf{every grain of sand on the plant can be IP-addressable}, as Earth has roughly \(7.5 \times 10^{18}\) grains of sand, a bit less than \(2^{63}\) \cite{computer-networking-kurose-2012}.
 In addition to the unicast and multicast addresses, IPv6 has a new type of address called the \textbf{anycast address}, which allows a datagram to be delivered to any \textbf{one} of a group of hosts.
 
 The header now has a fixed 40-byte size.
@@ -363,8 +369,9 @@ Fragmentation and reassembly is a time-consuming operation and removing this fun
 The checksum was removed, as it is already performed by Ethernet at the data link layer and by TCP and UDP at the transport layer.
 Because the TTL field of the IPv4 header changes at every hop, this checksum has to be recomputed at every hop.
 
-Even though the options field is no longer a part of the standard IP header, it has not gone away.
+Even though the options field is not part of the standard IPv6 header, it has not gone away.
 The options field is one of the possible next headers pointed from within the IPv6 header, just as TCP or UDP headers might be the next header in an IP packet \cite[p.~359]{computer-networking-kurose-2012}.
+
 There is also a new version of the ICMP protocol, named ICMPv6 for the new IPv6 features.
 
 \subsubsection{IPv4 to IPv6 transition}
@@ -454,9 +461,17 @@ In FTP, a single control connection is used throughout the user session. However
 
 In the first decades of computer networks, they were used for university researches sharing emails and corporate employees sharing printers. Because of this, security was not a core concern. However, people started using it for all sorts of financial transactions and private information, which made security a main concern.
 
-Security can be divided roughly into security, authentication, nonrepudiation, and integrity control. \textbf{Secrecy} deals with keeping information out of the hands of unauthorized users. \textbf{Authentication} deals with determining who you are talking with before revealing sensitive information. \textbf{Nonrepudiation} deals with signatures and proving that someone did something. \textbf{Integrity control} has to do with ensuring that the received message is really the one sent and not something that a malicious adversary modified in transit \cite[p.~764]{computer-networks-tanenbaum-2012}.
+Security can be divided roughly into secrecy, authentication, nonrepudiation, and integrity.
 
-All of the protocol stack layers can contribute to security. One might use sealed tubes with an inert gas to protect cables and monitor for pressure variations in order to detect tampering \cite[p.~765]{computer-networks-tanenbaum-2012}. In the data link layer, \textbf{link encryption} can be used. It involves encrypted packets ad they leave one link and decrypting them when they reach another \cite[p.~765]{computer-networks-tanenbaum-2012}.
+\textbf{Secrecy} deals with keeping information out of the hands of unauthorized users.
+
+\textbf{Authentication} deals with determining who you are talking with before revealing sensitive information.
+
+\textbf{Nonrepudiation} deals with signatures and proving that someone did something.
+
+\textbf{Integrity} has to do with ensuring that the received message is really the one sent and not something that a malicious adversary modified in transit \cite[p.~764]{computer-networks-tanenbaum-2012}.
+
+All of the protocol stack layers can contribute to security. One might use sealed tubes with an inert gas to protect cables and monitor for pressure variations in order to detect tampering \cite[p.~765]{computer-networks-tanenbaum-2012}. In the data link layer, \textbf{link encryption} can be used. It involves encrypted packets as they leave one link and decrypting them when they reach another \cite[p.~765]{computer-networks-tanenbaum-2012}.
 In the network layer, \textbf{firewalls} can be installed to keep some packets out. IP security also works on the network layer \cite[p.~765]{computer-networks-tanenbaum-2012}.
 In the transport layer, connections can be encrypted end-to-end, that is, process-to-process \cite[p.~765]{computer-networks-tanenbaum-2012}.
 User authentication and nonrepudiation can only be properly handled in the application layer \cite[p.~765]{computer-networks-tanenbaum-2012}.
@@ -528,7 +543,7 @@ In the literature, an iteration of a cryptographic algorithm over the data is ca
 
 The \textbf{Data Encryption Standard (DES)} algorithm was originally developed by IBM.
 Some controversy arose from the fact that the NSA reduced its key size from 128 bits to 56 bits.
-People suspected that the key length was reduced to make sure that NSA could just break DES, but not organization with a smaller budget could.
+People suspected that the key length was reduced to make sure that NSA could break DES, but no organization with a smaller budget could.
 Today, for less than US\$ 10,000 one can buy a machine that breaks DES in under 1 day given plaintext and matching ciphertext \cite[p.~782]{computer-networks-tanenbaum-2012}.
 
 Triple DES was proposed some time after DES. It used two 56-bit keys instead of one and worked by encrypting with \(K_1\), decrypting with \(K_2\), and then encrypting with \(K_1\).
@@ -728,7 +743,7 @@ For instance, port 80 could be blocked so that no HTTP traffic was allowed, whil
 Firewalls have become much more sophisticated over time. This is because it proved difficult to write useful rules which could be applied to every single packet.
 \textbf{Stateful firewalls} map packets to connections and thus allow for more complex settings, such as allowing an external server to send packets to an internal host only if the internal host first establishes a connection with the external server.
 
-Lastly, firewalls can also implement \textbf{application-level} gateways
+Lastly, firewalls can also implement \textbf{application-level} gateways.
 This process involves the firewall inspecting the packet contents to understand what the application is doing.
 This allows the firewall to distinguish between HTTP traffic used for browsing Wikipedia and HTTP traffic used for peer-to-peer file sharing.
 It is important to note that outgoing traffic can also be inspected, so that raw sensitive data never leaves the company office \cite[p.~819]{computer-networks-tanenbaum-2012}.
@@ -745,6 +760,7 @@ Firewalls offer no protection against \textbf{DoS} and \textbf{DDoS} attacks \ci
 Some large companies used to have physical network lines between its multiple facilities.
 These lines defined a \textbf{private network}.
 However, leasing private lines is very expensive, so many companies have financial interest in migrating their networks to the public network, but without giving up the security and privacy of a private network \cite[p.~821]{computer-networks-tanenbaum-2012}.
+
 This led to the invention of VPNs, which are overlay networks on top of public networks with most of the properties of private networks.
 They are called virtual because very much like virtual circuits are not real circuits and virtual memory is not real memory virtual networks are not real networks \cite[p.~821]{computer-networks-tanenbaum-2012}.
 
@@ -759,7 +775,7 @@ The only difference being the presence of the IPsec header after the IP header, 
 
 Another possibility is to have the ISP set up the VPN. Using \href{https://en.wikipedia.org/wiki/Multiprotocol_Label_Switching}{multiprotocol label switching}, paths for the VPN traffic can be set up across the ISP network between the company offices. These paths keep the VPN traffic separate from public traffic and can be guaranteed better quality of service.
 
-Except for the configuration steps, VPNs are completely transparent for end users \cite[p.~822]{computer-networks-tanenbaum-2012}.
+After the configuration steps, VPNs are completely transparent for end users \cite[p.~822]{computer-networks-tanenbaum-2012}.
 
 \subsubsection{Wireless security}
 
@@ -772,9 +788,9 @@ WEP and WPA are too weak and should no longer be used \cite[p.~824]{computer-net
 
 There are two scenarios in which WPA2 is used.
 
-\textbf{In enterprise settings}, a separate authentication server can use provided username and passwords to determine if a wireless client is allowed to access the network.
-
 \textbf{In personal settings}, there is no authentication server. Instead, there is a single shared password that is used by clients to access the network. This setup is much simpler, but it is also less secure. In this setup, a handshake is performed so that each client has two keys, one for direct communication with the access point (AP) and a key which is shared across all clients so that the AP can broadcast packages.
+
+\textbf{In enterprise settings}, a separate authentication server can use provided username and passwords to determine if a wireless client is allowed to access the network. 
 
 There are two protocols which dictate how these keys are actually used to provide security.
 The first one was \textbf{TKIP}, which has been broken and should no longer be used.
@@ -1830,8 +1846,7 @@ The HTTP protocol supports non-persistent and persistent connections.
 Multiple non-persistent connections can be established in parallel.
 Persistent connection may use request pipelining.
 
-Assuming a web page references other 15 objects and that the client cannot open an infinite number of connections.
-
+Assuming a web page references other 15 objects and that the client can open an infinite number of connections.
 How many connections are established, at least, by a client employing the following techniques?
 
 \begin{enumerate}[a)]
