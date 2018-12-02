@@ -386,10 +386,14 @@ On the other hand, at the application layer the Internet has witnessed rapid dep
 
 \subsection{TCP}
 
-Transmission control protocol (TCP) was specifically designed to provide a reliable end-to-end byte stream over an unreliable network.
-TCP was created to dynamically adapt to properties of the network and to be robust in the face of many kinds of failures.
+The transmission control protocol (TCP) was specifically designed to provide a reliable end-to-end byte stream over an unreliable network.
+It can dynamically adapt to the properties of the network and is robust in the face of many kinds of failures.
 
 When talking about TCP/IP, it is common to group OSI layers 1 and 2 under Network Interface and 5, 6, and 7 under Application.
+
+TCP provides \textbf{flow control} services, which eliminate the possibility of the sender overflowing the receiver's buffer. It can be seen as a speed matching service.
+Flow control should not be confused with \textbf{congestion control}, which is throttling done because of congestion within the IP network.
+Even though both are done by throttling a system, congestion control can throttle at any intermediary system, while flow control only throttles at the sender's end system \cite[p.~250]{computer-networking-kurose-2012}.
 
 \section{Application layer}
 
