@@ -1808,17 +1808,17 @@ When sending a message, the sender will use the receiver's public key to encrypt
 
 \begin{Exercise}
 An institution has 5000 hosts uniformly distributed over 100 networks.
-Propose a CIDR and a classful allocation scheme and compare the amount of wasted addresses.
+Propose a CIDR and a classful allocation scheme and compare the amount of unused addresses.
 \end{Exercise}
 \begin{Answer}
 There are 100 networks of 50 hosts each. Therefore, 62-host networks are enough.
 The most efficient uniform distribution is to have 128 networks of 62-hosts.
 This requires \(7 + 6 = 13\) bits for the network and host parts.
 Therefore, a block with \(2^{13} = 8192\) addresses will be needed.
-The occupancy then is \(5000 / 8192 \approx 0.61035\).
+The number of unused addresses then is \(8192 - 5000 = 3192\).
 
 Using a Class B network, there would be \(2^{16}\) available addresses.
-Then the occupancy would be \(5000 / 65536 \approx 0.07629\).
+The number of unused addresses then is \(65536 - 5000 = 60536\).
 \end{Answer}
 
 \begin{Exercise}
