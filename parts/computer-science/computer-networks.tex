@@ -840,10 +840,17 @@ If one could use IP, ICMP, and ARP:
 \end{Answer}
 
 \begin{Exercise}
-Duplicate of exercise 25.
+What is proxy ARP? How does it work? What alternatives are there to it?
 \end{Exercise}
 \begin{Answer}
-None.
+Proxy ARP is used to make a host appear in a network even though it is in another network.
+It works with the help from routers, as normally Ethernet-level broadcasts are not forwarded by routers.
+The router has to reply to the ARP request with \textbf{its own Ethernet address}.
+Then the sender host can send frames which are meant to the receiver host \textbf{to the router}, which will then forward these frames to the correct device.
+To the sender it all happens transparently as if the receiver was in the same network.
+It allows for machines on a sub-network to reach remote sub-networks without the need to configure routing or a default gateway.
+
+An alternative to it is to go straight for routing. Instead of the router faking that it has the requested IP, it just does not respond to the ARP request and the device -- assuming it has been correctly configured -- will have to send frames explicitly to its default gateway, which will then forward the packets to their true destination.
 \end{Answer}
 
 \begin{Exercise}
@@ -889,19 +896,20 @@ Write down all you know about hubs, switches, and routers.
 Mention technology, operation principle, bandwidth usage, broadcast domains, collision domains, and spanning trees.
 \end{Exercise}
 \begin{Answer}
-Hubs operate on the physical layer, they just connect multiple lines as if they were the same single line. This is why they only define a single common collision domain.
+Hubs operate on the physical layer, they just connect multiple lines as if they were the same single line. This is why they only define one collision domain.
 
-Switches, on the other hand, define a single collision domain for each port as long as they have a full-duplex point-to-point connection. Switches, however, still define a single broadcast domain.
-Switches operate on the second layer of the OSI stack, forwarding frames.
-Switches are auto-configurable, in the sense that one could just plug one in and wander away, leaving it to configure itself. This works because algorithms such as the spanning three algorithm allow for switch to detect cycles and not propagate the same frames around forever.
+Switches operate on the data link layer (forwarding frames) and define a single collision domain for each port as long as they have a full-duplex point-to-point connection.
+They, however, still define a single broadcast domain.
+Switches are auto-configurable, in the sense that one could just plug one in and wander away, leaving it to configure itself.
+This works because algorithms such as the spanning tree algorithm allow for a switch to detect cycles and not propagate the same frames around forever.
 
-Routers define a single broadcast domain per router interface. Routers operate on the third layer of the OSI stack, forwarding packets.
+Routers operate on the network layer (forwarding packets) and define a single broadcast domain per router interface.
 \end{Answer}
 
 \begin{Exercise}
 Determine the ARP sequence in the sending of a datagram, for the first time, from A (192.31.65.7) to B (192.31.62.8).
 Specify for each message what are the source hardware address, the destination hardware address, the source IP address, and the destination IP address.
-Both machines use a /24 mask. Is there any missing information?
+Both machines use a 24-bit mask. Is there any missing information?
 \end{Exercise}
 \begin{Answer}
 It is missing whether there is a router between A and B, and whether or not this router does proxy ARP.
@@ -923,6 +931,8 @@ If, instead, the router R were to just forward broadcasts, the sequence would be
     \(E_B\) & \(I_B\) & \(E_A\) & \(I_A\) \\
 \end{tabular}
 \end{center}
+
+Lastly, the machines could also be configured to use a default gateway, sending ARP requests to discover the MAC address of the router.
 \end{Answer}
 
 \begin{Exercise}
@@ -935,6 +945,7 @@ Which of these algorithms are related to static routing and which are related to
     \item Link state (LS)
 \end{enumerate}
 \end{Exercise}
+% TODO: use the algorithms' full names.
 \begin{Answer}
 SP is a static routing algorithm as it relies on calculating routes before the network is online.
 It uses a graph algorithm such as Dijkstra's to find the shortest paths. See \ref{Shortest path algorithm}.
@@ -944,19 +955,20 @@ DV is a dynamic routing algorithm. One DV update works by inspecting the direct 
 LS is another dynamic routing algorithm. It works by allowing each router to know the entire topology of the network and then evaluating shortest paths from this knowledge. See \ref{Link state routing}.
 
 Both DV and LS are much more sophisticated than SP as they can work automatically in existing networks, while SP is static and can not adapt on-the-fly to network topology changes.
-DV has better scalability than LS because its complexity is proportional to the number of direct neighbors, which is usually limited by the number of network interfaces of the router, which is relatively small.
-LS does not have the count-to-infinity problem which exists in DV. This problem causes DV to approach the value considered to be infinity just linearly. Therefore, it might take quite some time until all routers see that a previously existing route is no longer online. In DV, good news travel fast, but bad news travel slow.
+DV has better scalability than LS because its complexity is proportional to the number of direct neighbors, which is usually limited by the number of network interfaces of the routers, which is relatively small.
+LS does not have the count-to-infinity problem which exists in DV. This problem causes DV to approach the value considered to be infinity just linearly. Therefore, it might take quite some time until all routers see that a previously existing route is no longer online. In DV, \textbf{good news travel fast, but bad news travel slow}.
 \end{Answer}
 
 \begin{Exercise}
-A machine in a TCP/IP network has the IP address 143.54.13.100 and the network mask 255.255.255.192. What is the network number, the broadcast address of this network, the first and last valid IP addresses for hosts?
+Duplicate of exercise 5.
 \end{Exercise}
 \begin{Answer}
-The network is 143.54.13.64/26. The broadcast address is 143.54.13.127 and the first and last valid IP addresses are 143.54.13.65 and 143.54.13.126, respectively.
+None.
 \end{Answer}
 
 \begin{Exercise}
 You have 200.61.0.0/18. Distribute it between A, which needs 1800 addresses, B, which needs 800 addresses, and C, which needs 600 addresses.
+Assume you can use the sub-networks zero and all-one.
 \end{Exercise}
 \begin{Answer}
 A needs a /21, B and C need a /22.
@@ -998,7 +1010,7 @@ Assume the following delays.
 
 \begin{Exercise}
 Considering a 802.3 network, why can't the ARP protocol identify the MAC address of a machine in a different network?
-Explain the solution using default gateways and the solution using ARP proxies.
+Explain the solution using default gateways and the solution using proxy ARP.
 \end{Exercise}
 \begin{Answer}
 The ARP protocol relies on broadcasts to work, which are usually not routed.
@@ -1238,17 +1250,10 @@ None.
 \end{Answer}
 
 \begin{Exercise}
-What is proxy ARP? How does it work? What alternatives are there to it?
+Duplicate of exercise 3.
 \end{Exercise}
 \begin{Answer}
-Proxy ARP is used to make a host appear in a network even though it is in another network.
-It works with the help from routers, as normally Ethernet-level broadcasts are not forwarded by routers.
-The router has to reply to the ARP request with \textbf{its own Ethernet address}.
-Then the sender host can send frames which are meant to the receiver host \textbf{to the router}, which will then forward these frames to the correct device.
-To the sender it all happens transparently as if the receiver was in the same network.
-It allows for machines on a sub-network to reach remote sub-networks without the need to configure routing or a default gateway.
-
-An alternative to it is to go straight for routing. Instead of the router faking that it has the requested IP, it just does not respond to the ARP request and the device -- assuming it has been correctly configured -- will have to send frames explicitly to its default gateway, which will then forward the packets to their true destination.
+None.
 \end{Answer}
 
 \begin{Exercise}
@@ -1351,8 +1356,10 @@ The count-to-infinity problem, which is why the distance vector may take a very 
 Which network parameters have to be correctly configured in a computer for it to have network access to external networks?
 \end{Exercise}
 \begin{Answer}
-The default gateway, which is required for the computer to know where to send packets to in order to get them forwarded to the destination.
-Possibly also the DNS servers, which are required for the computer to resolve names.
+The current host IP address, which can be automatically configured from DHCP or manually configured.
+The network mask and the addresses of the DNS servers.
+
+A default gateway is needed if proxy ARP is not being used.
 \end{Answer}
 
 \begin{Exercise}
@@ -1384,9 +1391,10 @@ Source IP  Destination IP  Source port  Destination port  Flags
 \end{Answer}
 
 \begin{Exercise}
-A network administrator has to subdivide 200.30.40.0/24 in five sub-networks.
+A network administrator has to subdivide 200.30.40.0/24 in exactly five sub-networks.
 Perform this division considering a classless scheme and provide the broadcast addresses.
 \end{Exercise}
+% TODO: fix, using EXACTLY five.
 \begin{Answer}
 \begin{enumerate}
 \item 200.30.40.0/27, 200.30.40.31
@@ -1519,11 +1527,10 @@ None.
 \end{Answer}
 
 \begin{Exercise}
-Which parameters of a TCP/IP network have to be correctly configured in a computer in order for it to have access to network services in external networks?
+Duplicate of exercise 32.
 \end{Exercise}
 \begin{Answer}
-The current host IP address, which can be automatically configured from DHCP or manually configured.
-The default gateway, the network mask, and the addresses of the DNS servers.
+None.
 \end{Answer}
 
 \begin{Exercise}
@@ -1539,6 +1546,7 @@ It's also worth pointing out that, given enough time, distance vector routing al
 A network administrator needs to divide the address block 10.1.2.0/24 into five sub-networks.
 Determine, for both classful (avoiding all-zeros and all-ones sub-networks) and classless sub-netting, the network mask, the first host address, the last host addresses, and the broadcast address of the sub-networks.
 \end{Exercise}
+% Merge with exercise 36.
 \begin{Answer}
 We need 5 networks, so 3 bits are needed for both classful and classless subdivisions.
 
@@ -1606,7 +1614,7 @@ A student used the command \texttt{arp -a} after pinging several hosts which are
 Did they do something wrong? Why is there only one entry?
 \end{Exercise}
 \begin{Answer}
-Not necessarily. ARP resolution is not used with external hosts.
+Not necessarily. ARP resolution might not be used with external hosts.
 For these cases, packet delivery always goes directly through the default gateway.
 \end{Answer}
 
