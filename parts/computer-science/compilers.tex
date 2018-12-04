@@ -24,3 +24,37 @@ This function loads a few parameters that are needed by the dynamic linker for i
 The dynamic linker then changes the stub code so that the next time the function is called it will go straight to the right address \cite{computer-science-from-the-bottom-up}.
 
 While the PLT is usually filled lazily in runtime, the GOT is filled before the program begins executing \cite{computer-science-from-the-bottom-up}.
+
+\section{Code generation}
+
+\subsection{Optimization of basic blocks}
+
+\textbf{Local optimizations} are optimizations performed within a basic block.
+
+A basic block can be represented as a directed acyclic graph (DAG).
+
+\subsubsection{Local common subexpression elimination}
+
+Local common subexpression elimination consists in eliminating expressions that compute a value that has already been computed \cite[p.~533]{compilers-aho-2007}.
+
+For instance, in the following sequence of instructions, it would be interesting to compute the value of \texttt{b} and \texttt{d} only once.
+
+\begin{lstlisting}
+a = b + c
+b = a - d
+c = b + c
+d = a - d
+\end{lstlisting}
+
+Note that in more elaborate examples, algebraic identities may need to be applied before local common subexpression elimination can be applied.
+
+\begin{lstlisting}
+a = b + c
+b = b - d
+c = c + d
+e = b + c
+\end{lstlisting}
+
+In the above example, even though \texttt{b} and \texttt{c} both change between the first and last statements, their sum remains the same.
+
+\section{Machine independent optimization}
