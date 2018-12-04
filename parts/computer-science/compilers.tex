@@ -46,7 +46,7 @@ c = b + c
 d = a - d
 \end{lstlisting}
 
-Note that in more elaborate examples, algebraic identities may need to be applied before local common subexpression elimination can be applied.
+Note that in more elaborate examples, algebraic identities may need to be used before local common subexpression elimination can be applied.
 
 \begin{lstlisting}
 a = b + c
@@ -57,4 +57,37 @@ e = b + c
 
 In the above example, even though \texttt{b} and \texttt{c} both change between the first and last statements, their sum remains the same.
 
+\subsubsection{Dead code elimination}
+
+Dead code elimination on DAG's correspond to removing roots (nodes with no ancestors) which have no live variables attached to it.
+
+\subsubsection{Use of algebraic identities}
+
+Algebraic identities represent another important class of optimization on basic blocks.
+
+Algebraic identities can be used to remove \textbf{arithmetic identities} such as adding zero and multiplying by one \cite[p.~536]{compilers-aho-2007}.
+\[x + 0 = 0 + x = x\]
+\[x \cdot 1 = 1 \cdot x = x\]
+They can also be used to perform \textbf{strength reduction}, that is, to replace more expensive operators by cheaper ones \cite[p.~536]{compilers-aho-2007}.
+\[x^{2} = x \times x\]
+\[x / 2 = x >> 1\]
+A third class of algebraic identities is \textbf{constant folding}, in which constant expressions are evaluated at compile time \cite[p.~536]{compilers-aho-2007}.
+\[2 * 32 = 64\]
+Lastly, there are also more general algebraic transformations such as \textbf{commutativity and associativity} \cite[p.~536]{compilers-aho-2007}.
+
+\begin{lstlisting}
+a = b + c
+t = c + d
+e = t + b
+\end{lstlisting}
+
+In the listing above, if \texttt{t} is not needed afterwards, commutativity and associativity could be used to simplify the code to the following.
+
+\begin{lstlisting}
+a = b + c
+e = a + d
+\end{lstlisting}
+
 \section{Machine independent optimization}
+
+Soon.
