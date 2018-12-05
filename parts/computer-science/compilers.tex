@@ -118,10 +118,20 @@ See \ref{Abstract and concrete syntax}.
 \begin{Exercise}
 When is the abstract syntax tree necessary?
 \end{Exercise}
+\begin{Answer}
+The abstract syntax tree is necessary when the language being compiled is complex and decoupling parsing and code generation is required to reduce the complexity of the compiler.
+
+Very simple languages such as a basic calculator can be compiled without ever resorting to an abstract syntax tree.
+\end{Answer}
 
 \begin{Exercise}
 What is syntax-directed translation?
 \end{Exercise}
+\begin{Answer}
+Syntax-directed translation is the process of walking through a parse tree and generating intermediary code from it \cite[p.~12]{compilers-aho-2007}.
+
+It is done by attaching rules or program fragments to productions in a grammar \cite[p.~52]{compilers-aho-2007}.
+\end{Answer}
 
 \begin{Exercise}
 What is an annotated syntax tree? What are attributes?
@@ -139,7 +149,6 @@ In which order the attributes should be evaluated?
 How are the attributes of a bottom-up analyzer implemented?
 \end{Exercise}
 
-% TODO: review.
 \begin{Exercise}
 What is a translation scheme?
 \end{Exercise}
