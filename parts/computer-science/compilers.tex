@@ -1,29 +1,13 @@
 \chapter{Compilers}
 
-\section{Libraries}
+\section{Syntax-directed translation}
 
-\subsection{Global offset table}
+\subsection{Abstract and concrete syntax}\label{Abstract and concrete syntax}
 
-If the dynamic linker could only perform relocations, when the value of global symbol is required, the dynamic linker would have to look up the memory address of that symbol and rewrite the code to load that address \cite{computer-science-from-the-bottom-up}.
+An \textbf{abstract syntax tree}, is a data structure in which each interior node represents an operator. The children of a node represent the operands of this operator.
+The concept a syntax tree can be generalized so that any programming construct can be treated as an operator with some operands \cite[p.~69]{compilers-aho-2007}.
 
-An enhancement would be to set aside space in the binary to hold the address of that symbol, and use the dynamic linker to put the address there rather than in the code directly.
-This way the code of the binary would never have to be changed in runtime.
-This area exists and is called the global offset table (GOT) \cite{computer-science-from-the-bottom-up}.
-
-\subsection{Procedure lookup table}
-
-The procedure lookup table (PLT) serves to facilitate \textit{lazy binding} in programs.
-Binding is the name given to assigning an entry of the table the real address \cite{computer-science-from-the-bottom-up}.
-
-Binding a function involves loading library code into memory if this hasn't been done yet, searching through it to find the function being called, and writing its real address to memory.
-Therefore, binding unused functions is wasteful.
-Each library function has an entry in the PLT, which initially points to a dummy function \cite{computer-science-from-the-bottom-up}.
-
-When the program calls the function, it is actually calling the PLT entry.
-This function loads a few parameters that are needed by the dynamic linker for it to resolve the function and then calls into a special lookup function of the dynamic linker.
-The dynamic linker then changes the stub code so that the next time the function is called it will go straight to the right address \cite{computer-science-from-the-bottom-up}.
-
-While the PLT is usually filled lazily in runtime, the GOT is filled before the program begins executing \cite{computer-science-from-the-bottom-up}.
+Abstract syntax trees differ from \textbf{concrete syntax trees}, also known as \textbf{parse trees}, because the interior nodes of a abstract syntax tree represent programming constructs while the interior nodes of a parse tree represent nonterminals of the concrete syntax \cite[p.~69]{compilers-aho-2007}.
 
 \section{Code generation}
 
@@ -88,6 +72,162 @@ a = b + c
 e = a + d
 \end{lstlisting}
 
+It is important to determine which computation rearrangements are permitted in order to not introduce the possibility of overflow or precision loss during optimization.
+For instance, the Fortran standard states that a compiler may evaluate any mathematically equivalent expression, provided that the integrity of parentheses is not violated.
+Thus, a compiler may evaluate \(x * y - x * z\) as \(x * (y - z)\), but it may not evaluate \(a + (b - c)\) as \((a + b) - c\).
+A Fortran compiler must therefore keep track of where parentheses were present in the source code in order to optimize programs in accordance with the language definition \cite[p.~537]{compilers-aho-2007}.
+
 \section{Machine independent optimization}
 
 Soon.
+
+\section{Libraries}
+
+\subsection{Global offset table}
+
+If the dynamic linker could only perform relocations, when the value of global symbol is required, the dynamic linker would have to look up the memory address of that symbol and rewrite the code to load that address \cite{computer-science-from-the-bottom-up}.
+
+An enhancement would be to set aside space in the binary to hold the address of that symbol, and use the dynamic linker to put the address there rather than in the code directly.
+This way the code of the binary would never have to be changed in runtime.
+This area exists and is called the global offset table (GOT) \cite{computer-science-from-the-bottom-up}.
+
+\subsection{Procedure lookup table}
+
+The procedure lookup table (PLT) serves to facilitate \textit{lazy binding} in programs.
+Binding is the name given to assigning an entry of the table the real address \cite{computer-science-from-the-bottom-up}.
+
+Binding a function involves loading library code into memory if this hasn't been done yet, searching through it to find the function being called, and writing its real address to memory.
+Therefore, binding unused functions is wasteful.
+Each library function has an entry in the PLT, which initially points to a dummy function \cite{computer-science-from-the-bottom-up}.
+
+When the program calls the function, it is actually calling the PLT entry.
+This function loads a few parameters that are needed by the dynamic linker for it to resolve the function and then calls into a special lookup function of the dynamic linker.
+The dynamic linker then changes the stub code so that the next time the function is called it will go straight to the right address \cite{computer-science-from-the-bottom-up}.
+
+While the PLT is usually filled lazily in runtime, the GOT is filled before the program begins executing \cite{computer-science-from-the-bottom-up}.
+
+\section{Solved course exercises}
+
+\begin{Exercise}[difficulty=1]
+What is an abstract syntax tree?
+\end{Exercise}
+\begin{Answer}
+See \ref{Abstract and concrete syntax}.
+\end{Answer}
+
+\begin{Exercise}
+When is the abstract syntax tree necessary?
+\end{Exercise}
+
+\begin{Exercise}
+What is syntax-directed translation?
+\end{Exercise}
+
+\begin{Exercise}
+What is an annotated syntax tree? What are attributes?
+\end{Exercise}
+
+\begin{Exercise}
+Where are the attributes created?
+\end{Exercise}
+
+\begin{Exercise}
+In which order the attributes should be evaluated?
+\end{Exercise}
+
+\begin{Exercise}
+How are the attributes of a bottom-up analyzer implemented?
+\end{Exercise}
+
+% TODO: review.
+\begin{Exercise}
+What is a translation scheme?
+\end{Exercise}
+
+\begin{Exercise}
+Through which steps can any translation scheme be implemented?
+\end{Exercise}
+
+\begin{Exercise}
+What is an attribute grammar?
+\end{Exercise}
+
+\begin{Exercise}
+What is an S-attributed translation scheme?
+\end{Exercise}
+
+\begin{Exercise}
+What is an L-attributed translation scheme?
+\end{Exercise}
+
+\begin{Exercise}
+List three semantic actions typical to the creation of the abstract syntax tree in an analyzer written using Yacc.
+\end{Exercise}
+
+\begin{Exercise}
+Which type of translation scheme can be implemented using Yacc?
+\end{Exercise}
+
+\begin{Exercise}
+What is a three-address code structure? What is its purpose?
+\end{Exercise}
+
+\begin{Exercise}
+Construct the three-address code structure for an if-then-else statement.
+\end{Exercise}
+
+\begin{Exercise}[difficulty=1]
+How does panic mode error correction works?
+\end{Exercise}
+
+\begin{Exercise}
+What is the other main error correction technique?
+\end{Exercise}
+
+\begin{Exercise}
+Why isn't there a deterministic algorithm for error correction?
+\end{Exercise}
+
+\begin{Exercise}
+How is error correction implemented in a reductive algorithm?
+\end{Exercise}
+
+\begin{Exercise}[difficulty=1]
+How is error correction implemented in Yacc?
+\end{Exercise}
+
+\begin{Exercise}
+What are the error correction actions inserted in LL(1) tables of top-down analysis?
+\end{Exercise}
+
+\begin{Exercise}[difficulty=1]
+List three loop optimization techniques and give small code examples.
+\end{Exercise}
+
+\begin{Exercise}[difficulty=1]
+What is a basic block and how is it used for optimization?
+\end{Exercise}
+
+\begin{Exercise}
+What is optimization by tree rewriting?
+\end{Exercise}
+
+\begin{Exercise}
+When is optimization performed during the compilation process?
+\end{Exercise}
+
+\begin{Exercise}
+How does expression optimization works even where there is no common sub-expressions?
+\end{Exercise}
+
+\begin{Exercise}[difficulty=1]
+What is data lifetime? Why is this concept important?
+\end{Exercise}
+
+\begin{Exercise}
+How does the left-edge register allocation algorithm works?
+\end{Exercise}
+
+\begin{Exercise}
+What is the main limitation of performing left-edge register allocation?
+\end{Exercise}
