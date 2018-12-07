@@ -106,7 +106,9 @@ The dynamic linker then changes the stub code so that the next time the function
 
 While the PLT is usually filled lazily in runtime, the GOT is filled before the program begins executing \cite{computer-science-from-the-bottom-up}.
 
-\section{Solved course exercises}
+\section{Solved exercises}
+
+\subsection{Solved course exercises}
 
 \begin{Exercise}[difficulty=1]
 What is an abstract syntax tree?
@@ -134,56 +136,128 @@ It is done by attaching rules or program fragments to productions in a grammar \
 \end{Answer}
 
 \begin{Exercise}
-What is an annotated syntax tree? What are attributes?
+What is an annotated parse tree? What are attributes?
 \end{Exercise}
+\begin{Answer}
+An annotated parse tree is a parse tree with attributes at each node.
+Attributes are information about that node of the parse tree, usually types and values.
+\end{Answer}
 
 \begin{Exercise}
-Where are the attributes created?
+When are the parse tree attributes created?
 \end{Exercise}
+\begin{Answer}
+The attributes are created during \textbf{syntactic analysis} \cite[p.~54]{compilers-aho-2007}.
+\end{Answer}
 
 \begin{Exercise}
 In which order the attributes should be evaluated?
 \end{Exercise}
+\begin{Answer}
+The attributes should be evaluated from the leaves to the root.
+\end{Answer}
 
 \begin{Exercise}
-How are the attributes of a bottom-up analyzer implemented?
+How are the attributes implemented in a bottom-up analyzer?
 \end{Exercise}
+\begin{Answer}
+In a bottom-up analyzer, the attributes are implemented by first resolving the attributes of the child nodes and then synthesizing the attributes of the parents.
+\end{Answer}
 
 \begin{Exercise}
 What is a translation scheme?
 \end{Exercise}
+\begin{Answer}
+A translation scheme is a notation that embeds program fragments called
+\textbf{semantic actions} in production bodies.
+The actions are executed in the order that the productions are used during syntax analysis \cite[p.~107]{compilers-aho-2007}.
+\end{Answer}
 
 \begin{Exercise}
 Through which steps can any translation scheme be implemented?
 \end{Exercise}
+\begin{Answer}
+Any (syntax-directed) translation scheme can be implemented by first \textbf{building a parse tree and performing the actions in a left-to-right depth-first order}. This is also known as a a preorder traversal.
+Typically, translation schemes are implemented during parsing, without building a parse tree \cite[p.~324]{compilers-aho-2007}.
+\end{Answer}
 
 \begin{Exercise}
 What is an attribute grammar?
 \end{Exercise}
-
-\begin{Exercise}
-What is an S-attributed translation scheme?
-\end{Exercise}
+\begin{Answer}
+An attribute grammar is a syntax-directed definition without side effects.
+That is, an attribute grammar has rules which define \textbf{the value of an attribute purely in terms of other attributes and constants} \cite[p.~306]{compilers-aho-2007}.
+\end{Answer}
 
 \begin{Exercise}
 What is an L-attributed translation scheme?
 \end{Exercise}
+\begin{Answer}
+L-attributed translation schemes are a special type of attribute grammars.
+Their attributes can be evaluated in one left-to-right traversal of the abstract syntax tree.
+As a result, \textbf{attribute evaluation can be incorporated conveniently in top-down parsing}.
+Many programming languages are L-attributed.
+\end{Answer}
+
+\begin{Exercise}
+What is an S-attributed translation scheme?
+\end{Exercise}
+\begin{Answer}
+S-attributed translation schemes are a class of attribute grammars which have no inherited attributes.
+Inherited attributes, which must be passed down from parent nodes to children nodes of the abstract syntax tree during the semantic analysis of the parsing process, are a problem for bottom-up parsing as the parent nodes of the abstract syntax tree are created after creation of all of their children.
+Attribute evaluation in S-attributed grammars can be incorporated conveniently in both top-down parsing and bottom-up parsing.
+
+\textbf{Any S-attributed grammar is also an L-attributed grammar}.
+\end{Answer}
 
 \begin{Exercise}
 List three semantic actions typical to the creation of the abstract syntax tree in an analyzer written using Yacc.
 \end{Exercise}
+\begin{Answer}
+\begin{enumerate}
+\item Create a list of abstract syntax trees, such as the parameters of a function definition.
+\item Create a abstract syntax tree leaf node for a symbol.
+\item Join multiple nodes to build a larger node for a variable declaration, such as the token used to name the type and the token used for the name.
+\end{enumerate}
+\end{Answer}
 
 \begin{Exercise}
 Which type of translation scheme can be implemented using Yacc?
 \end{Exercise}
+\begin{Answer}
+Yacc can be used to implement S-attributed translation schemes.
+\end{Answer}
 
 \begin{Exercise}
 What is a three-address code structure? What is its purpose?
 \end{Exercise}
+\begin{Answer}
+It is a structure which represents an operation over up to two operands and assigns the result to a third operator.
+Its purpose is to serve as a intermediary representation which is closer to machine code before code generation happens \cite[p.~358]{compilers-aho-2007}.
+\end{Answer}
 
 \begin{Exercise}
 Construct the three-address code structure for an if-then-else statement.
 \end{Exercise}
+\begin{Answer}
+\begin{lstlisting}
+d = 0;
+if (a < b) {
+    d += d;
+}
+e = d / 2;
+\end{lstlisting}
+From the above source code one can derive the following three-address code.
+\begin{lstlisting}
+  d = 0
+  _T0 = a < b
+  jump L1 if not _T0
+_L0:
+  d = d + 2
+_L1:
+  e = d / 2
+\end{lstlisting}
+\end{Answer}
 
 \begin{Exercise}[difficulty=1]
 How does panic mode error correction works?
