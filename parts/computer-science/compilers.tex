@@ -260,8 +260,14 @@ _L1:
 \end{Answer}
 
 \begin{Exercise}[difficulty=1]
-How does panic mode error correction works?
+How does panic mode error recovery works?
 \end{Exercise}
+
+\begin{Answer}
+Panic mode error recovery works by skipping symbols on the input until a token in a selected set of synchronization tokens is found.
+The results are as good as the synchronizing set chosen.
+The synchronizing set should be chosen so that the parser recovers quickly from the errors that are most likely to occur in the real world \cite[p.~229]{compilers-aho-2007}.
+\end{Answer}
 
 \begin{Exercise}
 What is the other main error correction technique?
