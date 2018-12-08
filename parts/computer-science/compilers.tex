@@ -102,6 +102,20 @@ The dynamic linker then changes the stub code so that the next time the function
 
 While the PLT is usually filled lazily in runtime, the GOT is filled before the program begins executing \cite{computer-science-from-the-bottom-up}.
 
+\section{Instruction level parallelism}
+
+Optimized code scheduling takes advantage of modern computer architectures.
+Many machines allow pipelined execution and some allow several instructions to begin at the same time.
+When scheduling instructions, one must be aware of the \textbf{data dependencies} between instructions.
+\textbf{The only true data dependency is a read after a write}.
+True data dependencies cannot be eliminated and must be executed in order \cite[p.~765]{compilers-aho-2007}.
+
+The data-dependence graphs for basic blocks represent timing constrains across statements.
+These graphs are always acyclic \cite[p.~765]{compilers-aho-2007}.
+
+\textbf{Interblock code motion} is the name given to the process of moving statements from one basic block into another.
+It may elicit new parallelism opportunities \cite[p.~765]{compilers-aho-2007}.
+
 \section{Solved exercises}
 
 \subsection{Solved course exercises}
