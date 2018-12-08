@@ -376,6 +376,13 @@ for (i = 0; i < n; i++) {
 \begin{Exercise}[difficulty=1]
 What is a basic block and how is it used for optimization?
 \end{Exercise}
+\begin{Answer}
+Basic blocks are sequences of instructions that are always executed one after the other, with no branching \cite[p.~92]{compilers-aho-2007}.
+
+Basic blocks which are likely to be required at the same time can be laid out in a way so that they are close in memory, improving the spatial locality of code access \cite[p.~457]{compilers-aho-2007}.
+
+Code improvement within a basic block can be very creative, as long as the end result of executing the entire new basic block is the same as executing the entire original basic block.
+\end{Answer}
 
 \begin{Exercise}
 What is optimization by tree rewriting?
