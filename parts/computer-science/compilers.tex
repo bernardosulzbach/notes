@@ -399,6 +399,15 @@ How does expression optimization works even where there is no common sub-express
 \begin{Exercise}[difficulty=1]
 What is data lifetime? Why is this concept important?
 \end{Exercise}
+\begin{Answer}
+Data lifetime indicates for how long a computed value has to be kept.
+It can be thought of as \textbf{storage duration}.
+
+The concept is important as it allows for compiler optimizations such as performing stack allocations instead of heap allocations and for the compiler to determine when it can reuse a register to store another value.
+
+Understanding data lifetime is useful when scheduling instructions during the optimization phases because it is another factor to be considered when reordering instructions.
+Having registers with unnecessarily long lifetimes is usually inefficient, so pulling the definitions closer to the uses tends to improve performance.
+\end{Answer}
 
 \begin{Exercise}
 How does the left-edge register allocation algorithm works?
