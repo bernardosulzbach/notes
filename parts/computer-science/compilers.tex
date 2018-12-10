@@ -264,8 +264,11 @@ From the above source code one can derive the following three-address code.
   jump L1 if not _T0
 _L0:
   d = d + 2
+  jump _L2
 _L1:
   e = d / 2
+_L2:
+  ...
 \end{lstlisting}
 \end{Answer}
 
@@ -296,8 +299,11 @@ For instance, assuming that what happened is a missing semicolon might eventuall
 \end{Answer}
 
 \begin{Exercise}
-How is error correction implemented in a reductive algorithm?
+How is error correction implemented in a shift-reduce algorithm?
 \end{Exercise}
+\begin{Answer}
+The parser shifts the fictitious error token onto the stack and eventually reduces it to a production which includes an error.
+\end{Answer}
 
 \begin{Exercise}[difficulty=1]
 How is error recovery implemented in Yacc?
@@ -314,6 +320,9 @@ The associated semantic action will be invoked when the production is fully matc
 \begin{Exercise}
 What are the error correction actions inserted in LL(1) tables of top-down analysis?
 \end{Exercise}
+\begin{Answer}
+These are actions which were selected by the compiler designer to be used when an error is detected.
+\end{Answer}
 
 \begin{Exercise}[difficulty=1]
 List three loop optimization techniques and give small code examples.
@@ -387,10 +396,20 @@ Code improvement within a basic block can be very creative, as long as the end r
 \begin{Exercise}
 What is optimization by tree rewriting?
 \end{Exercise}
+\begin{Answer}
+Tree rewriting is a type of optimization for the instruction selection phase of the code generation process \cite[p.~558]{compilers-aho-2007}.
+
+Each tree-rewriting rule may have a cost associated with it, allowing the use of dynamic programming techniques to obtain an optimal replacement strategy for useful classes of machines and expressions \cite[p.~579]{compilers-aho-2007}.
+\end{Answer}
 
 \begin{Exercise}
 When is optimization performed during the compilation process?
 \end{Exercise}
+\begin{Answer}
+Code optimization can be done \textbf{both before and after code generation} \cite[p.~5]{compilers-aho-2007}.
+When it is performed before code generation, it is done over an intermediary representation of the program.
+Optimization has to be done in a platform-dependent manner if is performed after code generation.
+\end{Answer}
 
 \begin{Exercise}
 How does expression optimization works even where there is no common sub-expressions?
