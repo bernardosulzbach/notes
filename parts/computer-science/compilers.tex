@@ -412,8 +412,18 @@ Optimization has to be done in a platform-dependent manner if is performed after
 \end{Answer}
 
 \begin{Exercise}
-How does expression optimization works even where there is no common sub-expressions?
+How does expression optimization works even where there is no common subexpressions?
 \end{Exercise}
+\begin{Answer}
+Even if there are no common subexpressions to be eliminated, it is possible to artificially introduce common subexpressions by applying algebraic identities to the already existing expressions \cite[p.~535]{compilers-aho-2007}.
+
+For example, in the snippet below, algebraic identities can elicit a common subexpression.
+
+\begin{lstlisting}
+y = 2 * x;
+z = x + x;
+\end{lstlisting}
+\end{Answer}
 
 \begin{Exercise}[difficulty=1]
 What is data lifetime? Why is this concept important?
