@@ -513,7 +513,7 @@ A drawer contains red socks and black socks. When two socks are drawn at random,
 \item How small can the number of socks in the drawer be?
 \item How small if the number of black socks is even?
 \end{enumerate}
-Taken from \cite{fifty-challenging-problems-1987}.
+Taken from \cite[p.~1]{fifty-challenging-problems-1987}.
 \end{Exercise}
 \begin{Answer}
 \begin{enumerate}[a)]
@@ -532,6 +532,37 @@ Testing with \(r = 3\) shows us that the smallest possible number of socks is 4.
 \item For even values of \(b\), the same analysis shows us that 21 socks is the smallest possible number of socks.
 \end{enumerate}
 The book points out that this is a problem in number theory as a result of Diophantine Analysis from Pell's equation.
+\end{Answer}
+
+\begin{Exercise}
+Elmer's father offers him a prize if he wins (at least) two tennis sets in a row in a three-set series to be played with his father and the club champion alternately: father-champion-father or champion-father-champion, according to Elmer's choice.
+The champion is a better player than Elmer's father. What series should Elmer choose?
+
+Taken from \cite[p.~1]{fifty-challenging-problems-1987}.
+\end{Exercise}
+\begin{Answer}
+\[P_i = P_f P_c P_f + P_f P_c (1 - P_f) + (1 - P_f) P_c P_f
+= P_f P_c (2 - P_f)\]
+\[P_{ii} = P_c P_f P_c + P_c P_f (1 - P_c) + (1 - P_c) P_f P_c
+= P_c P_f (2 - P_c)\]
+
+Because \(P_f > P_c\), \(P_{ii} > P_i\), and Elmer should choose champion-father-champion.
+
+From the book, the importance of winning the middle game outweighs the disadvantage of playing the champion twice.
+\end{Answer}
+
+\begin{Exercise}
+A three-man jury has two members each of whom independently has a probability \(p\) of making the correct decision and a third member who flips a coin for each decision.
+A one-man jury has a probability \(p\) of making the correct decision.
+Which jury has the better probability of making the correct decision?
+
+Taken from \cite[p.~1]{fifty-challenging-problems-1987}.
+\end{Exercise}
+\begin{Answer}
+\[P_1 = p\]
+\[P_3 = p^2 + 2 p (1 - p) / 2 = p^2 + p - p^2 = p\]
+
+So both juries have the same probability of making the correct decision.
 \end{Answer}
 
 \chapter{Geometry}
