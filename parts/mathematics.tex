@@ -422,7 +422,7 @@ from \(1\) to \(t\).
 \[\log a_b = \reciprocal{\log_b a}\]
 \[e=\lim_{k\to\infty} \left ( 1 + \reciprocal{k} \right ) ^ k\]
 
-\chapter{Statistics}
+\chapter{Probability and statistics}
 
 \section{Discrete distributions}
 
@@ -504,6 +504,35 @@ median and mode) and \(\sigma\) is its standard deviation.
 
 If \(\mu = 0\) and \(\sigma = 1\), the distribution is called the
 \textbf{standard normal distribution}.
+
+\section{Fifty challenging problems in probability}
+
+\begin{Exercise}
+A drawer contains red socks and black socks. When two socks are drawn at random, the probability that both are red is \(\frac{1}{2}\).
+\begin{enumerate}[a)]
+\item How small can the number of socks in the drawer be?
+\item How small if the number of black socks is even?
+\end{enumerate}
+Taken from \cite{fifty-challenging-problems-1987}.
+\end{Exercise}
+\begin{Answer}
+\begin{enumerate}[a)]
+\item We know the following.
+\[\frac{r}{r + b} \times \frac{r - 1}{r + b - 1} = \frac{1}{2}\]
+\[\frac{r}{r + b} > \frac{r - 1}{r + b - 1}\]
+\begin{equation}
+\left(\frac{r}{r + b}\right)^2 > \frac{1}{2} > \left(\frac{r - 1}{r + b - 1}\right)^2 \label{fifty-challenging-problems-equation-1-1}
+\end{equation}
+From \ref{fifty-challenging-problems-equation-1-1} we can get the following inequality.
+\begin{equation}
+\left(\sqrt{2} + 1\right) b + 1 > r > \left(\sqrt{2} + 1\right) b
+\end{equation}
+By letting \(b = 1\), the only possible integer value of \(r\) is 3.
+Testing with \(r = 3\) shows us that the smallest possible number of socks is 4.
+\item For even values of \(b\), the same analysis shows us that 21 socks is the smallest possible number of socks.
+\end{enumerate}
+The book points out that this is a problem in number theory as a result of Diophantine Analysis from Pell's equation.
+\end{Answer}
 
 \chapter{Geometry}
 
