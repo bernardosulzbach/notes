@@ -4,10 +4,10 @@
 
 \subsection{Abstract and concrete syntax}\label{Abstract and concrete syntax}
 
-An \textbf{abstract syntax tree}, is a data structure in which each interior node represents an operator. The children of a node represent the operands of this operator.
+An \textbf{abstract syntax tree} is a data structure in which each interior node represents an operator. The children of a node represent the operands of this operator.
 The concept a syntax tree can be generalized so that any programming construct can be treated as an operator with some operands \cite[p.~69]{compilers-aho-2007}.
 
-Abstract syntax trees differ from \textbf{concrete syntax trees}, also known as \textbf{parse trees}, because the interior nodes of a abstract syntax tree represent programming constructs while the interior nodes of a parse tree represent nonterminals of the concrete syntax \cite[p.~69]{compilers-aho-2007}.
+Abstract syntax trees differ from \textbf{concrete syntax trees}, also known as \textbf{parse trees}, because the interior nodes of an abstract syntax tree represent programming constructs while the interior nodes of a parse tree represent nonterminals of the concrete syntax of the language \cite[p.~69]{compilers-aho-2007}.
 
 \section{Code generation}
 
@@ -119,6 +119,7 @@ It may elicit new parallelism opportunities \cite[p.~765]{compilers-aho-2007}.
 \section{Solved exercises}
 
 \subsection{Solved course exercises}
+\setcounter{Exercise}{0}
 
 \begin{Exercise}[difficulty=1]
 What is an abstract syntax tree?
@@ -131,7 +132,8 @@ See \ref{Abstract and concrete syntax}.
 When is the abstract syntax tree necessary?
 \end{Exercise}
 \begin{Answer}
-The abstract syntax tree is necessary when the language being compiled is complex and decoupling parsing and code generation is required to reduce the complexity of the compiler.
+The abstract syntax tree is necessary when the language being compiled is complex and decoupling parsing from code generation is necessary to reduce the complexity of the compiler.
+When performing direct translation from source code the abstract syntax tree is not necessary.
 
 Very simple languages such as a basic calculator can be compiled without ever resorting to an abstract syntax tree.
 \end{Answer}
@@ -141,8 +143,8 @@ What is syntax-directed translation?
 \end{Exercise}
 \begin{Answer}
 Syntax-directed translation is the process of walking through a parse tree and generating intermediary code from it \cite[p.~12]{compilers-aho-2007}.
-
-It is done by attaching rules or program fragments to productions in a grammar \cite[p.~52]{compilers-aho-2007}.
+It is done by attaching rules or program fragments to the productions in a grammar \cite[p.~52]{compilers-aho-2007}.
+Two important concepts related to syntax-directed translation are attributes and (syntax-directed) translation schemes.
 \end{Answer}
 
 \begin{Exercise}
@@ -150,7 +152,8 @@ What is an annotated parse tree? What are attributes?
 \end{Exercise}
 \begin{Answer}
 An annotated parse tree is a parse tree with attributes at each node.
-Attributes are information about that node of the parse tree, usually types and values.
+Attributes can be any information about that node of the parse tree, such as the data type.
+They can be synthesized or inherited \cite[p.~55]{compilers-aho-2007}.
 \end{Answer}
 
 \begin{Exercise}
