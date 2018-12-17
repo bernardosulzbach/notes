@@ -167,7 +167,8 @@ The attributes are created during \textbf{syntactic analysis} \cite[p.~54]{compi
 In which order the attributes should be evaluated?
 \end{Exercise}
 \begin{Answer}
-The attributes should be evaluated from the leaves to the root.
+In a syntax-directed translation definition, any evaluation order that computes \(a\) after all other attributes that \(a\) depends on is acceptable.
+In general, with both synthesized and inherited attributes, determining if an evaluation order is valid is quite complex \cite[p.~57]{compilers-aho-2007}.
 \end{Answer}
 
 \begin{Exercise}
@@ -198,7 +199,7 @@ Typically, translation schemes are implemented during parsing, without building 
 What is an attribute grammar?
 \end{Exercise}
 \begin{Answer}
-An attribute grammar is a syntax-directed definition without side effects.
+An attribute grammar is a syntax-directed definition (SDD) without side effects.
 That is, an attribute grammar has rules which define \textbf{the value of an attribute purely in terms of other attributes and constants} \cite[p.~306]{compilers-aho-2007}.
 \end{Answer}
 
@@ -228,9 +229,9 @@ List three semantic actions typical to the creation of the abstract syntax tree 
 \end{Exercise}
 \begin{Answer}
 \begin{enumerate}
-\item Create a list of abstract syntax trees, such as the parameters of a function definition.
-\item Create a abstract syntax tree leaf node for a symbol.
-\item Join multiple nodes to build a larger node for a variable declaration, such as the token used to name the type and the token used for the name.
+\item Create an abstract syntax tree node for a symbol.
+\item Create a list of abstract syntax trees, which can be used, for instance, to store the parameters of a function definition.
+\item Join multiple nodes to build a larger node for a variable declaration, such as the token used to name the type and the token used for the variable name.
 \end{enumerate}
 \end{Answer}
 
@@ -245,32 +246,35 @@ Yacc can be used to implement S-attributed translation schemes.
 What is a three-address code structure? What is its purpose?
 \end{Exercise}
 \begin{Answer}
-It is a structure which represents an operation over up to two operands and assigns the result to a third operator.
+It is a structure which represents an operation over up to two operands and assigns the result to a third operand.
 Its purpose is to serve as a intermediary representation which is closer to machine code before code generation happens \cite[p.~358]{compilers-aho-2007}.
 \end{Answer}
 
 \begin{Exercise}
-Construct the three-address code structure for an if-then-else statement.
+Construct the three-address code instructions for an if-then-else statement.
 \end{Exercise}
 \begin{Answer}
 \begin{lstlisting}
 d = 0;
 if (a < b) {
-    d += d;
+    d += a;
+} else {
+    d += b;
 }
 e = d / 2;
 \end{lstlisting}
-From the above source code one can derive the following three-address code.
+From the above source code one can derive the following three-address code instructions.
 \begin{lstlisting}
   d = 0
   _T0 = a < b
-  jump L1 if not _T0
+  jump _L1 if not _T0
 _L0:
-  d = d + 2
+  d = d + a
   jump _L2
 _L1:
-  e = d / 2
+  d = d + b
 _L2:
+  e = d / 2
   ...
 \end{lstlisting}
 \end{Answer}
@@ -438,13 +442,24 @@ It can be thought of as \textbf{storage duration}.
 The concept is important as it allows for compiler optimizations such as performing stack allocations instead of heap allocations and for the compiler to determine when it can reuse a register to store another value.
 
 Understanding data lifetime is useful when scheduling instructions during the optimization phases because it is another factor to be considered when reordering instructions.
-Having registers with unnecessarily long lifetimes is usually inefficient, so pulling the definitions closer to the uses tends to improve performance.
+Having registers with unnecessarily long lifetimes is usually inefficient, so by moving the definitions closer to the uses helps to increase the number of available registers.
 \end{Answer}
 
 \begin{Exercise}
 How does the left-edge register allocation algorithm works?
 \end{Exercise}
+\begin{Answer}
+The left-edge register allocation starts by sorting all variables by the start of their lifetime.
+While the variable list is not empty, the next free register is assigned to hold all variables which have not yet been assigned and which do not overlap in the order they are in the list.
+It is called the left-edge register allocation algorithm because if the data lifetimes are visualized horizontally, they will be sorted by their left edge \cite[p.~63]{synthesis-and-optimization-of-digital-circuits-micheli-1994}.
+
+The algorithm yields an allocation with a complexity of \(O(|V| \log |V|)\) \cite[p.~64]{synthesis-and-optimization-of-digital-circuits-micheli-1994}.
+\end{Answer}
 
 \begin{Exercise}
 What is the main limitation of performing left-edge register allocation?
 \end{Exercise}
+\begin{Answer}
+Using the left-edge algorithm to perform register allocation \textbf{does not take into account control flow}, instead, it just takes into account the first and last uses of a variable.
+This results in overestimation of the lifetimes of some variables as it assumes that variables which actually will never coexist might exist at the same time.
+\end{Answer}
