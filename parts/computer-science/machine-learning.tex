@@ -1,0 +1,17 @@
+\chapter{Machine learning}
+
+\section{Random forests}
+
+\subsection{Decision trees}
+
+\subsection{Gini impurity}
+
+Gini impurity measures how impure a dataset is according to a class distribution. It's calculated by
+
+\[G = \sum_i^C p(i) * (1 - p(i))\]
+
+where \(C\) is the number of classes and \(p(i)\) is the probability of randomly picking an element of the \(i\)-th class.
+
+If the classification is perfect (all elements belong to the same class), the impurity will be zero. Maximum impurity is achieved when \(p(i)\) is always the same, that is, if \(p(i) = 1 / C\), then \(G = (C - 1) / C\).
+
+When training a decision tree, the best split might be chosen by maximizing the Gini gain, which is the difference between the weighted Gini impurities of the new branches from the original Gini impurity.
